@@ -5,7 +5,7 @@ function App() {
   return (
     <>
       <div>
-        <p>開発開始</p>
+        <p>テスト</p>
       </div>
 
     </>
