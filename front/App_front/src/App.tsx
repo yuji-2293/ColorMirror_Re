@@ -5,8 +5,8 @@ function App() {
   return (
     <>
       <div>
-        <p>Hello World</p>
-        <p>デプロイチャレンジ</p>
+        <p>開発開始</p>
+        <p>チャレンジ成功！！</p>
       </div>
 
     </>
