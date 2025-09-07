@@ -81,18 +81,20 @@ test:
 production:
   primary: &primary_production
     <<: *default
-    database: app_back_production
-    username: app_back
-    password: <%= ENV["APP_BACK_DATABASE_PASSWORD"] %>
+    database: sample_7jki
+    username: user
+    password: fIsrByb0mm6RT0dfjwcBa9u8zkfhoGN9
+    host: dpg-d2uhrb3e5dus73eoufv0-a
+    port: 5432
   cache:
     <<: *primary_production
-    database: app_back_production_cache
+    database: sample_7jki
     migrations_paths: db/cache_migrate
   queue:
     <<: *primary_production
-    database: app_back_production_queue
+    database: sample_7jki
     migrations_paths: db/queue_migrate
   cable:
     <<: *primary_production
-    database: app_back_production_cable
+    database: sample_7jki
     migrations_paths: db/cable_migrate
