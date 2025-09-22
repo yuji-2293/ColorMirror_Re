@@ -29,3 +29,25 @@ push: →push を行ったとき実行
 branches: ["main"] →main ブランチのみ実行を指定
 paths: - "back/**" - ".github/workflows/back.yml"
 }
+
+### Action 内で指定される公式 Action について
+
+**ruby/setup-ruby@v1**これは、Ruby が公式に用意している GitHubAction
+Action 内でランナーに対して Ruby をインストールして path 通す役割を持つ。
+[例コード]
+{
+
+- name: Set up Ruby
+  **uses: ruby/setup-ruby@v1**
+  // with オプションで公式 action に必要な引数を指定して渡せる、今回はモノレポ構成なので、working-directory にてファイル位置を指定して渡してあげている
+  with:
+  // 下記のようにしてファイル位置を指定
+  working-directory: back/App_back
+  // ruby の version を公式 action に渡してあげる
+  ruby-version: .ruby-version
+  bundler-cache: true
+
+  }
+
+**上記のように各々の言語によって actions/setup-\*\* といった公式の推奨アクションが用意されている（ない場合もある）ため、必要に応じて GitHubActions タブから引用してくるか、自前で記述する必要がある。**
+まとめ: 「言語ごとに用意されている公式アクションを確認 → 使うときは with: で設定を渡す」
