@@ -30,7 +30,6 @@ jobs:
         run: |
           pwd
           ls -la .
-          ls -la back/App_back || true
           cat back/App_back/.ruby-version
 
       - name: Set up Ruby
