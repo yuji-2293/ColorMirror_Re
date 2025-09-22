@@ -4,7 +4,7 @@ function App() {
   return (
     <>
       <div>
-        <p></p>
+        <p>練習用</p>
       </div>
     </>
   );
