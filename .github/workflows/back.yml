@@ -14,7 +14,7 @@ on:
       - ".github/workflows/back.yml"
 defaults:
   run:
-    working-directory: App_back
+    working-directory: back/App_back
 # トリガーされた後に実行するjobを定義
 jobs:
   scan_ruby:
@@ -30,7 +30,7 @@ jobs:
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: .ruby-version
+          ruby-version: back/App_back/.ruby-version
           bundler-cache: true
 
       - name: Scan for common Rails security vulnerabilities using static analysis
