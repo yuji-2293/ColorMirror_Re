@@ -4,12 +4,12 @@ on:
   pull_request:
     branches: ["main"]
     paths:
-      - "back/**"
+      - "ColorMirror_Re/back/**"
       - ".github/workflows/ci.yml"
   push:
     branches: ["main"]
     paths:
-      - "back/**"
+      - "ColorMirror_Re/back/**"
       - ".github/workflows/ci.yml"
 
 jobs:
