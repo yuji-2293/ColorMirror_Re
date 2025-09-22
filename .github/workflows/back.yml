@@ -30,7 +30,7 @@ jobs:
         run: |
           pwd
           ls -la .
-          cat ColorMirror_Re/back/App_back/.ruby-version
+          cat .ruby-version
 
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
