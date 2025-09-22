@@ -1,15 +1,16 @@
 name: CI
 # on: CIの起動トリガーとなる事項の設定
 on:
+  workflow_dispatch:
   pull_request:
     branches: ["main"]
     paths:
-      - "ColorMirror_Re/back/**"
+      - "back/**"
       - ".github/workflows/ci.yml"
   push:
     branches: ["main"]
     paths:
-      - "ColorMirror_Re/back/**"
+      - "back/**"
       - ".github/workflows/ci.yml"
 
 jobs:
