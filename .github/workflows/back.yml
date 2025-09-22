@@ -5,12 +5,12 @@ on:
   pull_request:
     branches: ["main"]
     paths:
-      - "app/back/**"
+      - "back/**"
       - ".github/workflows/ci.yml"
   push:
     branches: ["main"]
     paths:
-      - "app/back/**"
+      - "back/**"
       - ".github/workflows/ci.yml"
 
 jobs:
