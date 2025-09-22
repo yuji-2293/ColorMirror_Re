@@ -60,7 +60,7 @@ Action 内でランナーに対して Ruby をインストールして path 通�
 4. 「uses:」 actions/checkout@v4 初めに必ず、リポジトリ内のコードをクローンして仮想環境内にコピーする
    以降 uses:で言語の setup などを行う
 5. 「with:」action に合わせた引数を指定して uses:で指定した action に渡す
-6. 「run:」 shell を立ち上げてコマンドを実行する。bin/rails や usr/bin/bash によって立ち上がる。brakeman や rubocop の実行、依存関係の install などを行う
+6. 「run:」 shell を立ち上げてコマンドを実行する。bin/rails や /usr/bin/bash によって立ち上がる。brakeman や rubocop の実行、依存関係の install などを行う
    **※ いずれも、最初に actions/checkout@v4 の action を uses: で指定して、コードを仮想環境に落としておかないと、空白の環境では何も実行できないため、no such file directory とエラーを吐かれるので注意！！**
 
 実行 steps の本質は、
@@ -77,3 +77,9 @@ Action 内でランナーに対して Ruby をインストールして path 通�
 • uses: の作業場所はアクションの with: で指定（あれば）。
 • 発火の肝：paths で front/back を分岐、workflow_dispatch で手動デバッグ口を確保。
 --
+
+### 今日詰まったところ
+
+・.ruby-version が GitHub 側で見つけられなかった
+・test: において、/usr/bin/bash の立ち上げで、コードをクローンする処理と、run:でシェルを立ち上げる処理の順序が違ってた
+→ 何よりも先に[actions/checkout@v4]を user: で実行して、仮想環境にコードを落とす。落とすことで shell の実行ファイルが配置され、shell が立ち上がる
