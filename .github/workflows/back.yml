@@ -76,7 +76,7 @@ jobs:
 
     steps:
       - name: Show current shell
-        run: echo $SHELL && which bash
+      - run: ps -p $$
       - name: Install packages
         run: sudo apt-get update && sudo apt-get install --no-install-recommends -y build-essential git libpq-dev libyaml-dev pkg-config
 
