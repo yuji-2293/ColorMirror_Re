@@ -1,7 +1,6 @@
 name: CI
 # on: CIの起動トリガーとなる事項の設定
 on:
-  workflow_dispatch:
   pull_request:
     branches: ["main"]
     paths:
