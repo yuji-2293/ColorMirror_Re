@@ -1,4 +1,4 @@
-name: CI
+name: Back CI
 # on: CIの起動トリガーとなる事項の設定
 on:
   workflow_dispatch:
@@ -6,12 +6,12 @@ on:
     branches: ["main"]
     paths:
       - "back/**"
-      - ".github/workflows/ci.yml"
+      - ".github/workflows/back.yml"
   push:
     branches: ["main"]
     paths:
       - "back/**"
-      - ".github/workflows/ci.yml"
+      - ".github/workflows/back.yml"
 
 jobs:
   scan_ruby:
