@@ -14,7 +14,7 @@ on:
       - ".github/workflows/back.yml"
 defaults:
   run:
-    working-directory: ../App_back
+    working-directory: App_back
 # トリガーされた後に実行するjobを定義
 jobs:
   scan_ruby:
