@@ -12,19 +12,22 @@ on:
     paths:
       - "back/**"
       - ".github/workflows/back.yml"
-
+# トリガーされた後に実行するjobを定義
 jobs:
   scan_ruby:
+    # runs-onは実行するランナー
     runs-on: ubuntu-latest
 
     steps:
+      # name: ワークフローの名前を定義
       - name: Checkout code
+        # リポジトリのコードを取得する
         uses: actions/checkout@v4
 
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: .ruby-version
+          ruby-version: 3.2.3
           bundler-cache: true
 
       - name: Scan for common Rails security vulnerabilities using static analysis
