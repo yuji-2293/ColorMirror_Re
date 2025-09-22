@@ -26,11 +26,17 @@ jobs:
       - name: Checkout code
         # リポジトリのコードを取得する
         uses: actions/checkout@v4
+      - name: Debug .ruby-version
+        run: |
+          pwd
+          ls -la .
+          ls -la back/App_back || true
+          cat back/App_back/.ruby-version
 
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: back/App_back/.ruby-version
+          ruby-version: /back/App_back/.ruby-version
           bundler-cache: true
 
       - name: Scan for common Rails security vulnerabilities using static analysis
