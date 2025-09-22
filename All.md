@@ -30,7 +30,7 @@ branches: ["main"] →main ブランチのみ実行を指定
 paths: - "back/**" - ".github/workflows/back.yml"
 }
 
-### Action 内で指定される公式 Action について
+### uses キーワード内で指定される公式 Action について
 
 **ruby/setup-ruby@v1**これは、Ruby が公式に用意している GitHubAction
 Action 内でランナーに対して Ruby をインストールして path 通す役割を持つ。
@@ -51,3 +51,19 @@ Action 内でランナーに対して Ruby をインストールして path 通�
 
 **上記のように各々の言語によって actions/setup-\*\* といった公式の推奨アクションが用意されている（ない場合もある）ため、必要に応じて GitHubActions タブから引用してくるか、自前で記述する必要がある。**
 まとめ: 「言語ごとに用意されている公式アクションを確認 → 使うときは with: で設定を渡す」
+
+### work フローの記述順序
+
+1. 「runs-on:」 GitHub 上で実行する仮想環境の指定
+2. 「steps:」 実行するタスクを順序立てて定義する
+3. 「name:」 steps の配下で実行するタスク名を設定
+4. 「uses:」 actions/checkout@v4 初めに必ず、リポジトリ内のコードをクローンして仮想環境内にコピーする
+   以降 uses:で言語の setup などを行う
+5. 「with:」action に合わせた引数を指定して uses:で指定した action に渡す
+6. 「run:」 shell を立ち上げてコマンドを実行する。bin/rails や usr/bin/bash によって立ち上がる。brakeman や rubocop の実行、依存関係の install などを行う
+   **※ いずれも、最初に actions/checkout@v4 の action を uses: で指定して、コードを仮想環境に落としておかないと、空白の環境では何も実行できないため、no such file directory とエラーを吐かれるので注意！！**
+
+実行 steps の本質は、
+• どのディレクトリでコマンドを実行するか（working-directory で実行ファイルの位置を指定する）
+• いつそのディレクトリが存在するか（checkout(action でコードをクローンする) のタイミング）
+以上のようになる。
