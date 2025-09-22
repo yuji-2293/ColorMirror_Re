@@ -1,9 +1,14 @@
 name: CI
-
+# on: CIの起動トリガーとなる事項の設定
 on:
   pull_request:
+    paths:
+      - "back/App_back/**"
+      - ".github/workflows/ci.yml"
   push:
-    branches: [main]
+    paths:
+      - "back/App_back/**"
+      - ".github/workflows/ci.yml"
 
 jobs:
   scan_ruby:
