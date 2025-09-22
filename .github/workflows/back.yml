@@ -14,7 +14,7 @@ on:
       - ".github/workflows/back.yml"
 defaults:
   run:
-    working-directory: "ColorMirror_Re/back/App_back"
+    working-directory: "back/App_back"
 # トリガーされた後に実行するjobを定義
 jobs:
   scan_ruby:
