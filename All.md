@@ -67,3 +67,13 @@ Action 内でランナーに対して Ruby をインストールして path 通�
 • どのディレクトリでコマンドを実行するか（working-directory で実行ファイルの位置を指定する）
 • いつそのディレクトリが存在するか（checkout(action でコードをクローンする) のタイミング）
 以上のようになる。
+
+--
+• 公式セットアップ系：Ruby は ruby/setup-ruby@v1 一択。他言語も “setup-◯◯” の公式/準公式をまず探す。
+• with は「アクションに渡す引数」。Action ごとに受付キーが違う（README/action.yml 参照）。
+• 順序の肝：checkout →（必要なら言語セットアップ）→ OS パッケージ → Lint/Build/Test。
+• 場所の肝：
+• どこで実行するか＝ defaults.run.working-directory（run:専用）
+• uses: の作業場所はアクションの with: で指定（あれば）。
+• 発火の肝：paths で front/back を分岐、workflow_dispatch で手動デバッグ口を確保。
+--
