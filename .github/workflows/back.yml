@@ -18,19 +18,20 @@ defaults:
 # トリガーされた後に実行するjobを定義
 jobs:
   scan_ruby:
-    # runs-onは実行するランナー
+    # runs-onは実行するランナー(=仮想の実行環境のこと)
     runs-on: ubuntu-latest
 
     steps:
       # name: ワークフローの名前を定義
       - name: Checkout code
-        # リポジトリのコードを取得する
+        # リポジトリのコードを取得するaction
+        # job内ですべてのactionより先に記述する土台
         uses: actions/checkout@v4
 
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
-          # このworking-directoryはdefaultsとは別、uses内のwithオプションにおいては別途指定が必要だから
+          # このworking-directoryはdefaultsとは別、uses内のwithオプションにおいては別途指定が必要
           working-directory: back/App_back
           ruby-version: .ruby-version
           bundler-cache: true
@@ -47,6 +48,7 @@ jobs:
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
+          working-directory: back/App_back
           ruby-version: .ruby-version
           bundler-cache: true
 
@@ -82,6 +84,7 @@ jobs:
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
+          working-directory: back/App_back
           ruby-version: .ruby-version
           bundler-cache: true
 
