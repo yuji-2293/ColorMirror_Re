@@ -4,7 +4,7 @@
 
 ### GitHubActions について
 
-github/workflows/\*\*.yml のような構成でファイルを作成し、ファイルの中に処理を記述する
+**github/workflows/\*\*.yml のような構成でファイルを作成し、ファイルの中に処理を記述する**
 **[大前提]**
 github/workflows ディレクトリは必ずルートディレクトリ(=app といったトップ階層)に置くこと
 → ルートにないと、GitHub が yml ファイルを認識しない！！
@@ -19,7 +19,7 @@ app/back → バックエンド側のコードの差分を検知して back.yml 
 app/front → フロントエンド側のコードの差分を検知して back.yml などの CI 設定を行なったファイルを自動で実行する
 
 [例コード]
-{
+```
 on:
 workflow_dispatch: → **これを記述しておくことで、GitHub サイトで手動でワークフローを起動するボタンを出現、実行できる**
 pull_request: → プルリクエストを行った時実行
@@ -28,7 +28,7 @@ paths: - "back/**" - ".github/workflows/back.yml"
 push: →push を行ったとき実行
 branches: ["main"] →main ブランチのみ実行を指定
 paths: - "back/**" - ".github/workflows/back.yml"
-}
+```
 
 ### uses キーワード内で指定される公式 Action について
 
