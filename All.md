@@ -83,3 +83,4 @@ Action 内でランナーに対して Ruby をインストールして path 通�
 ・.ruby-version が GitHub 側で見つけられなかった
 ・test: において、/usr/bin/bash の立ち上げで、コードをクローンする処理と、run:でシェルを立ち上げる処理の順序が違ってた
 → 何よりも先に[actions/checkout@v4]を user: で実行して、仮想環境にコードを落とす。落とすことで shell の実行ファイルが配置され、shell が立ち上がる
+・defaults.run.working-directory の有効範囲は run:のみ
