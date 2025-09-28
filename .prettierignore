@@ -1,2 +1,3 @@
 # Markdownは整形しない
 **/*.md
+.md

@@ -112,3 +112,16 @@
       ``` act -l =プロジェクトのルートにて実行すると実行可能なワークフローやその状態を一覧にして確認できる・ ```
       ``` act -j** =特定のワークフローを指定して実行することができる ```
       ``` act -w .github/workflows/**.yml  -wオプションで対処のワークフローのファイルパスを指定して実行できる　→ さらに -j + ジョブ名 でファイル内の一部のジョブを実行できる ```
+
+## 日付け 2025/ 9/26
+
+### 詰まったこと（エラー、調査したこと、考えたこと。調査→仮説→検証
+-  ```ruby/setup-ruby@v1```は何者?
+   - →用意されたaction。 shell内でbuild済みのRubyをpath上にinstallすることができる
+      ```
+      with:
+          working-directory: back/App_back  # 引数 作業ディレクトリ（現在地を指定できる）
+          ruby-version: .ruby-version  # 引数   下記公式リポジトリ引用より、.ruby-versionのファイルから読み取ることができる
+          bundler-cache: true # 引数   bundle installを自動でキャッシュし、のちのgemのinstall時に速度を向上させる
+      ```
+   - > "description: 'Engine and version to use, see the syntax in the README. Reads from .ruby-version, .tool-versions or mise.toml if unset.' "
