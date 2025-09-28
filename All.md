@@ -134,5 +134,16 @@
    - デプロイフックを利用してデプロイをトリガーする
       - Render公式より、ダッシュボード→デプロイフック欄にあるURLをコピー
       - GitHubの対象となるリポジトリ内でGitHub secretにコピーしたURLをコピペする
-
-   https://api.render.com/deploy/srv-d2ui2sh5pdvs73agffkg?key=rYzInYnKeLg
+> 例コード
+```
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - name: Deploy
+        if: github.ref == 'refs/heads/main' ...現在のワークフローがmain branch上なのかどうかを検証、trueなら実行する
+        env:
+          deploy_url: ${{ secrets.RENDER_DEPLOY_HOOK_URL }} ...secretsに保存したURL変数を取り出して deploy_urlに代入
+        run: |
+          curl "$deploy_url" ...CLIでenvで代入したURL入り変数を実行する
+```

@@ -94,6 +94,7 @@ jobs:
           # REDIS_URL: redis://localhost:6379/0
         run: bin/rails db:test:prepare test
   deploy:
+    needs: [scan_ruby, lint, test]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v5
