@@ -125,3 +125,14 @@
           bundler-cache: true # 引数   bundle installを自動でキャッシュし、のちのgemのinstall時に速度を向上させる
       ```
    - > "description: 'Engine and version to use, see the syntax in the README. Reads from .ruby-version, .tool-versions or mise.toml if unset.' "
+
+
+## 日付け 2025/ 9/28
+
+### 今日やったこと
+- GitHubActionsでRenderにデプロイする方法
+   - デプロイフックを利用してデプロイをトリガーする
+      - Render公式より、ダッシュボード→デプロイフック欄にあるURLをコピー
+      - GitHubの対象となるリポジトリ内でGitHub secretにコピーしたURLをコピペする
+
+   https://api.render.com/deploy/srv-d2ui2sh5pdvs73agffkg?key=rYzInYnKeLg
