@@ -145,5 +145,5 @@
         env:
           deploy_url: ${{ secrets.RENDER_DEPLOY_HOOK_URL }} ...secretsに保存したURL変数を取り出して deploy_urlに代入
         run: |
-          curl "$deploy_url" ...CLIでenvで代入したURL入り変数を実行する
+          curl "$deploy_url" ...CLIにてenvで代入したURL入り変数を実行する
 ```
