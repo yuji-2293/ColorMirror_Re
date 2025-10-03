@@ -116,6 +116,11 @@ jobs:
           working-directory: back/App_back
           ruby-version: .ruby-version
           bundler-cache: true
+      - name: install_libsql
+        run: |
+          wget https://github.com/libsql/libsql-cli/releases/download/v0.x.y/libsql_cli-linux-amd64 -O libsql
+          libsql -v
+
       - name: migrate
         env:
           database_url: ${{ secrets.DATABASE_URL }}
