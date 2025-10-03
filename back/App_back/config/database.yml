@@ -81,10 +81,11 @@ production:
   primary: &primary_production
     <<: *default
     database: sample_7jki
-    username: ${{ secrets.DATABASE_USER }}
-    password: ${{ secrets.DATABASE_PASSWORD }}
-    host: ${{ secrets.DATABASE_HOST }}
+    username: user
+    password: fIsrByb0mm6RT0dfjwcBa9u8zkfhoGN9
+    host: dpg-d2uhrb3e5dus73eoufv0-a
     port: 5432
+    url: "postgresql://user:fIsrByb0mm6RT0dfjwcBa9u8zkfhoGN9@dpg-d2uhrb3e5dus73eoufv0-a.singapore-postgres.render.com/sample_7jki"
   cache:
     <<: *primary_production
     database: sample_7jki
