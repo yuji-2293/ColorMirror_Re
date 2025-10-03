@@ -100,7 +100,7 @@ jobs:
     steps:
       - uses: actions/checkout@v5
       - name: Install packages
-        run: sudo apt-get update && sudo apt-get install --no-install-recommends -y build-essential git libpq-dev libyaml-dev pkg-config
+        run: sudo apt-get update && sudo apt-get install --no-install-recommends -y build-essential git libpq-dev libyaml-dev pkg-config postgresql-client
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
@@ -110,9 +110,10 @@ jobs:
 
       - name: migrate
         env:
-          database_url: ${{ secrets.DATABASE_URL }}
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+          RAILS_ENV: ${{ secrets.RAILS_ENV }}
+          RAILS_MASTER_KEY: ${{ secrets.RAILS_MASTER_KEY}}
         run: |
-          curl $database_url
           rails db:version
 
   deploy:
