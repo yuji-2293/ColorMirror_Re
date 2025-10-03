@@ -114,7 +114,7 @@ jobs:
           RAILS_ENV: ${{ secrets.RAILS_ENV }}
           RAILS_MASTER_KEY: ${{ secrets.RAILS_MASTER_KEY}}
         run: |
-          bin/rails db:version
+          bin/rails db:migrate
 
   deploy:
     needs: [migrate]
