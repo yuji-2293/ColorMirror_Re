@@ -111,13 +111,12 @@ jobs:
         env:
           POSTGRES_USER: ${{ secrets.DATABASE_USER }}
           POSTGRES_PASSWORD: ${{ secrets.DATABASE_PASSWORD }}
+          DATABASE_HOST: ${{ secrets.DATABASE_HOST }}
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
           RAILS_ENV: production
           RAILS_MASTER_KEY: ${{ secrets.RAILS_MASTER_KEY}}
         run: |
-          echo "DATABASE_URL=$DATABASE_URL"
           bin/rails db:migrate
-
   deploy:
     needs: [migrate]
     runs-on: ubuntu-latest
