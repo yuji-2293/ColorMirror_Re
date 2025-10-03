@@ -113,6 +113,13 @@ jobs:
           RAILS_ENV: production
           RAILS_MASTER_KEY: ${{ secrets.RAILS_MASTER_KEY}}
         run: |
+          ls -la db/migrate || true
+          ruby -e 'puts "migrate files: #{Dir.glob("db/migrate/*.rb").size}"'
+
+          bin/rails db:migrate:status
+
+          echo "RAILS_ENV=$RAILS_ENV"
+
           bin/rails db:version
           bin/rails db:migrate
           bin/rails db:version
