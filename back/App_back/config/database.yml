@@ -85,6 +85,7 @@ production:
     password: fIsrByb0mm6RT0dfjwcBa9u8zkfhoGN9
     host: dpg-d2uhrb3e5dus73eoufv0-a
     port: 5432
+    url: postgresql://user:fIsrByb0mm6RT0dfjwcBa9u8zkfhoGN9@dpg-d2uhrb3e5dus73eoufv0-a.singapore-postgres.render.com/sample_7jki?sslmode=require
   cache:
     <<: *primary_production
     database: sample_7jki
