@@ -19,7 +19,6 @@ default: &default
   # https://guides.rubyonrails.org/configuring.html#database-pooling
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
 
-
 development:
   <<: *default
   database: app_back_development
@@ -82,8 +81,8 @@ production:
   primary: &primary_production
     <<: *default
     database: sample_7jki
-    username: user
-    password: fIsrByb0mm6RT0dfjwcBa9u8zkfhoGN9
+    username: ${{ secrets.DATABASE_USER }}
+    password: ${{ secrets.DATABASE_PASSWORD }}
     host: dpg-d2uhrb3e5dus73eoufv0-a
     port: 5432
   cache:
