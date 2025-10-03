@@ -93,8 +93,20 @@ jobs:
           DATABASE_URL: postgres://postgres:postgres@localhost:5432
           # REDIS_URL: redis://localhost:6379/0
         run: bin/rails db:test:prepare test
-  deploy:
+  migrate:
     needs: [scan_ruby, lint, test]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - name: migrate
+        env:
+          database_url: ${{ secrets.DATABASE_URL }}
+        run: |
+          curl $database_url
+          rails db:version
+
+  deploy:
+    needs: [migrate]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v5
