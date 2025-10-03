@@ -93,11 +93,18 @@ jobs:
           DATABASE_URL: postgres://postgres:postgres@localhost:5432
           # REDIS_URL: redis://localhost:6379/0
         run: bin/rails db:test:prepare test
+
   migrate:
     needs: [scan_ruby, lint, test]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v5
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          working-directory: back/App_back
+          ruby-version: .ruby-version
+          bundler-cache: true
       - name: migrate
         env:
           database_url: ${{ secrets.DATABASE_URL }}
