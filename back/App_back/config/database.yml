@@ -81,9 +81,9 @@ production:
   primary: &primary_production
     <<: *default
     database: sample_7jki
-    username: user
-    password: fIsrByb0mm6RT0dfjwcBa9u8zkfhoGN9
-    host: dpg-d2uhrb3e5dus73eoufv0-a
+    username: ${{ secrets.DATABASE_USER }}
+    password: ${{ secrets.DATABASE_PASSWORD }}
+    host: ${{ secrets.DATABASE_HOST }}
     port: 5432
   cache:
     <<: *primary_production
