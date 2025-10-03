@@ -151,6 +151,43 @@
 ## 日付け 2025/ 10/03
 
 ### 今日やったこと
+- back.ymlの編集
+  -  アクション内で ```rails db:migrate```の実行→migrateの実行後にdeployがされるように設定
+```
+      - name: migrate
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+          RAILS_ENV: production
+          RAILS_MASTER_KEY: ${{ secrets.RAILS_MASTER_KEY}}
+        run: |
+          pwd
+          ls -la db/migrate || true
+          ruby -e 'puts "migrate files: #{Dir.glob("db/*.rb").size}"'
 
+          bin/rails db:migrate:status
+
+          echo "RAILS_ENV=$RAILS_ENV"
+
+          bin/rails db:version
+          bin/rails db:migrate
+          bin/rails db:version
+```
 
 ### 今日詰まったところ
+   -  curl: (1) Protocol "postgresql" not supported or disabled in libcurl
+      - <所感>  postgresへ接続に必要なlibpqライブラリがinstallされてないことによるもの
+      - <対応> 必要なパッケージのinstall
+      ```
+       run: sudo apt-get update && sudo apt-get install --no-install-recommends -y build-essential git libpq-dev libyaml-dev pkg-config postgresql-client
+      ```
+   -  ① could not translate host name "***" to address: Temporary failure in name resolution
+   -  ② ActiveRecord::ConnectionNotEstablished: could not translate host name "***" to address: Temporary failure in name resolution (ActiveRecord::ConnectionNotEstablished)
+        - <現象>  PostgreSQLの接続に必要な情報をGitHub secretsに保存しているにも関わらず、workflow内で参照されない。
+        - <所感>  検証により、database.ymlの値を参照していることを突き止めた。ただし、renderのアカウント情報のため、ファイル内に下手書きはNG.railsプロジェクト環境のためか、GitHubに預けている環境値を見るでなく、rails直下ファイルが優先されている。
+        - <対応>  rails直下の、config/database.ymlファイルを編集。
+         .envファイルをrailプロジェクトに用意しなくとも、下記のようなコードでENVを指定することで、GitHub内の環境変数を使うことができる。
+         "DATABASE_URL"をGitHub secretsに用意しておくこと。
+             ```
+               production:
+                  url: <%= ENV["DATABASE_URL"] %>
+             ```
