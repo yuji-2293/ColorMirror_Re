@@ -15,9 +15,8 @@ on:
 defaults:
   run:
     working-directory: front/App_front
-
 jobs:
-  sample:
+  test:
     runs-on: ubuntu-latest
     steps:
-      - run: pwd ls -la echo "テストだよ!!"
+      - run: pwd
