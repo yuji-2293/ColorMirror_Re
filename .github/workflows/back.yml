@@ -96,14 +96,6 @@ jobs:
   migrate:
     needs: [scan_ruby, lint, test]
     runs-on: ubuntu-latest
-    services:
-      postgres:
-        image: postgres
-        env:
-          POSTGRES_USER: ${{ secrets.DATABASE_USER }}
-          POSTGRES_PASSWORD: ${{ secrets.DATABASE_PASSWORD }}
-        ports: ["5432:5432"]
-        options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
     steps:
       - uses: actions/checkout@v5
       - name: Install packages
@@ -123,7 +115,6 @@ jobs:
           RAILS_ENV: ${{ secrets.RAILS_ENV }}
           RAILS_MASTER_KEY: ${{ secrets.RAILS_MASTER_KEY}}
         run: |
-          pg_ctl -D /var/lib/postgresql/18/docker -l logfile start
           bin/rails db:migrate
 
   deploy:
