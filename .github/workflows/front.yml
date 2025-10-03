@@ -20,4 +20,4 @@ jobs:
   sample:
     runs-on: ubuntu-latest
     steps:
-      - run: echo "テストだよ!!"
+      - run: pwd ls -la echo "テストだよ!!"
