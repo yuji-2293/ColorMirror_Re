@@ -15,8 +15,46 @@ on:
 defaults:
   run:
     working-directory: front/App_front
+
+env:
+  NODE_VERSION: "23.10.0"
+  PNPM_VERSION: "10.13.1"
 jobs:
-  test:
+  setup:
     runs-on: ubuntu-latest
     steps:
-      - run: pwd
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: "pnpm"
+
+      - name: Install pnpm
+        run: npm install -g pnpm@${{ env.PNPM_VERSION }}
+
+      - name: Install dependencies
+        run: pnpm install
+
+  lint:
+    needs: setup
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: "pnpm"
+
+      - name: Install pnpm
+        run: npm install -g pnpm@${{ env.PNPM_VERSION }}
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - run: pnpm lint
+        env:
+          DEBUG_MESSAGE: ${{ env.DEBUG_MESSAGE }}
