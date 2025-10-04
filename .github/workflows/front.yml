@@ -22,7 +22,7 @@ env:
   DEBUG_MESSAGE: "hello from front CI"
 
 jobs:
-  setup:
+  Launch:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -45,7 +45,7 @@ jobs:
         run: pnpm install
 
   lint:
-    needs: setup
+    needs: Launch
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -69,3 +69,13 @@ jobs:
       - run: pnpm lint
         env:
           DEBUG_MESSAGE: ${{ env.DEBUG_MESSAGE }}
+  format:
+    needs: [Launch, lint]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref }}
+      - name: Prettier check
+        run: npx prettier --check .
