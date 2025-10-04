@@ -27,14 +27,18 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+
+      - name: setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          run_install: false
+
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: ${{ env.NODE_VERSION }}
           cache: "pnpm"
-
-      - name: Install pnpm
-        run: npm install -g pnpm@${{ env.PNPM_VERSION }}
+          cache-dependency-path: front/App_front/pnpm-lock.yaml
 
       - name: Install dependencies
         run: pnpm install
@@ -45,18 +49,21 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+
+      - name: setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          run_install: false
+
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: ${{ env.NODE_VERSION }}
           cache: "pnpm"
-
-      - name: Install pnpm
-        run: npm install -g pnpm@${{ env.PNPM_VERSION }}
+          cache-dependency-path: front/App_front/pnpm-lock.yaml
 
       - name: Install dependencies
         run: pnpm install
-
       - run: pnpm lint
         env:
           DEBUG_MESSAGE: ${{ env.DEBUG_MESSAGE }}
