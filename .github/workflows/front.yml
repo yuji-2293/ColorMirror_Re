@@ -78,4 +78,4 @@ jobs:
         with:
           ref: ${{ github.head_ref }}
       - name: Prettier check
-        run: npx prettier --check .
+        run: pnpm prettier --check .
