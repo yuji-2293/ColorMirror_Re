@@ -75,7 +75,21 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+      - name: setup pnpm
+        uses: pnpm/action-setup@v4
         with:
-          ref: ${{ github.head_ref }}
+          version: ${{ env.PNPM_VERSION }}
+          run_install: false
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: "pnpm"
+          cache-dependency-path: front/App_front/pnpm-lock.yaml
+
+      - name: Install dependencies
+        run: pnpm install
+
       - name: Prettier check
         run: pnpm prettier --check .
