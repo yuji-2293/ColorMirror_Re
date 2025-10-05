@@ -1,3 +1,4 @@
 # Markdownは整形しない
 **/*.md
 .md
+pnpm-lock.yaml
