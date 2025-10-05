@@ -45,7 +45,6 @@ jobs:
         run: pnpm install
 
   lint:
-    needs: Launch
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -70,7 +69,6 @@ jobs:
         env:
           DEBUG_MESSAGE: ${{ env.DEBUG_MESSAGE }}
   format:
-    needs: [Launch, lint]
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -116,4 +114,4 @@ jobs:
       - name: Install dependencies
         run: pnpm install
       - name: Typecheck
-        run: tsc --noEmit
+        run: pnpm tsc --noEmit
