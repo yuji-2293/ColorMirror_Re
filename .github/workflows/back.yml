@@ -20,7 +20,6 @@ jobs:
   scan_ruby:
     # runs-onは実行するランナー(=仮想の実行環境のこと)
     runs-on: ubuntu-latest
-
     steps:
       # name: ワークフローの名前を定義
       - name: Checkout code
