@@ -142,7 +142,7 @@ jobs:
         run: pnpm install
 
       - name: install Vercel CLI
-        run: pnpm add -g vercel@latest
+        run: pnpm add -g vercel@latest --allow-build=esbuild
 
       - name: Pull Vercel environment variables
         run: vercel pull --yes --token=${{ secrets.VERCEL_TOKEN }}
