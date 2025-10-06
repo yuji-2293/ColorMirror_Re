@@ -119,6 +119,7 @@ jobs:
         run: pnpm tsc --noEmit
 
   deploy-production:
+    needs: [lint, format, typecheck]
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -144,7 +145,7 @@ jobs:
         run: pnpm add -g vercel@latest
 
       - name: Pull Vercel environment variables
-        run: vercel pull --yes --enviroment=production --token=${{ secrets.VERCEL_TOKEN }}
+        run: vercel pull --yes --token=${{ secrets.VERCEL_TOKEN }}
         env:
           VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG }}
           VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
