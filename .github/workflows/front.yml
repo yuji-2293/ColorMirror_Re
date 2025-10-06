@@ -166,7 +166,8 @@ jobs:
           VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG }}
           VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
       - name: Build Project
-        run: pnpm build
+        run: |
+          pnpm build
           vercel build --token=${{ secrets.VERCEL_TOKEN }}
       - name: Deploy to Vercel
         env:
@@ -174,4 +175,4 @@ jobs:
           VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
           DEBUG_MESSAGE: ${{ env.DEBUG_MESSAGE }}
         run: |
-          vercel deploy --prod prebuilt --token=${{ secrets.VERCEL_TOKEN }}
+          vercel deploy --prebuilt --prod --token=${{ secrets.VERCEL_TOKEN }}
