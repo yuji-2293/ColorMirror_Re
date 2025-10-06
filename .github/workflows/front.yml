@@ -173,7 +173,7 @@ jobs:
           DEBUG_MESSAGE: ${{ env.DEBUG_MESSAGE }}
         run: |
           pnpm add -g vercel@latest --allow-build=esbuild
-          vercel login --token=${{ secrets.VERCEL_TOKEN }} --confirm
+          vercel login
           pwd
           ls -la
           vercel deploy prebuilt --token=${{ secrets.VERCEL_TOKEN }}
