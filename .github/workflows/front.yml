@@ -167,10 +167,16 @@ jobs:
           VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
 
       - name: Deploy to Vercel
-        run: |
-          pwd ls -la
-          vercel deploy prebuilt --token=${{ secrets.VERCEL_TOKEN }}
         env:
           VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG }}
           VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
           DEBUG_MESSAGE: ${{ env.DEBUG_MESSAGE }}
+        run: |
+          pnpm add -g vercel@latest --allow-build=esbuild
+          mkdir -p .vercel
+          printf '{"orgId":"%s","projectId":"%s"}' "${{ secrets.VERCEL_ORG }}" "${{ secrets.VERCEL_PROJECT_ID }}" > .vercel/project.json
+          pwd
+          ls -la
+
+          vercel build --token=${{ secrets.VERCEL_TOKEN }}
+          vercel deploy prebuilt --token=${{ secrets.VERCEL_TOKEN }}
