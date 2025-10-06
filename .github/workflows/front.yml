@@ -174,4 +174,4 @@ jobs:
           VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
           DEBUG_MESSAGE: ${{ env.DEBUG_MESSAGE }}
         run: |
-          pnpm dlx vercel@48 deploy --prod --token "${{ secrets.VERCEL_TOKEN }}"
+          pnpm dlx vercel deploy --token "${{ secrets.VERCEL_TOKEN }}"
