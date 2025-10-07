@@ -168,7 +168,8 @@ jobs:
       - name: Build Project
         run: |
           pnpm build
-          vercel build --token=${{ secrets.VERCEL_TOKEN }}
+          vercel build --prod --token=${{ secrets.VERCEL_TOKEN }}
+          pwd; ls -la .vercel || true; ls -la .vercel/output || true
       - name: Deploy to Vercel
         env:
           VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG }}
