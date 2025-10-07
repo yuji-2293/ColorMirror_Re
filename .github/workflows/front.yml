@@ -19,7 +19,7 @@ defaults:
 env:
   NODE_VERSION: "22"
   PNPM_VERSION: "10.13.1"
-  DEBUG_MESSAGE: "hello from front CI"
+  DEBUG_MESSAGE: "CI/CD実行!!"
 
 jobs:
   Launch:
