@@ -19,5 +19,21 @@
     group: front-${{ github.ref }}
     cancel-in-progress: true
 ```
+- Actions内でのデプロイ実行の流れ
+  - Actions内でnode、pnpm、依存関係を入れる。
+  - Vercel CLIをinstall
+  - vercelからトークンに紐づいたプロジェクト情報をpull
+  - プロジェクトの環境情報をCLI環境にセット。
+  - 依存関係をビルド、vercelプロジェクトコードをビルド。
+  -  CLI専用デプロイコマンドを実行。
+```
+  vercel deploy --prebuilt --prod --token=${{ secrets.VERCEL_TOKEN }}
+```
+    - --prebuilt →事前にbuildしておいてデプロイを実行する設定
+    - --prod → --productionのデプロイ環境に向けてデプロイする
 
-- CIはbackと同様
+### 今日詰まったところ
+- <エラー文> ```ColorMirror_Re/front/App_front/front/App_front”```
+  →二重パス問題
+  モノレポ時のVercelのルートディレクトリの指定はルートで行う
+  .vercel/output/の出力先を[dist]に指定する
