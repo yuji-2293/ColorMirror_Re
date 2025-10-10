@@ -5,7 +5,12 @@
   - ログイン機能
   - ログアウト機能
 - 基本CRUD
+  - 色の選択form
+  - 選択した色の一覧
+- AIコメント生成
+  - 選択した色を元にAI分析コメント生成
 - 天気APIによる天気情報の表示
+  - 登録したユーザー情報をもとに天気情報を自動表示
 
 ### 本リリース
 - deviseによるユーザー機能
@@ -31,14 +36,14 @@
 
 | 分類             | 技術                     | 補足                         |
 |------------------|--------------------------|------------------------------|
-| フロントエンド   | HTML / CSS / JS / Tailwind CSS | UI設計 |
+| フロントエンド   | React / Tailwind CSS | UI設計 |
 | バックエンド     | Ruby on Rails 8.x        | Rails 8.0 / Ruby 3.2        |
 | データベース     | PostgreSQL               | 本番 / 開発共通             |
 | 認証             | Devise  / Google                 | ログイン認証   Google認証              |
 | 非同期処理       | SolidQueue / ActiveJob   | AIコメント生成・通知処理     |
 | ライブラリ          | chart.js / CalHeatmap.js swiper.js | チャートグラフ作図 / ヒートマップ作図 | スライド式form画面 |
 | API連携          | OpenWeatherMap / OpenAI / LINE | 天気取得・コメント生成・通知 |
-| デプロイ         | Render                   | GitHub連携CI/CD              |
-| テスト           | RSpec                    | モデル・システム        |
+| デプロイ         | Render / Vercel                  | GitHub連携CI/CD              |
+| テスト           | RSpec vitest                    | モデル・システム        |
 
 ---

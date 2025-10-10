@@ -4,7 +4,7 @@ function App() {
   return (
     <>
       <div>
-        <p>練習用</p>
+        <p className="text-blue-500 font-bold text-2xl text-center">test中</p>
       </div>
     </>
   );
