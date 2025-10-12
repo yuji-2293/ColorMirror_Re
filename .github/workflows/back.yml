@@ -92,39 +92,8 @@ jobs:
           DATABASE_URL: postgres://postgres:postgres@localhost:5432
         run: bin/rails db:test:prepare test
 
-  migrate:
-    needs: [scan_ruby, lint, test]
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v5
-      - name: Install packages
-        run: sudo apt-get update && sudo apt-get install --no-install-recommends -y build-essential git libpq-dev libyaml-dev pkg-config postgresql-client
-      - name: Set up Ruby
-        uses: ruby/setup-ruby@v1
-        with:
-          working-directory: back/App_back
-          ruby-version: .ruby-version
-          bundler-cache: true
-
-      - name: migrate
-        env:
-          DATABASE_URL: ${{ secrets.DATABASE_URL }}
-          RAILS_ENV: production
-          RAILS_MASTER_KEY: ${{ secrets.RAILS_MASTER_KEY}}
-        run: |
-          pwd
-          ls -la db/migrate || true
-          ruby -e 'puts "migrate files: #{Dir.glob("db/*.rb").size}"'
-
-          bin/rails db:migrate:status
-
-          echo "RAILS_ENV=$RAILS_ENV"
-
-          bin/rails db:version
-          bin/rails db:migrate
-          bin/rails db:version
   deploy:
-    needs: [migrate]
+    needs: [scan_ruby, lint, test]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v5

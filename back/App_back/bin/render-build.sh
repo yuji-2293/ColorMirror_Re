@@ -3,4 +3,7 @@
 set -o errexit
 
 bundle install
-bundle exec ridgepole -c config/database.yml -E production --apply -f db/schemas/Schemafile
+bin/rails assets:precompile
+bin/rails assets:clean
+
+bin/rails db:migrate
