@@ -36,7 +36,7 @@
 
 | 分類             | 技術                     | 補足                         |
 |------------------|--------------------------|------------------------------|
-| フロントエンド   | React / Tailwind CSS | UI設計 |
+| フロントエンド   | React / Tailwind CSS / shadcn/ui | UI設計 |
 | バックエンド     | Ruby on Rails 8.x        | Rails 8.0 / Ruby 3.2        |
 | データベース     | PostgreSQL               | 本番 / 開発共通             |
 | 認証             | Devise  / Google                 | ログイン認証   Google認証              |
