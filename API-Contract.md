@@ -43,26 +43,33 @@ data:
  - id: number
  - color_name: string
  - mood: string
+ - created_at: string (ISO)
+
 meta:
   total: number
   per: number
   page: number
 error: null
 
+## POST/api/v1/self_logs
+  - color_id: number
+
 ## GET/api/v1/self_logs
 data:
   - id: number
   - user_id: number
   - color_id: number
+  - created_at: string
 meta:
   total: number
 error: null
 
-## GET/api/v1/self_log/:id/responses
+## GET/api/v1/self_logs/:id/responses
 data:
   - self_log_id: number
   - color_analysis: string
   - weather_analysis: string
+  - created_at: string
 meta: {}
 error: null
 
@@ -77,9 +84,20 @@ data:
   - weather_icon: string
   - description: string
   - city: string
+  - created_at: string
 meta: {}
 error: null
 
+# GET/api/v1/users/me
+data:
+  - email: string
+  - name: string
+  - prefecture: number
+  - provider: string
+  - uid: string
+  - created_at: string
+meta: {}
+error: null
 
 <!--
 機能別ルーティング
