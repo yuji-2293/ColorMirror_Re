@@ -47,3 +47,51 @@
 | テスト           | RSpec vitest                    | モデル・システム        |
 
 ---
+
+## コンポーネント構成図
+src/
+├── app/
+│   ├── api/                # API呼び出し層（fetchをまとめる）
+│   │   ├── colors.ts
+│   │   ├── selfLogs.ts
+│   │   ├── responses.ts
+│   │   └── users.ts
+│   ├── types/              # DBに対応した型定義
+│   │   ├── Color.ts
+│   │   ├── SelfLog.ts
+│   │   ├── Response.ts
+│   │   └── User.ts
+│   ├── hooks/              # 共通の状態管理 or カスタムフック
+│   │   ├── useFetch.ts
+│   │   └── useToast.ts
+│   └── store/              # Zustandなどを使う場合ここ（後で）
+│
+├── components/             # UI部品（再利用可能）
+│   ├── ui/                 # ボタン・入力・モーダルなどの共通UI
+│   │   ├── Button.tsx
+│   │   ├── Input.tsx
+│   │   ├── Select.tsx
+│   │   └── Toast.tsx
+│   ├── layout/             # 共通レイアウト
+│   │   ├── Header.tsx
+│   │   ├── Footer.tsx
+│   │   └── Container.tsx
+│   ├── colors/             # 色関連のUI部品
+│   │   ├── ColorCard.tsx
+│   │   └── ColorList.tsx
+│   ├── logs/               # 記録関連のUI部品
+│   │   ├── LogForm.tsx
+│   │   └── LogList.tsx
+│   └── charts/             # グラフ・ヒートマップなど（後で）
+│       ├── Heatmap.tsx
+│       └── RadarChart.tsx
+│
+├── pages/                  # 実際の画面（URLごと）
+│   ├── ColorsPage.tsx      # /colors
+│   ├── LogsPage.tsx        # /logs
+│   ├── DashboardPage.tsx   # /dashboard（後で）
+│   └── UserPage.tsx        # /user（プロフィール表示など）
+│
+├── App.tsx                 # ルーティング・全体構成
+├── main.tsx                # エントリポイント
+└── index.css               # Tailwindエントリ
