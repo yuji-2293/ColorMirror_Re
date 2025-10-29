@@ -89,7 +89,7 @@ src/
 ├── pages/                  # 実際の画面（URLごと）
 │   ├── ColorsPage.tsx      # /colors
 │   ├── LogsPage.tsx        # /logs
-│   ├── DashboardPage.tsx   # /dashboard（後で）
+│   ├── DashboardPage.tsx   # /dashboard（後で  ）
 │   └── UserPage.tsx        # /user（プロフィール表示など）
 │
 ├── App.tsx                 # ルーティング・全体構成
