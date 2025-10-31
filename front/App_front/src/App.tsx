@@ -9,7 +9,7 @@ function App({ colorsGetData }: ApiProps) {
     <>
       <div className="">
         <form onSubmit={colorsGetData}>
-          <input type="text" placeholder="" />
+          <input type="text" placeholder="空欄" />
           <button type="submit">追加</button>
         </form>
       </div>
