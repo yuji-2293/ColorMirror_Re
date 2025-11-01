@@ -1,5 +1,4 @@
 import './App.css';
-import './api/colorsGetData';
 
 type ApiProps = {
   colorsGetData: (e: React.FormEvent<HTMLFormElement>) => Promise<void>;
