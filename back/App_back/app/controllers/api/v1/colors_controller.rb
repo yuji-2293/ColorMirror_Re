@@ -1,5 +1,5 @@
 class Api::V1::ColorsController < ApplicationController
-  before_action :set_color, only: [:show, :update, :destroy]
+  before_action :set_color, only: [ :show, :update, :destroy ]
 
   def index
     color = Color.all
@@ -39,5 +39,4 @@ private
   def color_params
     params.require(:color).permit(:color_name, :mood)
   end
-
 end
