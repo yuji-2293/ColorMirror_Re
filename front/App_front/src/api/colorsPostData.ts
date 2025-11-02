@@ -2,7 +2,7 @@ import { type Color } from '../types/Color';
 import { API_BASE_URL } from './config';
 
 export default async function colorsPostData(): Promise<Color> {
-  const response = await fetch(`${API_BASE_URL}/colors`, {
+  const response = await fetch(`${API_BASE_URL}/api/v1/colors`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
