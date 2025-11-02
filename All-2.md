@@ -37,3 +37,25 @@
   →二重パス問題
   モノレポ時のVercelのルートディレクトリの指定はルートで行う
   .vercel/output/の出力先を[dist]に指定する
+
+## 日付け 2025/ 11/01
+
+### 今日やったこと
+- 型.tsファイルを読み、POST通信するファイルで定義した関数に型注釈を入れる
+
+import { type Color } from '../types/Color';
+
+verbatimModuleSyntaxが有効な時、型.tsファイルをインポートするときはtypeをつけないといけない
+
+## 日付け 2025/ 11/02
+
+### 今日やったこと
+- .env.development or productionの切り替え
+  - viteの仕組みを使って、開発と本番の環境変数を切り替える
+
+- Viteはbuild時の環境によって自動で環境変数を読み込むファイルを切り替えてくれる
+  - pnpm run dev → --mode development →.env.development
+  - pnpm run build → --mode production →.env.production
+- Viteで読み込む環境変数.envファイルの変数には「 VITE_ 」が先頭についていないと読み込まれないので注意が必要
+- .envファイルで定義された環境変数を使うときは``` import.meta.env.{環境変数名} ```で使うことができる
+-

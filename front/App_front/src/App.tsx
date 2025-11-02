@@ -1,13 +1,13 @@
 import './App.css';
-
+import { type Color } from './types/Color';
 type ApiProps = {
-  colorsGetData: (e: React.FormEvent<HTMLFormElement>) => Promise<void>;
+  colorsPostData: (e: React.FormEvent<HTMLFormElement>) => Promise<Color>;
 };
-function App({ colorsGetData }: ApiProps) {
+function App({ colorsPostData }: ApiProps) {
   return (
     <>
       <div className="">
-        <form onSubmit={colorsGetData}>
+        <form onSubmit={colorsPostData}>
           <input type="text" placeholder="空欄" />
           <button type="submit">追加</button>
         </form>
