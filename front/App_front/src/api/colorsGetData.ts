@@ -5,5 +5,8 @@ export default async function colorsGetData() {
   if (!response.ok) {
     throw new Error('Failed to fetch colors data');
   }
-  return await response.json();
+
+  const log = await response.json();
+  console.log(log);
+  return log;
 }

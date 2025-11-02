@@ -58,4 +58,23 @@ verbatimModuleSyntaxが有効な時、型.tsファイルをインポートする
   - pnpm run build → --mode production →.env.production
 - Viteで読み込む環境変数.envファイルの変数には「 VITE_ 」が先頭についていないと読み込まれないので注意が必要
 - .envファイルで定義された環境変数を使うときは``` import.meta.env.{環境変数名} ```で使うことができる
--
+
+
+- API通信の開通
+  - logの出し方と通信に対する考え方
+```
+const response = await fetch(`${API_BASE_URL}/colors`);  // 封筒受け取り
+const json = await response.json();                      // 封を開ける
+console.log(json);                                       // 中身を見る
+return json;                                             // 呼び出し元に渡す
+```
+→ fetch → JSONパース → ログ → return → 呼び出し元で受け取る。
+
+  - asyncとawaitについて
+    - async
+    →この関数はPromiseを返す,これを書くと中身は非同期関数になる、という宣言
+    returnの結果はPromiseで包まれて返る
+    ``` async function colorsGetData() { ... } ```
+    - await
+    →Promiseの完了を待つ
+    ``` const response = await fetch(`${API_BASE_URL}/colors`); ```

@@ -16,6 +16,7 @@ export default async function colorsPostData(): Promise<Color> {
   if (!response.ok) {
     throw new Error('Failed to post color data');
   }
-
-  return await response.json();
+  const res = await response.json();
+  console.log(res);
+  return res;
 }
