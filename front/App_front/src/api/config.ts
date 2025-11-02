@@ -2,5 +2,4 @@
 export const DEV = import.meta.env.DEV; // boolean
 export const PROD = import.meta.env.PROD; // boolean
 
-export const API_BASE_URL =
-  import.meta.env.VITE_API_BASE_URL || 'https://colormirror-re.onrender.com/api/v1';
+export const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || import.meta.env.VITE_API_PROD_URL;
