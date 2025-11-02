@@ -25,7 +25,7 @@ Rails.application.configure do
   config.assume_ssl = true
 
   # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
-  config.hosts << "https://color-mirror-re.vercel.app"
+  config.hosts << "https://colormirror-re.onrender.com"
   config.force_ssl = true
 
   # Skip http-to-https redirect for the default health check endpoint.
