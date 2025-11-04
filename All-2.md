@@ -78,3 +78,10 @@ return json;                                             // 呼び出し元に�
     - await
     →Promiseの完了を待つ
     ``` const response = await fetch(`${API_BASE_URL}/colors`); ```
+
+- Vercelで設定した環境変数が読み込まれない問題
+  - VITE_のプレフィックスを付けてるのに読み込まれてない場合は、devルートでbuildしてしまっている可能性が高い。
+    →フロントルート直下に ```.env.production```ファイルを作成して環境変数を定義するとVercel側で参照してくれる。
+    →本来はVercelダッシュボード側で環境変数を定義してそこから参照されるのが適切。
+    CIの実行で不要な``` pnpm build ```を実行しているとVercel環境がprodからdevに移行してしまうことがある。
+    →そもそも、Vercelにデプロイが実行された段階でbuildされるため、CIでbuildする自体が重複しているため、不要となる。
