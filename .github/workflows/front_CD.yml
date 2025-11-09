@@ -16,7 +16,7 @@ env:
   PNPM_VERSION: "10.13.1"
   DEBUG_MESSAGE: "CD実行!!"
 concurrency:
-  group: front-${{ github.ref }}
+  group: "front-CD-${{ github.ref }}"
   cancel-in-progress: true
 jobs:
   deploy-production:
