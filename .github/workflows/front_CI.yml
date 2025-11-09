@@ -1,4 +1,4 @@
-name: Front CI
+name: Front/CI
 
 on:
   workflow_dispatch:
