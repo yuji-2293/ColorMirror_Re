@@ -19,7 +19,7 @@ defaults:
 env:
   NODE_VERSION: "22"
   PNPM_VERSION: "10.13.1"
-  DEBUG_MESSAGE: "CI/CD実行!!"
+  DEBUG_MESSAGE: "CI実行!!"
 concurrency:
   group: front-${{ github.ref }}
   cancel-in-progress: true
