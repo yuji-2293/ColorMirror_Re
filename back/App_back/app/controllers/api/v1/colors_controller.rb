@@ -2,8 +2,8 @@ class Api::V1::ColorsController < ApplicationController
   before_action :set_color, only: [ :show, :update, :destroy ]
 
   def index
-    color = Color.all
-    render json: color
+    colors = Color.all
+    render_api(data: colors, meta: { total: colors.count } )
   end
 
   def create
