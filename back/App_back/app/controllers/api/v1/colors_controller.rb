@@ -3,7 +3,7 @@ class Api::V1::ColorsController < ApplicationController
 
   def index
     colors = Color.all
-    render_api(data: colors, meta: { total: colors.count } )
+    render_api(data: colors, meta: { total: colors.count })
   end
 
   def create
