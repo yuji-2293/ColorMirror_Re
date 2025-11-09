@@ -6,12 +6,12 @@ on:
     branches: ["main"]
     paths:
       - "front/**"
-      - ".github/workflows/front.yml"
+      - ".github/workflows/front_CI.yml"
   push:
     branches: ["main"]
     paths:
       - "front/**"
-      - ".github/workflows/front.yml"
+      - ".github/workflows/front_CI.yml"
 defaults:
   run:
     working-directory: front/App_front
