@@ -95,3 +95,35 @@ src/
 ├── App.tsx                 # ルーティング・全体構成
 ├── main.tsx                # エントリポイント
 └── index.css               # Tailwindエントリ
+
+
+src/
+  main.tsx
+  App.tsx
+  routes/               ← ルーティング使うなら
+    index.tsx
+  pages/                ← 画面レベル
+    DashboardPage.tsx
+    ColorsPage.tsx
+  features/             ← 機能単位（おすすめ）
+    colors/
+      components/
+        ColorCard.tsx
+        ColorForm.tsx
+        ColorList.tsx
+      hooks/
+        useColors.ts     ← React Queryのカスタムフック
+        useCreateColor.ts
+      api.ts             ← このfeature専用のfetch/axios
+  components/            ← 汎用UI
+    Layout.tsx
+    Header.tsx
+    Button.tsx
+  lib/                   ← axiosインスタンスとか共通
+    axiosClient.ts
+    queryClient.ts
+  store/                 ← Zustand置くならここ
+    uiStore.ts
+    authStore.ts
+  types/                 ← APIの型
+    color.ts
