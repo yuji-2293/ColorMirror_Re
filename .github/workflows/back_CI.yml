@@ -1,4 +1,4 @@
-name: Back CI
+name: Back/CI
 # on: CIの起動トリガーとなる事項の設定
 on:
   workflow_dispatch:

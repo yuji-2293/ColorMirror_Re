@@ -1,4 +1,4 @@
-name: Back CD
+name: Back/CD
 
 on:
   workflow_dispatch:

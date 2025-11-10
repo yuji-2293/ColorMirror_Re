@@ -21,15 +21,7 @@
   - ユーザー退会機能
 
 - 非同期処理（SolidQueue）によるキューイングジョブ
-- LINE連携 or 通知によるリマインダ機能
-- Google連携 or 認証によるログイン
-- CalHeatmap.jsによるグラフ作図
-- chart.jsによるグラフ作図
-- swiper.jsによるスライド式form画面
-- 静的OGP
-- Googleフォームによるお問い合わせ機能
-- 利用規約
-- プライバシーポリシー
+
 - レスポンシブ対応
 
 ## 🔧 技術スタック
@@ -49,15 +41,16 @@
 ---
 
 ## コンポーネント構成図
-src/
-├── app/
-│   ├── api/                # API呼び出し層（fetchをまとめる）
-│   │   ├── colors.ts
-│   │   ├── selfLogs.ts
-│   │   ├── responses.ts
-│   │   └── users.ts
-│   ├── types/              # DBに対応した型定義
-│   │   ├── Color.ts
+```
+src/  
+├── app/  
+│   ├── api/  
+│   │   ├── colors.ts   
+│   │   ├── selfLogs.ts   
+│   │   ├── responses.ts  
+│   │   └── users.ts  
+│   ├── types/              # DBに対応した型定義    
+│   │   ├───  Color.ts
 │   │   ├── SelfLog.ts
 │   │   ├── Response.ts
 │   │   └── User.ts
@@ -95,35 +88,4 @@ src/
 ├── App.tsx                 # ルーティング・全体構成
 ├── main.tsx                # エントリポイント
 └── index.css               # Tailwindエントリ
-
-
-src/
-  main.tsx
-  App.tsx
-  routes/               ← ルーティング使うなら
-    index.tsx
-  pages/                ← 画面レベル
-    DashboardPage.tsx
-    ColorsPage.tsx
-  features/             ← 機能単位（おすすめ）
-    colors/
-      components/
-        ColorCard.tsx
-        ColorForm.tsx
-        ColorList.tsx
-      hooks/
-        useColors.ts     ← React Queryのカスタムフック
-        useCreateColor.ts
-      api.ts             ← このfeature専用のfetch/axios
-  components/            ← 汎用UI
-    Layout.tsx
-    Header.tsx
-    Button.tsx
-  lib/                   ← axiosインスタンスとか共通
-    axiosClient.ts
-    queryClient.ts
-  store/                 ← Zustand置くならここ
-    uiStore.ts
-    authStore.ts
-  types/                 ← APIの型
-    color.ts
+```
