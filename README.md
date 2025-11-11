@@ -75,9 +75,9 @@ src/
 │   ├── logs/               # 記録関連のUI部品
 │   │   ├── LogForm.tsx
 │   │   └── LogList.tsx
-│   └── charts/             # グラフ・ヒートマップなど（後で）
-│       ├── Heatmap.tsx
-│       └── RadarChart.tsx
+│
+│
+│
 │
 ├── pages/                  # 実際の画面（URLごと）
 │   ├── ColorsPage.tsx      # /colors
