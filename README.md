@@ -57,7 +57,7 @@ src/
 │   ├── hooks/              # 共通の状態管理 or カスタムフック
 │   │   ├── useFetch.ts
 │   │   └── useToast.ts
-│   └── store/              # Zustandなどを使う場合ここ（後で）
+│   └── store/              # Zustand
 │
 ├── components/             # UI部品（再利用可能）
 │   ├── ui/                 # ボタン・入力・モーダルなどの共通UI
