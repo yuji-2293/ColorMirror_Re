@@ -28,13 +28,14 @@
 | 非同期処理       | SolidQueue / ActiveJob   | AIコメント生成・通知処理     |
 | ライブラリ          | chart.js / CalHeatmap.js swiper.js | チャートグラフ作図 / ヒートマップ作図 | スライド式form画面 |
 | API連携          | OpenWeatherMap / OpenAI / LINE | 天気取得・コメント生成・通知 |
-| デプロイ         | Render / Vercel                  | GitHub連携CI/CD              |
+| デプロイ         | Render / Vercel                  | GitHubActions CI/CD              |
 | テスト           | RSpec vitest                    | モデル・システム        |
 
 ---
 
 ## コンポーネント構成図
 ```
+│  ├──  └──
 src/  
 ├── app/  
 │   ├── api/  
@@ -57,6 +58,8 @@ src/
 │   │   ├── Button.tsx
 │   │   ├── Input.tsx
 │   │   ├── Select.tsx
+│   │   ├── header.tsx 
+│   │   ├── footer.tsx 
 │   │   └── Toast.tsx
 │   ├── layout/             # 共通レイアウト
 │   │   ├── Header.tsx
