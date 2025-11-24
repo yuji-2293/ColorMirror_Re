@@ -11,3 +11,23 @@
   - <対応>index.css App.cssのデフォルトCSSが効いているせい
   →index.cssのrootやbodyに効いている不要な記述を削除。
   →viteプロジェクト作成時にデフォルトで生成されてしまうので実装時に削除しておく。
+
+## 日付け 2025/ 11/24
+
+### 今日やったこと
+- prettierの設定解説
+  - prettierrc.jsonの中身
+{
+  "semi": true,
+  ``` セミコロンをつける ```
+  "singleQuote": true,
+  ``` シングルクォートつける ```
+  "trailingComma": "es5",
+  ``` 配列・オブジェクトの末尾にカンマを付けます（ES5互換）。地味にGitの差分減らすやつ。 ```
+  "printWidth": 100,
+  ``` 1行の最大文字数 ```
+  "tabWidth": 2
+  ```　インデント幅を2スペースつける ```
+  "bracketSpacing": true
+  ```  {}の中にスペースを入れる ```
+}
