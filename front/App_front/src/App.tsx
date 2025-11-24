@@ -1,4 +1,5 @@
 import { Header } from '@/components/ui/header';
+import { Footer } from '@/components/ui/footer';
 
 function App() {
   return (
@@ -8,10 +9,10 @@ function App() {
           <div className="min-h-screen flex flex-col">
             <Header />
             <main className="flex-1 max-w-[960px] w-full px-6 py-8"></main>
-            <footer></footer>
           </div>
         </div>
       </div>
+      <Footer />
     </div>
   );
 }
