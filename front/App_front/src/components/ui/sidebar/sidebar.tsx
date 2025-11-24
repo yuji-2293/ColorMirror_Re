@@ -3,6 +3,7 @@
 import * as React from 'react';
 import { Slot } from '@radix-ui/react-slot';
 import { cva, type VariantProps } from 'class-variance-authority';
+// 開閉用のIconの読み込み
 import { PanelLeftIcon } from 'lucide-react';
 
 import { useIsMobile } from '@/hooks/use-mobile';
@@ -54,7 +55,7 @@ function useSidebar() {
 }
 
 function SidebarProvider({
-  defaultOpen = true,
+  defaultOpen = false,
   open: openProp,
   onOpenChange: setOpenProp,
   className,
@@ -149,14 +150,14 @@ function SidebarProvider({
 }
 
 function Sidebar({
-  side = 'left',
+  side = 'right',
   variant = 'sidebar',
   collapsible = 'offcanvas',
   className,
   children,
   ...props
 }: React.ComponentProps<'div'> & {
-  side?: 'left' | 'right';
+  side?: 'right' | 'left';
   variant?: 'sidebar' | 'floating' | 'inset';
   collapsible?: 'offcanvas' | 'icon' | 'none';
 }) {
