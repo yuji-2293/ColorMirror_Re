@@ -92,7 +92,7 @@ jobs:
         run: pnpm install
 
       - name: Prettier check
-        run: pnpm prettier --check . --list-different
+        run: pnpm prettier . --list-different
       - name: Check Prettier
         run: |
           pnpm format:check || (
