@@ -1,6 +1,7 @@
 import { Header } from '@/components/ui/header';
 import { Footer } from '@/components/ui/footer';
-
+import { SidebarProvider, SidebarTrigger } from '@/components/ui/sidebar/sidebar';
+import { AppSidebar } from '@/components/ui/sidebar/app-sidebar';
 function App() {
   return (
     <div className="min-h-screen overflow-auto">
@@ -8,6 +9,13 @@ function App() {
         <div className="min-h-screen bg-white/30">
           <div className="min-h-screen flex flex-col">
             <Header />
+
+            <SidebarProvider>
+              <AppSidebar />
+              <main>
+                <SidebarTrigger />
+              </main>
+            </SidebarProvider>
             <main className="flex-1 max-w-[960px] w-full px-6 py-8"></main>
           </div>
         </div>
