@@ -14,27 +14,37 @@ import {
 // Menu items.
 const items = [
   {
-    title: 'Home',
+    title: 'マイページ',
     url: '#',
     icon: Home,
   },
   {
-    title: 'Inbox',
+    title: '記録する',
     url: '#',
     icon: Inbox,
   },
   {
-    title: 'Calendar',
+    title: '一覧',
     url: '#',
     icon: Calendar,
   },
   {
-    title: 'Search',
+    title: '振り返り',
     url: '#',
     icon: Search,
   },
   {
-    title: 'Settings',
+    title: 'プライバシーポリシー',
+    url: '#',
+    icon: Settings,
+  },
+  {
+    title: '利用規約',
+    url: '#',
+    icon: Settings,
+  },
+  {
+    title: 'お問い合わせ',
     url: '#',
     icon: Settings,
   },
