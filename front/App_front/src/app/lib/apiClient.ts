@@ -10,6 +10,7 @@ export const ApiClient = axios.create({ baseURL, headers });
 
 ApiClient.interceptors.response.use(
   (response) => {
+    console.log(response.data);
     return response;
   },
   (error) => {

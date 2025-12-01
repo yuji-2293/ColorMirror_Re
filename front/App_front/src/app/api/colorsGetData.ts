@@ -1,12 +1,5 @@
-import { API_BASE_URL } from './config';
+import { ApiClient } from '@/app/lib/apiClient';
 
-export default async function colorsGetData() {
-  const response = await fetch(`${API_BASE_URL}/colors`);
-  if (!response.ok) {
-    throw new Error('Failed to fetch colors data');
-  }
-
-  const log = await response.json();
-  console.log(log);
-  return log;
+export default function colorsGetData() {
+  return ApiClient.get('/colors');
 }
