@@ -62,8 +62,8 @@ src/
 │   │   ├── footer.tsx 
 │   │   └── Toast.tsx
 │   ├── layout/             # 共通レイアウト
-│   │   ├── Header.tsx
-│   │   ├── Footer.tsx
+│   │   ├── 
+│   │   ├── 
 │   │   └── Container.tsx
 │   ├── colors/             # 色関連のUI部品
 │   │   ├── ColorCard.tsx
