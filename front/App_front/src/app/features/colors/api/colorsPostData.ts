@@ -1,3 +1,5 @@
+/*
+
 import { type Color } from '../types/Color';
 import { API_BASE_URL } from './config';
 
@@ -20,3 +22,5 @@ export default async function colorsPostData(): Promise<Color> {
   console.log(res);
   return res;
 }
+
+*/
