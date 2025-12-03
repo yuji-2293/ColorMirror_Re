@@ -1,4 +1,4 @@
-import { type ImageType } from '../../app/types/ImageType';
+import { type ImageType } from '../../app/features/colors/types/ImageType';
 
 const ImageComponent = (props: ImageType) => {
   return (

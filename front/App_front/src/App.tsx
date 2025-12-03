@@ -2,7 +2,7 @@ import { Header } from '@/components/ui/header';
 import { Footer } from '@/components/ui/footer';
 import { SidebarProvider, SidebarTrigger } from '@/components/ui/sidebar/sidebar';
 import { AppSidebar } from '@/components/ui/sidebar/app-sidebar';
-import colorsGetData from '@/app/api/colorsGetData';
+import colorsGetData from '@/app/features/colors/api/colorsGetData';
 function App() {
   return (
     <div className="min-h-screen overflow-auto">
