@@ -2,20 +2,31 @@ import { Header } from '@/components/ui/header';
 import { Footer } from '@/components/ui/footer';
 import { SidebarProvider, SidebarTrigger } from '@/components/ui/sidebar/sidebar';
 import { AppSidebar } from '@/components/ui/sidebar/app-sidebar';
-import colorsGetData from '@/app/features/colors/api/colorsGetData';
+
+import { useColors } from './app/features/colors/hooks/useColors';
+
 function App() {
+  const { data, isLoading, isError, refetchColors } = useColors();
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+  if (isError) {
+    return <div>Error occurred while fetching colors data.</div>;
+  }
+  if (data) {
+    console.log('TanStackQueryで取得したdata:', data);
+  }
   return (
     <div className="min-h-screen overflow-auto">
       <div className="min-h-screen  bg-[url('/assets/topImage.png')] bg-cover bg-center">
         <div className="min-h-screen bg-white/30">
           <div className="min-h-screen flex flex-col">
             <Header />
-
             <SidebarProvider>
               <AppSidebar />
               <main>
                 <SidebarTrigger />
-                <button type="button" onClick={colorsGetData}>
+                <button type="button" onClick={refetchColors}>
                   ボタン
                 </button>
               </main>
