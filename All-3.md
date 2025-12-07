@@ -102,3 +102,88 @@ ApiClient.interceptors.response.use(
   }
   ```
   > fetchでやっていたasync/awaitでPromiseを待つ処理も、axiosインスタンスの内部処理内で行うことで記述を減らし、Promiseを返すことができている。
+
+## 日付け 2025/ 12/06
+
+### 今日やったこと
+- TanStackQueryの導入
+  - install
+  - main.tsxにてAppコンポーネントをQueryClientProviderでラップ
+  ```
+  import App from '@/App.tsx';
+  import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+      const queryClient = new QueryClient();  
+      <QueryClientProvider client={queryClient}>
+        <App />
+      </QueryClientProvider>
+  # QueryClient =  キャッシュの管理者（データセンターのようなもの）
+  # QueryClientProvider = App内でuseQuery/useMutationを呼んだらQueryClientに接続して問い合わせする。
+    下記のuseColorsでカスタムフック内でuseQueryを使用してる。
+  # useQuery / useMutation = “そのデータセンターに接続する端末”
+  ```
+
+  - カスタムフック ```useColors.ts```ファイルを作成
+   ```
+   > hooks/useColors.ts
+
+      import { useQuery } from '@tanstack/react-query';
+      import colorsGetData from '@/app/features/colors/api/colorsGetData';
+
+      export function useColors() {
+        const query = useQuery({
+          queryKey: ['colors'],
+          queryFn: colorsGetData,
+        });
+
+        # queryという変数にラベル('useColors')とcolorsGetData関数をReactQuery(useQuery)に渡している。
+        # 受け取ったReactQuery(useQuery)は
+        ReactQuery はここで内部的に：
+        •	data
+        •	isLoading
+        •	isError
+        •	error
+        •	refetch
+        といったオブジェクトqueryに持たせて返す。
+        下記の...queryでreturnしているのがそう。
+
+
+        const handleRefetchColors = () => {
+          query.refetch();
+        };
+        return {
+          ...query,
+          refetchColors: handleRefetchColors,
+        };
+      }
+
+  # 
+   > App.tsx
+
+      function App() {
+      const { data, isLoading, isError, refetchColors } = useColors();
+      if (isLoading) {
+        return <div>Loading...</div>;
+      }
+      if (isError) {
+        return <div>Error occurred while fetching colors data.</div>;
+      }
+      if (data) {
+        console.log('TanStackQueryで取得したdata:', data);
+      }
+      return (
+                <button type="button" onClick{refetchColors}>
+                  ボタン
+                </button>
+                ：
+                ：
+                ：
+            )
+   ```
+  - ## ReactにおいてHooksはトップレベルに置いてはいけないルールがある
+    - OKな場所
+      - 関数コンポーネントの中
+      - カスタムフックの中
+    - NGとなる場所
+      - トップレベル(定義した関数の外側)
+      - トップレベルで定義した関数の中
+  - 
