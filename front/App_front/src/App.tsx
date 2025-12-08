@@ -4,9 +4,12 @@ import { SidebarProvider, SidebarTrigger } from '@/components/ui/sidebar/sidebar
 import { AppSidebar } from '@/components/ui/sidebar/app-sidebar';
 
 import { useColors } from './app/features/colors/hooks/useColors';
+import { useCreateColors } from './app/features/colors/hooks/useCreateColors';
 
 function App() {
-  const { data, isLoading, isError, refetchColors } = useColors();
+  const { data, isLoading, isError } = useColors();
+  const { createColor } = useCreateColors();
+
   if (isLoading) {
     return <div>Loading...</div>;
   }
@@ -14,8 +17,9 @@ function App() {
     return <div>Error occurred while fetching colors data.</div>;
   }
   if (data) {
-    console.log('TanStackQueryで取得したdata:', data);
+    console.log('TanStackQueryでdataの取得成功');
   }
+
   return (
     <div className="min-h-screen overflow-auto">
       <div className="min-h-screen  bg-[url('/assets/topImage.png')] bg-cover bg-center">
@@ -26,7 +30,7 @@ function App() {
               <AppSidebar />
               <main>
                 <SidebarTrigger />
-                <button type="button" onClick={refetchColors}>
+                <button type="button" onClick={() => createColor()}>
                   ボタン
                 </button>
               </main>
