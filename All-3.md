@@ -186,4 +186,32 @@ ApiClient.interceptors.response.use(
     - NGとなる場所
       - トップレベル(定義した関数の外側)
       - トップレベルで定義した関数の中
-  - 
+
+## 日付け 2025/ 12/08
+
+### 今日やったこと
+- useMutationを使ったPOST用のHooksの作成と、以前作成したapiClientを使用したPost関数を作成する
+- useQueryもuseMutationもカスタムフック化することでポテンシャルが発揮される
+- mutationとmutateとは？
+- useMutationのcallback関数の使用方法
+
+
+### 詰まったこと
+- カスタムフック関数を呼び出す時、イベントハンドラに直接{}で呼び出すことはできない
+  - 起きたエラー
+  ``` <button type="button" onClick={mutate}>  #これはダメ ✖︎ ```
+    - 関数の役割と型が異なる
+    - 実行しようとしてるのは
+      - 引数: variables(型:void)
+      - 戻り値: void
+    - onClick={event}のマウスイベントにおいてeventを引数とするのにvoidを入れようとするとエラーが起きる。
+    - エラー文
+    → ``` 型 ‘UseMutateFunction<Color, Error, void, unknown>’ を型 ‘MouseEventHandler’ に割り当てることはできません。```
+  - 対応したこと
+  ``` 
+    <button type="button" onClick={() => mutate()}  
+        // イベントは受け取らず、自分で呼び出す
+        送信テスト
+    </button>
+  ```
+  - 上の形で``` () => mutate()  ```とすることでReactはイベントを無視してボタンをトリガーとして関数を実行してくれる。

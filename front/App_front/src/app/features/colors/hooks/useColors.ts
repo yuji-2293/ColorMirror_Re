@@ -6,11 +6,8 @@ export function useColors() {
     queryKey: ['colors'],
     queryFn: colorsGetData,
   });
-  const handleRefetchColors = () => {
-    query.refetch();
-  };
+
   return {
     ...query,
-    refetchColors: handleRefetchColors,
   };
 }

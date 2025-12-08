@@ -1,26 +1,9 @@
-/*
-
 import { type Color } from '../types/Color';
-import { API_BASE_URL } from './config';
+import { ApiClient } from '@/app/lib/apiClient';
 
-export default async function colorsPostData(): Promise<Color> {
-  const response = await fetch(`${API_BASE_URL}/colors`, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({
-      color_name: 'blue',
-      mood: 'モヤモヤ',
-    }),
+export default function colorsPostData(): Promise<Color> {
+  return ApiClient.post('/colors', {
+    color_name: '#FFF000',
+    mood: 'ワクワク',
   });
-
-  if (!response.ok) {
-    throw new Error('Failed to post color data');
-  }
-  const res = await response.json();
-  console.log(res);
-  return res;
 }
-
-*/
