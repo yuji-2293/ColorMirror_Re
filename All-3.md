@@ -191,9 +191,79 @@ ApiClient.interceptors.response.use(
 
 ### 今日やったこと
 - useMutationを使ったPOST用のHooksの作成と、以前作成したapiClientを使用したPost関数を作成する
+  - useMutationの使い方 
+  ```
+
+   function カスタムフック関数()
+   {
+   const mutation = useMutation({
+   mutationFn: (通信などに関わる関数) => { return 処理内容 } })
+   }
+
+   # 呼び出し元(例:buttonでトリガーとする場合)
+
+    <button onClick={() => {カスタムフック内で定義したmutate関数} }>
+      Create
+    </button>
+  ```
 - useQueryもuseMutationもカスタムフック化することでポテンシャルが発揮される
 - mutationとmutateとは？
+  - オプション
+  ```
+  useMutation({
+    mutationFn, # 必須で定義する必要がある
+    onMutate,
+    onSuccess, # mutationが成功した時に発火する処理を書く
+    onError,
+    onSettled
+  })
+  ```
+  - 返り値
+  ```
+    const {
+    mutate, # mutationの中の返り値がmutate関数(mutationFnで定義した処理を実行する)
+    mutateAsync,
+    status,
+    isIdle,
+    isPending,
+    isError,
+    isSuccess
+    } = useMutation()
+  ```
 - useMutationのcallback関数の使用方法
+  - > ### (重要) mutate関数も同じcallback関数を書ける
+  - > ### useMutation→mutate関数の順番でCallback関数が実行されます
+
+    > useMutation  
+     - 先に実行される。
+     - unmountされても実行される。
+     - クエリの無効化などの確実に実行されるべき処理に適している。
+    > mutate
+    - useMutationの後に実行される。
+    -  unmountされると実行されない。
+    - トースト通知などUIに関係するような処理に適している。
+
+- ### invalidateについて
+  - キャッシュのinvalidate
+  - invalidateQueries
+    - ブラウザの中のデータのやりとりを同期的に見せようとする仕組み
+    - データが古くなったことが明らかな場合、queryKeyを通してデータを更新すること
+    - さらに言うと、保持している最新のキャッシュを古い状態に変更して、APIを呼ぶ仕組み
+```
+  1. useQuery → API を叩く → 結果をキャッシュに保存
+  2. UIはキャッシュを表示する
+  3. mutatation などでデータが更新された
+  4. invalidateQueries(['colors'])
+      → 「colors のキャッシュは古い」とマークされる
+  5. React Query が自動で再フェッチする（必要なら）
+  6. UIが最新データで再レンダーされる
+
+  invalidateQueriesを実行すると以下の挙動になります。
+
+  指定したキャッシュ(queryKey: [' '])がstale状態になる。
+  バックグラウンドでデータの再取得がされる。
+  
+```
 
 
 ### 詰まったこと
