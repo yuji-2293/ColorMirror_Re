@@ -5,10 +5,13 @@ import { AppSidebar } from '@/components/ui/sidebar/app-sidebar';
 
 import { useColors } from './app/features/colors/hooks/useColors';
 import { useCreateColors } from './app/features/colors/hooks/useCreateColors';
+import { useStore } from '@/app/store/useStore';
+import { TestComponent } from '@/app/store/test';
 
 function App() {
   const { data, isLoading, isError } = useColors();
   const { createColor } = useCreateColors();
+  const { count, increment } = useStore();
 
   if (isLoading) {
     return <div>Loading...</div>;
@@ -33,6 +36,14 @@ function App() {
                 <button type="button" onClick={() => createColor()}>
                   ボタン
                 </button>
+
+                <div className="bg-amber-500 w-20 h-20">
+                  <p>{count}</p>
+                  <button className="text-5xl text-blue-500" onClick={increment}>
+                    +1
+                  </button>
+                </div>
+                <TestComponent />
               </main>
             </SidebarProvider>
             <main className="flex-1 max-w-[960px] w-full px-6 py-8"></main>
