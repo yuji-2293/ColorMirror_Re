@@ -45,4 +45,11 @@ group :development, :test do
   # Omakase Ruby styling [https://github.com/rails/rubocop-rails-omakase/]
   gem "rubocop-rails-omakase", require: false
   gem "devise_token_auth"
+
+  group :development do
+    gem "rubocop", require: false # 追加
+    gem "rubocop-performance", require: false # 追加
+    gem "rubocop-rails", require: false # 追加
+    gem "rubocop-rspec" # 追加
+  end
 end
