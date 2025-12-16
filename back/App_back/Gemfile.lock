@@ -353,6 +353,7 @@ DEPENDENCIES
   bootsnap
   brakeman
   debug
+  devise
   devise_token_auth
   kamal
   pg (~> 1.1)
