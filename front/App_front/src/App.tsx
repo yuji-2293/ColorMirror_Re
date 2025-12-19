@@ -1,12 +1,23 @@
+import { createContext, useEffect, useState } from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { getCurrentUser } from '@/app/features/auth/auth';
+
 import { Header } from '@/components/ui/header';
 import { Footer } from '@/components/ui/footer';
 import { SidebarProvider, SidebarTrigger } from '@/components/ui/sidebar/sidebar';
 import { AppSidebar } from '@/components/ui/sidebar/app-sidebar';
 
-import { useColors } from './app/features/colors/hooks/useColors';
-import { useCreateColors } from './app/features/colors/hooks/useCreateColors';
+import { useColors } from '@/app/features/colors/hooks/useColors';
+import { useCreateColors } from '@/app/features/colors/hooks/useCreateColors';
 import { useStore } from '@/app/store/useStore';
 import { TestComponent } from '@/app/store/test';
+
+// ログイン状態でページの切り替えを行うコンポーネント
+import { Home } from '@/pages/Home';
+import { SignIn } from '@/pages/SignIn';
+import { SignUp } from '@/pages/SignUp';
+
+export const AuthContext = createContext();
 
 function App() {
   const { data, isLoading, isError } = useColors();

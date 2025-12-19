@@ -286,7 +286,16 @@ ApiClient.interceptors.response.use(
   ```
   - 上の形で``` () => mutate()  ```とすることでReactはイベントを無視してボタンをトリガーとして関数を実行してくれる。
 
-## 日付け 2025/ 12/15
+## 日付け 2025/ 12/18
 
 ### 今日やったこと
-- Reactでのユーザー認証について
+- Reactでのユーザー認証について実装
+- pnpm i --save-dev @types/js-cookie は「js-cookie を TypeScript で安全に使えるようにするための“型情報”を追加する」
+- pnpm i js-cookie はCookie操作をするライブラリ上の@types/js/js-cookieの型情報でTypeScript上で動かすことができる
+> i オプションは'install'の略
+
+- createContextについて
+  - ```export const AuthContext = createContext();```
+    - コンポーネントが提供または読み取りできるコンテクストを作成するための関数（公式）
+    > ```const SomeContext = createContext(defaultValue)```
+    -  
