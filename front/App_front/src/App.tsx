@@ -7,6 +7,7 @@ import { Footer } from '@/components/ui/footer';
 import { SidebarProvider, SidebarTrigger } from '@/components/ui/sidebar/sidebar';
 import { AppSidebar } from '@/components/ui/sidebar/app-sidebar';
 
+// ZustandとTanStackQueryのhooks
 import { useColors } from '@/app/features/colors/hooks/useColors';
 import { useCreateColors } from '@/app/features/colors/hooks/useCreateColors';
 import { useStore } from '@/app/store/useStore';
@@ -20,9 +21,14 @@ import { SignUp } from '@/pages/SignUp';
 export const AuthContext = createContext();
 
 function App() {
+  // ZustandとTanStackQueryのhooksを使用してデータを取得
   const { data, isLoading, isError } = useColors();
   const { createColor } = useCreateColors();
   const { count, increment } = useStore();
+  // ログイン状態を管理するためのstate
+  const [Loading, setLoading] = useState(true);
+  const [isSignedIn, setIsSignedIn] = useState(false);
+  const [currentUser, setCurrentUser] = useState();
 
   if (isLoading) {
     return <div>Loading...</div>;

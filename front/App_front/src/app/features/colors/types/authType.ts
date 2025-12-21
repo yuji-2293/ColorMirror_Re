@@ -5,8 +5,8 @@ export interface AuthType {
   provider: string;
   allowPasswordChange: boolean;
   name: string;
-  nickname: string;
-  image: string | null;
+
   createdAt: string;
   updatedAt: string;
+  isLogin: boolean;
 }
