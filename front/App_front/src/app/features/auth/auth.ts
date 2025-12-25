@@ -1,35 +1,22 @@
 import { ApiClient } from '@/app/lib/apiClient';
-import Cookies from 'js-cookie';
-import { type AuthType } from '@/app/features/colors/types/authType';
+import { type AuthUser } from '@/app/features/colors/types/authType';
+import { type AuthParams } from '@/app/features/colors/types/authType';
 // サインアップ
-export const signUp = (params: AuthType) => {
-  return ApiClient.post('/auth', params);
+export const signUp = (params: AuthParams) => {
+  return ApiClient.post('/auth', { registration: params });
 };
 
 // サインイン
-export const signIn = (params: AuthType) => {
+export const signIn = (params: AuthUser) => {
   return ApiClient.post('/auth/sign_in', params);
 };
 
 // サインアウト
 export const signOut = () => {
-  return ApiClient.delete('/auth/sign_out', {
-    headers: {
-      'access-token': Cookies.get('access-token') || '',
-      client: Cookies.get('client') || '',
-      uid: Cookies.get('uid') || '',
-    },
-  });
+  return ApiClient.delete('/auth/sign_out');
 };
 
-// ログインユーザーの取得
-export const getCurrentUser = () => {
-  if (!Cookies.get('access-token') || !Cookies.get('client') || !Cookies.get('uid')) return;
-  return ApiClient.get<AuthType>('/auth/sessions', {
-    headers: {
-      'access-token': Cookies.get('access-token') || '',
-      client: Cookies.get('client') || '',
-      uid: Cookies.get('uid') || '',
-    },
-  });
+// 現在のユーザー情報を取得
+export const validateToken = () => {
+  return ApiClient.get('/auth/validate_token');
 };
