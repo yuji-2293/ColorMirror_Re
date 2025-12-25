@@ -1,6 +1,9 @@
-import { createContext, useEffect, useState } from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import { getCurrentUser } from '@/app/features/auth/auth';
+// ReactHooks
+import { useState } from 'react';
+
+// ユーザー認証関連の関数をインポート
+import { signUp, signIn, signOut, validateToken } from '@/app/features/auth/auth';
+import { type AuthParams } from '@/app/features/colors/types/authType';
 
 import { Header } from '@/components/ui/header';
 import { Footer } from '@/components/ui/footer';
@@ -13,22 +16,22 @@ import { useCreateColors } from '@/app/features/colors/hooks/useCreateColors';
 import { useStore } from '@/app/store/useStore';
 import { TestComponent } from '@/app/store/test';
 
-// ログイン状態でページの切り替えを行うコンポーネント
-import { Home } from '@/pages/Home';
-import { SignIn } from '@/pages/SignIn';
-import { SignUp } from '@/pages/SignUp';
-
-export const AuthContext = createContext();
-
-function App() {
+export default function App() {
   // ZustandとTanStackQueryのhooksを使用してデータを取得
   const { data, isLoading, isError } = useColors();
   const { createColor } = useCreateColors();
   const { count, increment } = useStore();
-  // ログイン状態を管理するためのstate
-  const [Loading, setLoading] = useState(true);
-  const [isSignedIn, setIsSignedIn] = useState(false);
-  const [currentUser, setCurrentUser] = useState();
+  // ユーザー認証挙動テスト用のstate
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [name, setName] = useState('');
+
+  const params: AuthParams = {
+    email,
+    password,
+    password_confirmation: password,
+    name,
+  };
 
   if (isLoading) {
     return <div>Loading...</div>;
@@ -50,6 +53,7 @@ function App() {
               <AppSidebar />
               <main>
                 <SidebarTrigger />
+
                 <button type="button" onClick={() => createColor()}>
                   ボタン
                 </button>
@@ -61,6 +65,30 @@ function App() {
                   </button>
                 </div>
                 <TestComponent />
+
+                <div>
+                  <input
+                    placeholder="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                  />
+                  <input
+                    placeholder="password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                  />
+                  <input
+                    placeholder="name (signUp用"
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                  />
+                </div>
+                <div>
+                  <button onClick={() => signUp(params)}>SignUp</button>
+                </div>
+                <div>
+                  <button onClick={validateToken}>validate</button>
+                </div>
               </main>
             </SidebarProvider>
             <main className="flex-1 max-w-[960px] w-full px-6 py-8"></main>
@@ -71,5 +99,3 @@ function App() {
     </div>
   );
 }
-
-export default App;

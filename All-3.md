@@ -311,3 +311,14 @@ ApiClient.interceptors.response.use(
   - [x] ユーザー認証のフローを何かしらの形で書き出すこと
   - [ ] フローが分かった上で実装に取り掛かること
   - [ ] backのAPIへ通信テストをしてみて、動作確認をする、それからfrontの実装をする
+
+## 日付け 2025/ 12/25
+
+### 今日やったこと
+- ```devise_token_auth```を使ってユーザー認証を実装していく
+ - devise_token_authは、RailsのSPA等でトークンベースの認証を提供するライブラリ
+ - 認証の流れ
+   - 「3つのトークン情報」をリクエストヘッダーから送信してdevise側でトークンの認証を行う
+     - uid
+     - client
+     - access-token
