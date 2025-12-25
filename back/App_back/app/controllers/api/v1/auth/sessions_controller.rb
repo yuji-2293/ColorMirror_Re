@@ -1,5 +1,5 @@
 # ログイン時のユーザーを取得するためのApiController
-class Auth::SessionsController < ApplicationController
+class Api::V1::Auth::SessionsController < ApplicationController
   def index
     if current_user
       render json: { is_login: true, data: current_user }
