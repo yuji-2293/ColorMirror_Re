@@ -322,3 +322,60 @@ ApiClient.interceptors.response.use(
      - uid
      - client
      - access-token
+- apiClient.tsファイルをcookie認証用にinterceptorをカスタムする
+
+```
+export const ApiClient = applyCaseMiddleware(axios.create({ baseURL, headers }), options); 
+  // configはリクエスト情報が入っているオブジェクト（= axiosが持つAxiosRequestConfig という設定オブジェクト。）
+  //client.interceptors.requestでリクエスト送信前に割り込みたい処理を書く
+  //.useまでつけることで、リクエスト直前に実行したい関数を定義できる
+ApiClient.interceptors.request.use((config) => {
+  const accessToken = Cookies.get('_access-token');
+  const clientId = Cookies.get('_client');
+  const uid = Cookies.get('_uid');
+
+  //'js-cookie'ライブラリをimportすることで[Cookies]を使用できる
+  // (例)accessToken変数にCookies.getで'access-token'を読み取って格納する。他2つも同じ
+  // この'_access-token'は名称はkeyなのでここではなんでもいい→value（中身）はバックエンド側（devise_token_auth)で生成される
+      →devise_token_authは Cookie名を一切気にしない。
+        •	フロント
+      → Cookieから値を取る
+        •	フロント
+      → Header名 access-token で送る
+        •	バック
+      → Headerを見る
+  // ここでCookiesから読み取っているのはログインのため
+
+  if (accessToken && clientId && uid) {
+    config.headers['access-token'] = accessToken;
+    config.headers['client'] = clientId;
+    config.headers['uid'] = uid;
+  }
+
+  // ここでガード節としてそれぞれ値を持っていればheadersのconfigに付与する
+
+  console.log('Request Headers:', config.headers);
+  return config; //認証情報をヘッダーに付与して返す,configに適用
+});
+
+ApiClient.interceptors.response.use(
+  //client.interceptors.responseの場合は受信直後に割り込みたい処理が書けます
+  (response) => {
+    // 成功時の処理
+    // 生成されたaccess-token,client,uidをバックエンド側からresponse.headersから取得して変数に格納する
+    const accessToken = response.headers['access-token'];
+    const clientId = response.headers['client'];
+    const uid = response.headers['uid'];
+
+    // Cookies.set('name', 'value')の形で_access-tokenのkeyでvalueを持っている変数をCookieにセットしている
+
+    if (accessToken && clientId && uid) {
+      Cookies.set('_access-token', accessToken);
+      Cookies.set('_client', clientId);
+      Cookies.set('_uid', uid);
+    }
+    return response; // return responseで認証情報を更新して返す
+  }...
+);
+
+```
