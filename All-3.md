@@ -318,7 +318,7 @@ ApiClient.interceptors.response.use(
 - ```devise_token_auth```を使ってユーザー認証を実装していく
  - devise_token_authは、RailsのSPA等でトークンベースの認証を提供するライブラリ
  - 認証の流れ
-   - 「3つのトークン情報」をリクエストヘッダーから送信してdevise側でトークンの認証を行う
+   - 「3つのトークン情報」をリクエストヘッダーから送信してdevise側でトークンを行う
      - uid
      - client
      - access-token
