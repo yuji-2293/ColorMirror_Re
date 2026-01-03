@@ -2,7 +2,7 @@
 import { useState } from 'react';
 
 // ユーザー認証関連の関数をインポート
-import { signUp, signIn, signOut, validateToken } from '@/app/features/auth/auth';
+import { signUp, validateToken } from '@/app/features/auth/auth';
 import { type AuthParams } from '@/app/features/colors/types/authType';
 
 import { Header } from '@/components/ui/header';
