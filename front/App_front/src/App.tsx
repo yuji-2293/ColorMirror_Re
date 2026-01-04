@@ -14,7 +14,6 @@ import { AppSidebar } from '@/components/ui/sidebar/app-sidebar';
 import { useColors } from '@/app/features/colors/hooks/useColors';
 import { useCreateColors } from '@/app/features/colors/hooks/useCreateColors';
 import { useStore } from '@/app/store/useStore';
-import { TestComponent } from '@/app/store/test';
 
 export default function App() {
   // ZustandとTanStackQueryのhooksを使用してデータを取得
@@ -64,7 +63,6 @@ export default function App() {
                     +1
                   </button>
                 </div>
-                <TestComponent />
 
                 <div>
                   <input
