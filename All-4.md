@@ -39,3 +39,38 @@ export interface AuthParams {
 axios の ```<T>``` は response.data の型  
 axios は AxiosResponse```<T>```を返す  
 →axios.get ```<T>```(...)が戻り値 = ``` Promise<AxiosResponse<T>> ```
+
+
+## 日付け 2025/ 1/5
+
+### 今日やったこと
+- リプレイス開発の進捗と整理
+  - キャッチアップ or 挙動確認済み
+    - zustand
+    - TanStackQuery
+    - devise_token_auth
+      - [x] サインアップ
+      - [ ] サインイン
+      - [ ] サインアウト
+    - axiosによるAPI通信、クライアント処理の共通化
+
+```
+
+### MVP
+- deviseによるログイン認証
+  - ログイン機能
+  - ログアウト機能
+- 基本CRUD
+  - 色の選択form
+  - 選択した色の一覧
+- AIコメント生成
+  - 選択した単語による色の生成
+  - 選択した色を元にAI分析コメント生成
+
+### 本リリース
+- 天気APIによる天気情報の表示
+  - 登録したユーザー情報をもとに天気情報を自動表示
+  - 天気情報を自動でformに組み込み、API側で保存。AIコメントに反映させる。
+- レスポンシブ対応
+
+```
