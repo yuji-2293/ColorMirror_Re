@@ -2,7 +2,7 @@
 import { useState } from 'react';
 
 // ユーザー認証関連の関数をインポート
-import { signUp, validateToken } from '@/app/features/auth/auth';
+import { signUp, signOut, validateToken } from '@/app/features/auth/auth';
 import { type AuthParams } from '@/app/features/colors/types/authType';
 
 import { Header } from '@/components/ui/header';
@@ -83,6 +83,9 @@ export default function App() {
                 </div>
                 <div>
                   <button onClick={() => signUp(params)}>SignUp</button>
+                </div>
+                <div>
+                  <button onClick={() => signOut()}>サインアウト</button>
                 </div>
                 <div>
                   <button onClick={validateToken}>validate</button>

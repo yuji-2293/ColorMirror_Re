@@ -76,3 +76,21 @@ axios は AxiosResponse```<T>```を返す
 
 
 ```
+### 今日の学び
+- async await の使い所
+  - 処理した値をその場で使うなら必要
+    - request responseで返値を使いたい時など
+  - 処理単体で実行するだけ、なら不要
+    - ログイン処理単体など
+- サインアップのフロー
+  - 認証のためのユーザー情報をサーバーに送信
+  - サーバーからresponseを返すときにaccess-token,uid,clientにdevise_token_authが値を生成して格納してくれる
+  - tokenをはじめとしたcookieに保存して以降の認証に使う情報がrequest先に返る
+  - tokenの値が返ることで認証を成立させる
+  - この時AxiosResponseオブジェクトを使いinterceptorを利用してcookieにaccess-token,uid,clientを保存される
+  - cookieに保存した値はログインする時に使用する
+
+- サインアウトのフロー
+  - access-token,uid,clientのcookieにある値を元にrequestヘッダーを作成
+  - signoutのエンドポイントにアクセス
+  - サーバー側はtokenの値を無効化しレコードのtokensを削除する
