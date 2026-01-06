@@ -22,12 +22,18 @@ ApiClient.interceptors.request.use((config) => {
   const clientId = Cookies.get('_client');
   const uid = Cookies.get('_uid');
 
+  // Cookie情報のログ
+  console.log('request cookie', {
+    accessToken,
+    clientId,
+    uid,
+  });
+
   if (accessToken && clientId && uid) {
     config.headers['access-token'] = accessToken;
     config.headers['client'] = clientId;
     config.headers['uid'] = uid;
   }
-  console.log('Request Headers:', config.headers);
   return config; //認証情報をヘッダーに付与して返す,configに適用
 });
 
@@ -38,6 +44,12 @@ ApiClient.interceptors.response.use(
     const accessToken = response.headers['access-token'];
     const clientId = response.headers['client'];
     const uid = response.headers['uid'];
+    // Cookie情報のログ
+    console.log('response cookie', {
+      accessToken,
+      clientId,
+      uid,
+    });
 
     if (accessToken && clientId && uid) {
       Cookies.set('_access-token', accessToken);

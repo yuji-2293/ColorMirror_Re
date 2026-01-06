@@ -10,16 +10,7 @@ import { Footer } from '@/components/ui/footer';
 import { SidebarProvider, SidebarTrigger } from '@/components/ui/sidebar/sidebar';
 import { AppSidebar } from '@/components/ui/sidebar/app-sidebar';
 
-// ZustandとTanStackQueryのhooks
-import { useColors } from '@/app/features/colors/hooks/useColors';
-import { useCreateColors } from '@/app/features/colors/hooks/useCreateColors';
-import { useStore } from '@/app/store/useStore';
-
 export default function App() {
-  // ZustandとTanStackQueryのhooksを使用してデータを取得
-  const { data, isLoading, isError } = useColors();
-  const { createColor } = useCreateColors();
-  const { count, increment } = useStore();
   // ユーザー認証挙動テスト用のstate
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -31,17 +22,6 @@ export default function App() {
     password_confirmation: password,
     name,
   };
-
-  if (isLoading) {
-    return <div>Loading...</div>;
-  }
-  if (isError) {
-    return <div>Error occurred while fetching colors data.</div>;
-  }
-  if (data) {
-    console.log('TanStackQueryでdataの取得成功');
-  }
-
   return (
     <div className="min-h-screen overflow-auto">
       <div className="min-h-screen  bg-[url('/assets/topImage.png')] bg-cover bg-center">
@@ -52,17 +32,6 @@ export default function App() {
               <AppSidebar />
               <main>
                 <SidebarTrigger />
-
-                <button type="button" onClick={() => createColor()}>
-                  ボタン
-                </button>
-
-                <div className="bg-amber-500 w-20 h-20">
-                  <p>{count}</p>
-                  <button className="text-5xl text-blue-500" onClick={increment}>
-                    +1
-                  </button>
-                </div>
 
                 <div>
                   <input
