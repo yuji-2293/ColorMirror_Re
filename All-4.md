@@ -94,3 +94,9 @@ axios は AxiosResponse```<T>```を返す
   - access-token,uid,clientのcookieにある値を元にrequestヘッダーを作成
   - signoutのエンドポイントにアクセス
   - サーバー側はtokenの値を無効化しレコードのtokensを削除する
+  - サーバーに通信が成功したらブラウザの認証情報(cookie)を削除する
+
+- サインインのフロー
+  - name?やメールアドレス、パスワードを入力してUserからユーザー情報を検索
+  - 照合が合致したらtokenを発行、Userに保存、フロントにheaderに値を付与して返す
+  - headerから情報をcookieに保存
