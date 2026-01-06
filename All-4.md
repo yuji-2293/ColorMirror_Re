@@ -108,18 +108,21 @@ axios は AxiosResponse```<T>```を返す
 - React-router-domについて
   - URLの責務をReactに付与するライブラリ
     - このURLだったらこのページを表示する、を定義する役割
-    - 構成として BrowserRouter > Routes > Route のような順番で入れ子
+    - 構成として BrowserRouter(as Router) > Routes > Route のような順番で入れ子
 
 ```
 // サンプルテンプレート
 // path: URLの指定
 // element: ページに表示させるコンポーネントの指定
-<BrowserRouter>
-    <Link to="/">Home</Link> | <Link to="/about">About</Link>
-    <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/about" element={<About />} />
-        <Route path="*" element={<h1>Not Found Page</h1>} />
-    </Routes>
-</BrowserRouter>
+    <Router>
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route index element={<Home />} />
+          <Route path="signOut" element={<SignOut />} />
+          <Route path="*" element={<h1>StatusCode-404 Not Found Page</h1>} />
+        </Route>
+        <Route path="signIn" element={<SignIn />} />
+        <Route path="signUp" element={<SignUp />} />
+      </Routes>
+    </Router>
 ```
