@@ -100,3 +100,26 @@ axios は AxiosResponse```<T>```を返す
   - name?やメールアドレス、パスワードを入力してUserからユーザー情報を検索
   - 照合が合致したらtokenを発行、Userに保存、フロントにheaderに値を付与して返す
   - headerから情報をcookieに保存
+
+## 日付け 2025/ 1/6
+
+### 今日やったこと
+
+- React-router-domについて
+  - URLの責務をReactに付与するライブラリ
+    - このURLだったらこのページを表示する、を定義する役割
+    - 構成として BrowserRouter > Routes > Route のような順番で入れ子
+
+```
+// サンプルテンプレート
+// path: URLの指定
+// element: ページに表示させるコンポーネントの指定
+<BrowserRouter>
+    <Link to="/">Home</Link> | <Link to="/about">About</Link>
+    <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/about" element={<About />} />
+        <Route path="*" element={<h1>Not Found Page</h1>} />
+    </Routes>
+</BrowserRouter>
+```

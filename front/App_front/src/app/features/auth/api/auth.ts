@@ -1,5 +1,5 @@
 import { ApiClient } from '@/app/lib/apiClient';
-import { type AuthParams, type AuthUser } from '@/app/features/colors/types/authType';
+import { type AuthParams, type AuthUser } from '@/app/features/auth/types/authType';
 import Cookies from 'js-cookie';
 // サインアップ
 export const signUp = (params: AuthParams) => {

@@ -1,74 +1,22 @@
-// ReactHooks
-import { useState } from 'react';
-
-// ユーザー認証関連の関数をインポート
-import { signUp, signOut, signIn, validateToken } from '@/app/features/auth/auth';
-import { type AuthParams } from '@/app/features/colors/types/authType';
-
-import { Header } from '@/components/ui/header';
-import { Footer } from '@/components/ui/footer';
-import { SidebarProvider, SidebarTrigger } from '@/components/ui/sidebar/sidebar';
-import { AppSidebar } from '@/components/ui/sidebar/app-sidebar';
-
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+// ユーザー認証機能用ページコンポーネント
+import { Home } from '@/pages/Home';
+import { SignIn } from '@/pages/SignIn';
+import { SignUp } from '@/pages/SignUp';
+import { SignOut } from '@/pages/SignOut';
+import { Layout } from '@/pages/Layout';
 export default function App() {
-  // ユーザー認証挙動テスト用のstate
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [name, setName] = useState('');
-
-  const params: AuthParams = {
-    email,
-    password,
-    password_confirmation: password,
-    name,
-  };
   return (
-    <div className="min-h-screen overflow-auto">
-      <div className="min-h-screen  bg-[url('/assets/topImage.png')] bg-cover bg-center">
-        <div className="min-h-screen bg-white/30">
-          <div className="min-h-screen flex flex-col">
-            <Header />
-            <SidebarProvider>
-              <AppSidebar />
-              <main>
-                <SidebarTrigger />
-
-                <div>
-                  <input
-                    placeholder="email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                  />
-                  <input
-                    placeholder="password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                  />
-                  <input
-                    placeholder="name (signUp用"
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}
-                  />
-                </div>
-                <div>
-                  <button onClick={() => signUp(params)}>SignUp</button>
-                </div>
-                <div>
-                  <button onClick={() => signIn(params)}>ログイン</button>
-                </div>
-                <div>
-                  <button onClick={() => signOut()}>サインアウト</button>
-                </div>
-                <div>
-                  <button onClick={validateToken}>validate</button>
-                </div>
-              </main>
-            </SidebarProvider>
-            <main className="flex-1 max-w-[960px] w-full px-6 py-8"></main>
-          </div>
-        </div>
-      </div>
-      <Footer />
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route index element={<Home />} />
+          <Route path="signOut" element={<SignOut />} />
+          <Route path="*" element={<h1>StatusCode-404 Not Found Page</h1>} />
+        </Route>
+        <Route path="signIn" element={<SignIn />} />
+        <Route path="signUp" element={<SignUp />} />
+      </Routes>
+    </Router>
   );
 }
