@@ -126,3 +126,13 @@ axios は AxiosResponse```<T>```を返す
       </Routes>
     </Router>
 ```
+
+  - 親となるRoute=Layoutで他のRouteを囲うことで囲われたRouteを子要素にできる
+  - 子要素になったRouteは { <Outlet />} で差し替えすることができる要素となる
+  - 親=Layout=画面の骨組み、子=囲われたRoute=ページを構成する要素となる
+  - よってLayoutにはmainクラスでページを構成する要素headerやfooter,sidebarなどを制御するproviderコンポーネントなどを設置する
+  - Layoutにはページ遷移しても動いてほしくない要素を置く
+  - その他の子要素にははページを構成するデータやコンテンツを置く
+  - Route path=''の中に入る単語をURLの/に追加することで簡単にページが遷移できるようになる
+  - ```<Route index element={<Home />} />```とindexルート(この時pathは書かない)を作成することで、/にアクセスした時、最初に表示させること野できるページを設定できる
+  - ログイン認証が必要なルーティングにはProtectedRouteの概念でガード節を書くことでアクセスを守ることができる
