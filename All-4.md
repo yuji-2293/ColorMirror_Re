@@ -152,3 +152,10 @@ axios は AxiosResponse```<T>```を返す
 3. ログイン成功後、元々アクセスしたかった `/profile` に戻る
 4. シームレスな体験が提供される
 ```
+
+## 日付け 2025/ 1/8
+
+### 今日やったこと
+- Routeを保護するための考え方
+  - Protected RouteでそれぞれのRouteを囲む
+  - Layout単位でPrivate用、Public用で分けて用意する
