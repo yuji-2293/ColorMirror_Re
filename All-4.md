@@ -159,3 +159,14 @@ axios は AxiosResponse```<T>```を返す
 - Routeを保護するための考え方
   - Protected RouteでそれぞれのRouteを囲む
   - Layout単位でPrivate用、Public用で分けて用意する
+- exportの2つの方法について
+  - 名前付きnamed export``` export const ()=>{}  //{}付きでimportする```
+    - UIやAPIなどの部分的に使うファイルに対して定義するときに使う
+    - 複数責務
+    - このファイルの中には何があるか？を決めるためのもの、だから、{}で名前付きで呼び出して使用する
+
+  - default export ```export default function () {}  //{}なし、自由な名前でimportする```
+    - Layoutやpage,単一のcomponentに対して定義するときに使う
+    - 単一責務
+    - import時に自由にネーミングできるのも、ファイル=1役割として機能している前提だからで、from...に続くファイルpathでどこから呼び出されたファイルなのかが重要だから
+    - このファイルは何の役割か？これを決めるためのもの
