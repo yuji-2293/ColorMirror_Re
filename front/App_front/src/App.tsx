@@ -3,7 +3,6 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { Home } from '@/pages/Home';
 import { SignIn } from '@/pages/SignIn';
 import { SignUp } from '@/pages/SignUp';
-import { SignOut } from '@/pages/SignOut';
 import PublicLayout from '@/pages/PublicLayout';
 import PrivateLayout from '@/pages/PrivateLayout';
 export default function App() {
@@ -18,9 +17,8 @@ export default function App() {
           </Route>
 
           {/* 認証後のレイアウト */}
-          <Route path="/" element={<PrivateLayout />}>
+          <Route element={<PrivateLayout />}>
             <Route index element={<Home />} />
-            <Route path="signOut" element={<SignOut />} />
             <Route path="*" element={<h1>StatusCode-404 Not Found Page</h1>} />
           </Route>
         </Routes>
