@@ -2,9 +2,16 @@ import { Header } from '@/components/layout/header';
 import { Footer } from '@/components/layout/footer';
 import { SidebarProvider, SidebarTrigger } from '@/components/ui/sidebar/sidebar';
 import { AppSidebar } from '@/components/ui/sidebar/app-sidebar';
+import { useAuthStore } from '@/app/store/useAuthStore';
 
-import { Outlet } from 'react-router-dom';
+import { Outlet, Navigate } from 'react-router-dom';
+
 export default function PrivateLayout() {
+  const { authStatus } = useAuthStore();
+  if (authStatus !== 'authenticated') {
+    // 認証されていない場合、サインインページにリダイレクト
+    return <Navigate to="/signIn" replace />;
+  }
   return (
     <div className="min-h-screen overflow-auto">
       <div className="min-h-screen  bg-[url('/assets/topImage.png')] bg-cover bg-center">

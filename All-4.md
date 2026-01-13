@@ -170,3 +170,83 @@ axios は AxiosResponse```<T>```を返す
     - 単一責務
     - import時に自由にネーミングできるのも、ファイル=1役割として機能している前提だからで、from...に続くファイルpathでどこから呼び出されたファイルなのかが重要だから
     - このファイルは何の役割か？これを決めるためのもの
+
+  >  ProtectedRouteとは：
+    「ある条件を満たさないと、その Route / Layout を描画しない」
+    という設計パターン
+## 日付け 2025/ 1/11
+
+### 今日やったこと
+- zustandを用いて、useAuthStoreを作成
+  - 'zustand'をimportすることでcreateが使えるようになる
+  - createはグローバルで使える *state + 操作を作る関数* = (useStateをアプリ全体で使うイメージ)
+  - この準備をすることでどのコンポーネントから見ても「同じ状態を見る」ことができるようになる「例: PublicLayoutでもPrivateLayoutでも同じユーザーの状態を見ていることになる」
+```
+interface AuthState {
+  // state(状態)の型
+  authStatus: 'unknown' | 'authenticated' | 'unauthenticated';
+  user: User | null;
+  // Action(操作)の型
+  login: (user: User) => void;
+  logout: () => void;
+}
+
+// *state + 操作を作る関数* 
+createで作ったstoreは状態とそれを操作する関数が一体となって扱う
+```
+  ```export const useAuthStore = create<AuthState>((set) => ({```
+  > useAuthStoreは上のAuthState以外のことはできないことを型によって保証している
+
+```
+((set) => ({
+  authStatus: 'unknown',
+  user: null,
+  login: (user) => set({ authStatus: 'authenticated', user }),
+  logout: () => set({ authStatus: 'unauthenticated', user: null }),
+}));
+```
+  - この記述で初期状態と状態の更新方法の定義をしている
+  - setとは、zustandが持っている状態更新関数のこと set()で呼ぶと,storeを使っている全コンポーネントが再評価される
+  - useStateでいう[user, setUser] = useState[null] setUserがzustandのsetであり、setの方がより広域でグローバルな立ち位置となる
+
+
+- ユーザー認証の状態の切り替えができるようになった
+  - ProtectedRouteという思想に基づいた設計パターンによりRouteの使い分けによって実現
+```
+  1.if (authStatus !== 'authenticated') {
+    // 認証されていない場合、サインインページにリダイレクト
+    return <Navigate to="/signIn" replace />;
+  }
+
+  2.if (authStatus === 'authenticated') {
+    // すでに認証されている場合、/ ページにリダイレクト
+    return <Navigate to="/" replace />;
+  }
+// この２つにより、ユーザーの状態を変更することでルートを遷移させている
+
+  const handleLogin = () => {
+    // ダミーユーザー情報でログイン
+    // loginはUser:を型にとるオブジェクト型の引数を1つ取る関数として定義しているため
+    // ()の中に{}で囲ったidとnameをkeyとする値を渡す必要がある
+    login({ id: '1', name: 'yuji' });
+  };
+
+  const handleLogout = () => {
+    //ログアウト処理
+    logout();
+  };
+
+```
+
+- ルーティングにおいてProtectedRouteの思想に基づいて、PrivateLayoutとPublicLayoutによるLayout単位の切り替えができるようになった
+```
+import { useAuthStore } from '@/app/store/useAuthStore';
+import { Outlet, Navigate } from 'react-router-dom';
+
+export default function PrivateLayout() {
+  const { authStatus } = useAuthStore();
+  if (authStatus !== 'authenticated') {
+    // 認証されていない場合、サインインページにリダイレクト
+    return <Navigate to="/signIn" replace />;
+  }
+```
