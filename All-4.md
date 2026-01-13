@@ -250,3 +250,77 @@ export default function PrivateLayout() {
     return <Navigate to="/signIn" replace />;
   }
 ```
+- zustandでloginの状態を作るまでの流れ
+  ```
+  振り返り
+  
+  export const useAuthStore = create<AuthState>((set) => ({
+    authStatus: 'unknown',
+    user: null,
+    login: (user) => set({ authStatus: 'authenticated', user }), // ユーザー情報を設定するロジックを追加
+    logout: () => set({ authStatus: 'unauthenticated', user: null }),
+  }));
+
+
+  const login = useAuthStore((state) => state.login);
+    const handleLogin = () => {
+      // ダミーユーザー情報でログイン
+      login({ id: '1', name: 'yuji' });
+    };
+
+  これはuseAuthStoreのプロパティからloginを抜き出してloginに格納（依存関係から抽出）
+  handleLogin関数ないでlogin（user: { id:1,name: 'yuji'})を渡してる。
+
+  {handleLogin}を呼ぶことでuserの状態をset関数を使ってauthStatusをauthenticatedに変更する
+  ```
+
+- zustandのまとめ
+  > zustand は、
+「グローバルに共有される状態」と
+「その状態を変更する操作」を
+単一の store に閉じ込め、
+各コンポーネントは selector を通じて
+必要な責務だけを安全に利用できる仕組み。
+
+## 日付け 2025/ 1/13
+
+### 今日やったこと
+- validateTokenAPIを叩いてユーザー認証を復元させた
+```
+[改善前]
+  const restoreAuth = async () => {
+    try {
+      const res = await validateToken();
+      const user = res.data;
+      login({ id: user.id, name: user.name });
+    } catch {
+      logout();
+    }
+  };
+
+  useEffect(() => {
+    restoreAuth();
+  }, []);
+```
+- useEffectでlintの警告文が出る時どうするのか
+>「React Hook useEffect has a missing dependency: 'restoreAuth'. Either include it or remove the dependency array.eslintreact-hooks/exhaustive-deps」
+
+### [対応]useEffect内で処理を書く
+```
+[改善後]
+// useEffect内で処理を書き、外部を参照するlogin/logoutを[]内の依存配列として宣言している
+useEffect(() => {
+  const restoreAuth = async () => {
+    try {
+      const res = await validateToken();
+      const user = res.data;
+      login({ id: user.id, name: user.name });
+    } catch {
+      logout();
+    }
+  };
+
+  restoreAuth();
+}, [login, logout]);
+```
+  この形

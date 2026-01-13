@@ -1,5 +1,5 @@
 import { ApiClient } from '@/app/lib/apiClient';
-import { type AuthParams, type AuthUser } from '@/app/features/auth/types/authType';
+import { type AuthParams, type ValidateTokenResponse } from '@/app/features/auth/types/authType';
 import Cookies from 'js-cookie';
 // サインアップ
 export const signUp = (params: AuthParams) => {
@@ -23,7 +23,7 @@ export const signOut = async () => {
 };
 
 // 現在のユーザー情報を取得
-export const validateToken = async (): Promise<AuthUser> => {
-  const response = await ApiClient.get<AuthUser>('/auth/validate_token');
+export const validateToken = async (): Promise<ValidateTokenResponse> => {
+  const response = await ApiClient.get<ValidateTokenResponse>('/auth/validate_token');
   return response.data;
 };
