@@ -8,7 +8,10 @@ import { Outlet, Navigate } from 'react-router-dom';
 
 export default function PrivateLayout() {
   const { authStatus } = useAuthStore();
-  if (authStatus !== 'authenticated') {
+  if (authStatus === 'unknown') {
+    // 認証状態が不明な場合、ローディング表示などを行う
+    return <div>Loading...</div>;
+  } else if (authStatus === 'unauthenticated') {
     // 認証されていない場合、サインインページにリダイレクト
     return <Navigate to="/signIn" replace />;
   }

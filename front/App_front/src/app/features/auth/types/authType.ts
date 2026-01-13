@@ -1,4 +1,4 @@
-// 出力用の型定義
+// 出力用の型定義(ドメインモデル)
 export interface AuthUser {
   id: number;
   email: string;
@@ -6,8 +6,6 @@ export interface AuthUser {
   provider: string;
   allowPasswordChange: boolean;
   name?: string;
-  createdAt: string;
-  updatedAt: string;
 }
 // 入力用の型定義
 export interface AuthParams {
@@ -15,4 +13,10 @@ export interface AuthParams {
   password: string;
   password_confirmation?: string;
   name?: string;
+}
+
+// APIレスポンス用の型定義
+export interface ValidateTokenResponse {
+  success: boolean;
+  data: AuthUser;
 }
