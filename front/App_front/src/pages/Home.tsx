@@ -3,9 +3,15 @@ import { signOut } from '@/app/features/auth/api/auth';
 export const Home = () => {
   // ログアウト処理
   const logout = useAuthStore((state) => state.logout);
+
   const handleLogout = async () => {
-    await signOut();
-    logout();
+    try {
+      await signOut(); // サーバー側のログアウトAPIを呼び出す
+      logout(); // Zustandの状態を更新してログアウト状態にする
+    } catch (error) {
+      logout(); // エラーが発生しても状態を更新してログアウト状態にする
+      console.error('ログアウトエラー:', error);
+    }
   };
   return (
     <div>
