@@ -50,8 +50,8 @@ axios は AxiosResponse```<T>```を返す
     - TanStackQuery
     - devise_token_auth
       - [x] サインアップ
-      - [ ] サインイン
-      - [ ] サインアウト
+      - [x] サインイン
+      - [x] サインアウト
     - axiosによるAPI通信、クライアント処理の共通化
 
 ### 着手中
@@ -323,4 +323,22 @@ useEffect(() => {
   restoreAuth();
 }, [login, logout]);
 ```
-  この形
+## 日付け 2025/ 1/25
+
+### 今日やったこと
+- ユーザー認証機能の実装の振り返り
+  - サーバー側の認証機能を作る(devise_token_auth)
+     - 「3つのトークン情報」をリクエストヘッダーから送信してdevise側でトークン生成を行う
+     - トークンを生成し、Userモデルに保存、headerにtoken情報を付与してresponseを返す
+       - uid
+       - client
+       - access-token
+  - フロント側の認証機能を作る
+     - cookieにより以下の値をクライアントサイドに保存 or 削除ができる
+       - uid
+       - client
+       - access-token
+    - フロントで認証の状態によって切り替えられるページ機能を作る
+      - protectedRouteの思想に基づく認証ガードにより、認証の状態によりユーザーのアクセスを制限する
+    - ユーザーの認証の状態によってページ単位でガードできる機能を作る
+  - 実際のアプリ画面でformを作り、UXとして機能するUIを作る
