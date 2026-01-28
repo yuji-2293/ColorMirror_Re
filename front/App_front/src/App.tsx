@@ -1,11 +1,11 @@
 import { useEffect, useRef } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 // ユーザー認証機能用ページコンポーネント
-import { Home } from '@/pages/Home';
-import { SignIn } from '@/pages/SignIn';
-import { SignUp } from '@/pages/SignUp';
-import PublicLayout from '@/pages/PublicLayout';
-import PrivateLayout from '@/pages/PrivateLayout';
+import { Home } from '@/pages/private/compornents/Home';
+import { SignIn } from '@/pages/public/compornents/SignIn';
+import { SignUp } from '@/pages/public/compornents/SignUp';
+import PublicLayout from '@/pages/public/PublicLayout';
+import PrivateLayout from '@/pages/private/PrivateLayout';
 // 認証復元処理
 import { validateToken } from '@/app/features/auth/api/auth';
 // zustand の状態管理用関数

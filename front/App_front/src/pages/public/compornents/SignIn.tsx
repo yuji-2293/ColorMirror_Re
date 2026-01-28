@@ -10,7 +10,6 @@ export const SignIn = () => {
   const params: AuthParams = {
     email,
     password,
-    password_confirmation: password,
   };
   // zustand の状態管理で使用するためのstateと関数
   const login = useAuthStore((state) => state.login);
