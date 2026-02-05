@@ -1,9 +1,9 @@
 import { useEffect, useRef } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 // ユーザー認証機能用ページコンポーネント
-import { Home } from '@/pages/private/compornents/Home';
-import { SignIn } from '@/pages/public/compornents/SignIn';
-import { SignUp } from '@/pages/public/compornents/SignUp';
+import { Home } from '@/pages/private/components/Home';
+import { SignIn } from '@/pages/public/components/SignIn';
+import { SignUp } from '@/pages/public/components/SignUp';
 import PublicLayout from '@/pages/public/PublicLayout';
 import PrivateLayout from '@/pages/private/PrivateLayout';
 // 認証復元処理
@@ -13,8 +13,10 @@ import { useAuthStore } from '@/app/store/useAuthStore';
 export default function App() {
   // zustand の状態管理で使用するためのstateと関数
   const { login, logout, authStatus } = useAuthStore();
+
   // strict-mode 対応のため、2回実行されないようにガード
   const restoreStartedRef = useRef(false);
+
   // アプリ起動時に認証復元処理を実行
   useEffect(() => {
     if (restoreStartedRef.current) return;
