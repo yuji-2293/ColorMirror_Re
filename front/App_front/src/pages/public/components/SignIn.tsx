@@ -2,10 +2,14 @@ import { useState } from 'react';
 import { useAuthStore } from '@/app/store/useAuthStore';
 import { type AuthParams } from '@/app/features/auth/types/authType';
 import { signIn } from '@/app/features/auth/api/auth';
+import { useLocation } from 'react-router-dom';
 export const SignIn = () => {
   // ログイン用の状態管理state
-  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const location = useLocation();
+  // リダイレクト元からemailが渡されていればセットする
+  const emailFromState = (location.state as { email?: string })?.email;
+  const [email, setEmail] = useState(emailFromState || '');
   // ログイン用パラメータ
   const params: AuthParams = {
     email,

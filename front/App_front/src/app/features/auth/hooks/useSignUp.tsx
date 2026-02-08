@@ -29,7 +29,7 @@ export const useSignUp = () => {
     try {
       await signUp(params);
       alert('ユーザー登録が完了しました。サインインしてください。');
-      navigate('/signin');
+      navigate('/signin', { state: { email } });
     } catch (error) {
       alert('ユーザー登録に失敗しました。');
       console.error(error);
