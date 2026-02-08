@@ -2,7 +2,7 @@ import { type AuthParams } from '@/app/features/auth/types/authType';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { signUp } from '@/app/features/auth/api/auth';
-
+import { toast } from 'sonner';
 export const useSignUp = () => {
   // ユーザー登録用の状態管理state
   const [name, setName] = useState('');
@@ -28,10 +28,9 @@ export const useSignUp = () => {
     };
     try {
       await signUp(params);
-      alert('ユーザー登録が完了しました。サインインしてください。');
       navigate('/signin', { state: { email } });
     } catch (error) {
-      alert('ユーザー登録に失敗しました。');
+      toast.error('ユーザー登録に失敗しました');
       console.error(error);
     }
   };

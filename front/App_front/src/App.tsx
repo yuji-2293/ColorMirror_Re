@@ -10,6 +10,9 @@ import PrivateLayout from '@/pages/private/PrivateLayout';
 import { validateToken } from '@/app/features/auth/api/auth';
 // zustand の状態管理用関数
 import { useAuthStore } from '@/app/store/useAuthStore';
+// toast用UIのインポート
+import { Toaster } from '@/components/ui/sonner';
+
 export default function App() {
   // zustand の状態管理で使用するためのstateと関数
   const { login, logout, authStatus } = useAuthStore();
@@ -37,6 +40,7 @@ export default function App() {
   }, [login, logout, authStatus]);
   return (
     <div className="App">
+      <Toaster position="top-right" richColors />
       <Router>
         <Routes>
           {/* 公開レイアウト */}

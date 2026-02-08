@@ -3,7 +3,6 @@ import { Footer } from '@/components/layout/footer';
 import { SidebarProvider, SidebarTrigger } from '@/components/ui/sidebar/sidebar';
 import { AppSidebar } from '@/components/ui/sidebar/app-sidebar';
 import { useAuthStore } from '@/app/store/useAuthStore';
-
 import { Outlet, Navigate } from 'react-router-dom';
 
 export default function PrivateLayout() {
@@ -13,7 +12,7 @@ export default function PrivateLayout() {
     return <div>Loading...</div>;
   } else if (authStatus === 'unauthenticated') {
     // 認証されていない場合、サインインページにリダイレクト
-    return <Navigate to="/signIn" replace />;
+    return <Navigate to="/signIn" replace state={{ toast: 'unauthenticated' }} />;
   }
   return (
     <div className="min-h-screen overflow-auto">
