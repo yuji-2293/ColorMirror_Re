@@ -1,9 +1,10 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { type AuthParams } from '@/app/features/auth/types/authType';
 import { signIn } from '@/app/features/auth/api/auth';
 import { useLocation } from 'react-router-dom';
 import { useAuthStore } from '@/app/store/useAuthStore';
 import { toast } from 'sonner';
+import { useNavigate } from 'react-router-dom';
 
 export const useSignIn = () => {
   // サインイン用のロジック
@@ -11,10 +12,17 @@ export const useSignIn = () => {
   const location = useLocation();
   const emailFromState = (location.state as { email?: string } | null)?.email;
   const [email, setEmail] = useState(emailFromState || '');
-  const toastState = (location.state as { toast?: string } | null)?.toast;
-  if (toastState === 'unauthorized') {
-    toast.error('ログインが必要です。');
-  }
+  const navigate = useNavigate();
+  const toastState = (location.state as { toast?: string; from?: string } | null)?.toast;
+
+  useEffect(() => {
+    if (location.state === 'redirected') {
+      toast.error('ログインが必要です。');
+      navigate('/signIn', { replace: true, state: null });
+    }
+    console.log(toastState);
+    console.log(location.state);
+  }, [location.state, navigate, toastState]);
 
   // 登録成功後ログイン成功時にトースト表示
   if (emailFromState) {

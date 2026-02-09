@@ -11,7 +11,7 @@ export default function PublicLayout() {
     return <div>Loading...</div>;
   } else if (authStatus === 'authenticated') {
     // すでに認証されている場合、/ ページにリダイレクト
-    return <Navigate to="/" replace state={{ toast: 'authenticated' }} />;
+    return <Navigate to="/" replace state={{ toast: 'redirected', from: location.pathname }} />;
   }
   return (
     <div className="min-h-screen overflow-auto">
