@@ -9,8 +9,9 @@ export default function PublicLayout() {
   if (authStatus === 'unknown') {
     // 認証状態が不明な場合、ローディング表示などを行う
     return <div>Loading...</div>;
-  } else if (authStatus === 'authenticated') {
-    // すでに認証されている場合、/ ページにリダイレクト
+  }
+  if (authStatus === 'authenticated') {
+    // 認証されている場合、ホームページにリダイレクト
     return <Navigate to="/" replace />;
   }
   return (
