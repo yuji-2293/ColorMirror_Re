@@ -12,9 +12,7 @@ export default function PrivateLayout() {
     return <div>Loading...</div>;
   } else if (authStatus === 'unauthenticated') {
     // 認証されていない場合、サインインページにリダイレクト
-    return (
-      <Navigate to="/signIn" replace state={{ toast: 'redirected', from: location.pathname }} />
-    );
+    return <Navigate to="/signIn" replace />;
   }
   return (
     <div className="min-h-screen overflow-auto">

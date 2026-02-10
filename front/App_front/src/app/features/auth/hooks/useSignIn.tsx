@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { type AuthParams } from '@/app/features/auth/types/authType';
 import { signIn } from '@/app/features/auth/api/auth';
 import { useLocation } from 'react-router-dom';
@@ -10,19 +10,24 @@ export const useSignIn = () => {
   // サインイン用のロジック
   // リダイレクト元からemailが渡されていればセットする
   const location = useLocation();
+  const navigate = useNavigate();
+
   const emailFromState = (location.state as { email?: string } | null)?.email;
   const [email, setEmail] = useState(emailFromState || '');
-  const navigate = useNavigate();
+  // strict-mode 対応のため、2回実行されないようにガード
+  const restoreStartedRef = useRef(false);
   const toastState = (location.state as { toast?: string; from?: string } | null)?.toast;
-
+  console.log(toastState);
   useEffect(() => {
-    if (location.state === 'redirected') {
+    if (restoreStartedRef.current) return;
+    if (!toastState) return;
+    restoreStartedRef.current = true;
+
+    if (toastState === 'logOut') {
       toast.error('ログインが必要です。');
       navigate('/signIn', { replace: true, state: null });
     }
-    console.log(toastState);
-    console.log(location.state);
-  }, [location.state, navigate, toastState]);
+  }, [navigate, toastState]);
 
   // 登録成功後ログイン成功時にトースト表示
   if (emailFromState) {
@@ -50,6 +55,7 @@ export const useSignIn = () => {
       toast.success('ログインに成功しました。');
       // フロント側をログイン状態にする
       login({ id: id, name: name });
+      navigate('/', { replace: true, state: { toast: 'logIn' } });
     } catch (error) {
       alert('ログインに失敗しました。メールアドレスとパスワードを確認してください。');
       console.error('ログインエラー:', error);
