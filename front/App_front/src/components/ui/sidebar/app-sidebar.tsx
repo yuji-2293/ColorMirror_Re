@@ -10,22 +10,21 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from '@/components/ui/sidebar/sidebar';
-
 // Menu items.
 const items = [
   {
     title: 'マイページ',
-    url: '#',
+    url: '/',
     icon: Home,
   },
   {
     title: '記録する',
-    url: '#',
+    url: 'signIn',
     icon: Inbox,
   },
   {
     title: '一覧',
-    url: '#',
+    url: 'signUp',
     icon: Calendar,
   },
   {
