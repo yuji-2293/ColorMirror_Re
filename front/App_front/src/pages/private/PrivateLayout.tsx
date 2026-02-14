@@ -7,13 +7,14 @@ import { Outlet, Navigate, useLocation } from 'react-router-dom';
 
 export default function PrivateLayout() {
   const { authStatus } = useAuthStore();
-  const redirectReason = useAuthStore((s) => s.redirectedReason);
+  const redirectReason = useAuthStore((state) => state.redirectedReason);
   const location = useLocation();
   if (authStatus === 'unknown') {
     // 認証状態が不明な場合、ローディング表示などを行う
     return <div>Loading...</div>;
   }
   if (authStatus === 'unauthenticated') {
+    // リダイレクト理由に応じたトースト表示のための変数
     const toast = redirectReason ?? 'login_required';
     // 認証されていない場合、サインインページにリダイレクト
     return <Navigate to="/signIn" replace state={{ toast, from: location.pathname }} />;
