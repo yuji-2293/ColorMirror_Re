@@ -15,7 +15,8 @@ export default function PrivateLayout() {
   }
   if (authStatus === 'unauthenticated') {
     // リダイレクト理由に応じたトースト表示のための変数
-    const toast = redirectReason ?? 'login_required';
+    console.log(redirectReason);
+    const toast = redirectReason ?? 'login_require';
     // 認証されていない場合、サインインページにリダイレクト
     return <Navigate to="/signIn" replace state={{ toast, from: location.pathname }} />;
   }

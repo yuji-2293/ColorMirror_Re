@@ -33,7 +33,7 @@ export default function App() {
         console.log(user.id, user.name);
         login({ id: user.id, name: user.name });
       } catch {
-        logout('logged_out');
+        logout();
       }
     };
     restoreAuth();
