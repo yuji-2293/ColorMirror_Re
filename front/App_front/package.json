@@ -53,5 +53,11 @@
     "vite": "^7.2.2",
     "vite-tsconfig-paths": "^5.1.4"
   },
+  "rewrites": [
+    {
+      "source": "/(.*)",
+      "destination": "/"
+    }
+  ],
   "packageManager": "pnpm@10.13.1"
 }
