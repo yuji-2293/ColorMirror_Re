@@ -48,7 +48,6 @@ export default function App() {
             <Route path="signIn" element={<SignIn />} />
             <Route path="signUp" element={<SignUp />} />
           </Route>
-
           {/* 認証後のレイアウト */}
           <Route element={<PrivateLayout />}>
             <Route index element={<Home />} />
