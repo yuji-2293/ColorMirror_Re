@@ -24,7 +24,6 @@ export const useSignIn = () => {
     if (state.toast === 'login_require') toast.error('ログインが必要です。');
     if (state.toast === 'logged_out') toast.success('ログアウトしました。');
     clearRedirectReason(); // リダイレクト理由をクリア
-    console.log(state);
     navigate('.', { replace: true, state: null });
   }, [navigate, location.state, location.pathname, clearRedirectReason]);
 
