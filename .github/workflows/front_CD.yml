@@ -76,4 +76,3 @@ jobs:
           DEBUG_MESSAGE: ${{ env.DEBUG_MESSAGE }}
         run: |
           vercel deploy --prebuilt --prod --token=${{ secrets.VERCEL_TOKEN }}
-          pwd ls -la cat vercel.json || echo "vercel.json not found"
