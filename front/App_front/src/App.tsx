@@ -51,8 +51,8 @@ export default function App() {
           {/* 認証後のレイアウト */}
           <Route element={<PrivateLayout />}>
             <Route index element={<Home />} />
-            <Route path="*" element={<h1>StatusCode-404 Not Found Page</h1>} />
           </Route>
+          <Route path="*" element={<h1>StatusCode-404 Not Found Page</h1>} />
         </Routes>
       </Router>
     </div>
