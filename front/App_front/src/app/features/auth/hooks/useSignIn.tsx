@@ -21,29 +21,30 @@ export const useSignIn = () => {
   const restoreStartedRef = useRef(false);
   // locationを型安全に扱うためのローカル変数。サインイン後のリダイレクトで、メールアドレスやトースト表示の情報を受け取るために使用。
   const localState = location.state as SignInNavState;
-  // location.stateからメールアドレスを初期値として取得。サインイン後のリダイレクトで、メールアドレスを受け取るために使用。
+  // location.stateからemailを初期値として取得。サインイン後のリダイレクトで、signUpから遷移してきた場合に、メールアドレスを表示するために使用。location.stateにemailがない場合は、空文字を初期値とする。
   const initialEmail = localState?.email || '';
   const [email, setEmail] = useState(initialEmail);
 
   useEffect(() => {
     if (restoreStartedRef.current) return;
-    restoreStartedRef.current = true;
     // location.stateをローカル変数に保存。サインイン後のリダイレクトで、メールアドレスやトースト表示の情報を受け取るために使用。
     const state = location.state as SignInNavState;
+    // location.stateにtoastやemailの情報がない場合は、サインイン後のリダイレクトではないと判断し、何もしない。これにより、サインイン後のリダイレクトでのみトーストが表示されるようになる。
+    if (!state?.toast && !state?.email) return;
+    // サインイン後のリダイレクトであると判断し、restoreStartedRefをtrueにして、以降のuseEffectの実行をガードする。これにより、サインイン後のリダイレクトでのみトーストが表示されるようになる。
+    restoreStartedRef.current = true;
+    // stateにemailがあれば、signUpから遷移してきたとして、toastを表示
     if (state?.email) {
       toast.success('登録が完了しました。ログインしてください。');
     }
-
+    // stateにtoastがあれば、ログインが必要だった、もしくはログアウトした後のリダイレクトとして、toastを表示
     if (state?.toast) {
       if (state.toast === 'login_require') toast.error('ログインが必要です。');
       if (state.toast === 'logged_out') toast.success('ログアウトしました。');
     }
-    // location.stateの中身がemailやtoastの情報を含んでいる場合は、サインイン後のリダイレクトであると判断し、状態をクリアしてリダイレクトする。これにより、サインイン後のリダイレクトでのみトーストが表示されるようになる。
-    if (state?.email && state?.toast) {
-      clearRedirectReason(); //
-    }
+    clearRedirectReason();
     navigate('.', { replace: true, state: null });
-  }, [navigate, location.state, location.pathname, clearRedirectReason]);
+  }, [navigate, location.state, clearRedirectReason]);
 
   // ログイン用のpassword状態管理
   const [password, setPassword] = useState('');
@@ -67,7 +68,7 @@ export const useSignIn = () => {
       // フロント側をログイン状態にする
       login({ id: id, name: name });
     } catch (error) {
-      alert('ログインに失敗しました。メールアドレスとパスワードを確認してください。');
+      toast.error('ログインに失敗しました。メールアドレスとパスワードを確認してください。');
       console.error('ログインエラー:', error);
     }
   };
