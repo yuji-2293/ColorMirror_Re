@@ -6,35 +6,45 @@ import { useAuthStore } from '@/app/store/useAuthStore';
 import { toast } from 'sonner';
 import { useNavigate } from 'react-router-dom';
 
-type SignInNavState = { toast?: 'login_require' | 'logged_out'; from?: string } | null;
+type SignInNavState = {
+  toast?: 'login_require' | 'logged_out';
+  from?: string;
+  email?: string;
+} | null;
+
 export const useSignIn = () => {
   // サインイン用のロジック
-  // リダイレクト元からemailが渡されていればセットする
   const location = useLocation();
   const navigate = useNavigate();
   const clearRedirectReason = useAuthStore((state) => state.clearRedirectedReason);
   // strict-mode 対応のため、2回実行されないようにガード
   const restoreStartedRef = useRef(false);
+  // locationを型安全に扱うためのローカル変数。サインイン後のリダイレクトで、メールアドレスやトースト表示の情報を受け取るために使用。
+  const localState = location.state as SignInNavState;
+  // location.stateからメールアドレスを初期値として取得。サインイン後のリダイレクトで、メールアドレスを受け取るために使用。
+  const initialEmail = localState?.email || '';
+  const [email, setEmail] = useState(initialEmail);
+
   useEffect(() => {
     if (restoreStartedRef.current) return;
     restoreStartedRef.current = true;
+    // location.stateをローカル変数に保存。サインイン後のリダイレクトで、メールアドレスやトースト表示の情報を受け取るために使用。
     const state = location.state as SignInNavState;
+    if (state?.email) {
+      toast.success('登録が完了しました。ログインしてください。');
+    }
 
-    if (!state?.toast) return;
-    if (state.toast === 'login_require') toast.error('ログインが必要です。');
-    if (state.toast === 'logged_out') toast.success('ログアウトしました。');
-    clearRedirectReason(); // リダイレクト理由をクリア
+    if (state?.toast) {
+      if (state.toast === 'login_require') toast.error('ログインが必要です。');
+      if (state.toast === 'logged_out') toast.success('ログアウトしました。');
+    }
+    // location.stateの中身がemailやtoastの情報を含んでいる場合は、サインイン後のリダイレクトであると判断し、状態をクリアしてリダイレクトする。これにより、サインイン後のリダイレクトでのみトーストが表示されるようになる。
+    if (state?.email && state?.toast) {
+      clearRedirectReason(); //
+    }
     navigate('.', { replace: true, state: null });
   }, [navigate, location.state, location.pathname, clearRedirectReason]);
 
-  const emailFromState = (location.state as { email?: string } | null)?.email;
-  const [email, setEmail] = useState(emailFromState || '');
-  // 登録成功後ログイン成功時にトースト表示
-  useEffect(() => {
-    if (emailFromState) {
-      toast.success('登録が完了しました。ログインしてください。');
-    }
-  }, [emailFromState]);
   // ログイン用のpassword状態管理
   const [password, setPassword] = useState('');
   // zustand の状態管理で使用するためのstateと関数
