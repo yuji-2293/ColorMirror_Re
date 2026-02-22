@@ -30,9 +30,11 @@ export const useSignIn = () => {
   const emailFromState = (location.state as { email?: string } | null)?.email;
   const [email, setEmail] = useState(emailFromState || '');
   // 登録成功後ログイン成功時にトースト表示
-  if (emailFromState) {
-    toast.success('登録が完了しました。ログインしてください。');
-  }
+  useEffect(() => {
+    if (emailFromState) {
+      toast.success('登録が完了しました。ログインしてください。');
+    }
+  }, [emailFromState]);
   // ログイン用のpassword状態管理
   const [password, setPassword] = useState('');
   // zustand の状態管理で使用するためのstateと関数
