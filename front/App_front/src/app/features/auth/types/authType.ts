@@ -26,3 +26,9 @@ export interface SignInNavState {
   from?: string;
   email?: string;
 }
+
+export interface SignInErrors {
+  email?: string;
+  password?: string;
+  form?: string;
+}

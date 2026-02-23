@@ -7,7 +7,16 @@ import { useAuthToast } from '@/app/features/auth/hooks/useAuthToasts';
 export default function SignInCard() {
   useAuthToast();
   // カスタムフックから状態と関数を取得
-  const { email, setEmail, password, setPassword, handleLogin } = useSignIn();
+  const {
+    email,
+    password,
+    handleLogin,
+    handleChangeEmail,
+    handleChangePassword,
+    handleSubmit,
+    isSubmitting,
+    errors,
+  } = useSignIn();
   return (
     <div className="FormUI">
       <Card>
@@ -19,13 +28,15 @@ export default function SignInCard() {
           <form onSubmit={handleLogin} className="grid gap-4">
             <div className="grid gap-2">
               <Label htmlFor="email">Email</Label>
+              {errors.form && <p className="text-sm text-red-500">{errors.form}</p>}
               <Input
                 id="email"
                 type="email"
                 value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                onChange={(e) => handleChangeEmail(e.target.value)}
                 placeholder="メールアドレスを入力"
               />
+              {errors.email && <p className="text-sm text-red-500">{errors.email}</p>}
             </div>
             <div className="grid gap-2">
               <Label htmlFor="password">Password</Label>
@@ -33,12 +44,12 @@ export default function SignInCard() {
                 id="password"
                 type="password"
                 value={password}
-                onChange={(e) => setPassword(e.target.value)}
+                onChange={(e) => handleChangePassword(e.target.value)}
                 placeholder="パスワードを入力"
               />
             </div>
             <div>
-              <Button type="submit" className="w-full">
+              <Button type="submit" disabled={!handleSubmit || isSubmitting} className="w-full">
                 サインイン
               </Button>
             </div>
