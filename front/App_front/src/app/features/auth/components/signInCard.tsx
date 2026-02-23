@@ -3,7 +3,9 @@ import { Card, CardContent, CardDescription, CardTitle, CardHeader } from '@/com
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { useSignIn } from '@/app/features/auth/hooks/useSignIn';
+import { useAuthToast } from '@/app/features/auth/hooks/useAuthToasts';
 export default function SignInCard() {
+  useAuthToast();
   // カスタムフックから状態と関数を取得
   const { email, setEmail, password, setPassword, handleLogin } = useSignIn();
   return (

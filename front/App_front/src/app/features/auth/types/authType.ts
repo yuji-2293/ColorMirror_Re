@@ -20,3 +20,9 @@ export interface ValidateTokenResponse {
   success: boolean;
   data: AuthUser;
 }
+// サインイン後のリダイレクトで、メールアドレスやトースト表示の情報を受け取るための型定義
+export interface SignInNavState {
+  toast?: 'login_require' | 'logged_out';
+  from?: string;
+  email?: string;
+}
