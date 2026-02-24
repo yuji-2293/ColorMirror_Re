@@ -17,6 +17,11 @@ export default function SignInCard() {
     isSubmitting,
     errors,
   } = useSignIn();
+
+  // エラーの有無を判定するためのローカル変数。emailとpasswordの両方のエラーがあるかどうかを判定して、emailInvalidとpasswordInvalidにそれぞれ真偽値をセットする。
+  const emailInvalid = Boolean(errors.email);
+  const passwordInvalid = Boolean(errors.password);
+
   return (
     <div className="FormUI">
       <Card>
@@ -36,7 +41,9 @@ export default function SignInCard() {
                 type="email"
                 value={email}
                 onChange={(e) => handleChangeEmail(e.target.value)}
+                aria-invalid={emailInvalid}
                 placeholder="メールアドレスを入力"
+                className={emailInvalid ? 'border-red-500 focus-visible:ring-red-500' : ''}
               />
               {errors.email && <p className="text-sm text-red-500">{errors.email}</p>}
             </div>
@@ -47,6 +54,8 @@ export default function SignInCard() {
                 type="password"
                 value={password}
                 onChange={(e) => handleChangePassword(e.target.value)}
+                aria-invalid={passwordInvalid}
+                className={passwordInvalid ? 'border-red-500 focus-visible:ring-red-500' : ''}
                 placeholder="パスワードを入力"
               />
             </div>
