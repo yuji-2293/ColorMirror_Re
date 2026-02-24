@@ -21,8 +21,10 @@ export default function SignInCard() {
     <div className="FormUI">
       <Card>
         <CardHeader>
-          <CardTitle className="text-2xl">SignIn</CardTitle>
-          <CardDescription>メールアドレスとパスワードを入力してサインイン</CardDescription>
+          <CardTitle className="text-2xl text-center">ログイン画面</CardTitle>
+          <CardDescription>
+            <p className="text-center">メールアドレスとパスワードを入力してサインイン</p>
+          </CardDescription>
         </CardHeader>
         <CardContent>
           <form onSubmit={handleLogin} className="grid gap-4">
@@ -50,7 +52,7 @@ export default function SignInCard() {
             </div>
             <div>
               <Button type="submit" disabled={!handleSubmit || isSubmitting} className="w-full">
-                サインイン
+                {isSubmitting ? 'ログイン中...' : 'ログイン'}
               </Button>
             </div>
           </form>
