@@ -7,7 +7,7 @@ export const Footer = () => {
         <p>お問い合わせ</p>
       </div>
       <div className="text-center">
-        <p className="">copyright ©︎ 2025 - ColorMirror</p>
+        <p className="">copyright ©︎ 2025 - ColorMirror_Re</p>
       </div>
     </footer>
   );
