@@ -1,6 +1,10 @@
 export interface Color {
   id: number;
-  color_name: string;
+  colorName: string;
   mood: string;
-  created_at: string;
+  createdAt: string;
 }
+
+export type ColorResponse = {
+  data: Color[];
+};
