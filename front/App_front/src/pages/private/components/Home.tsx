@@ -11,8 +11,10 @@ export const Home = () => {
     return <div>Error occurred while fetching colors data.</div>;
   }
   if (data) {
-    console.log('TanStackQueryでdataの取得成功');
+    console.log(data);
   }
+
+  const colors = data?.data || [];
 
   return (
     <div>
@@ -22,6 +24,18 @@ export const Home = () => {
       <button type="button" onClick={() => createColor()}>
         ボタン
       </button>
+
+      {/* 取得した色のデータを表示する例 */}
+      <ul>
+        <h1>ここに表示する</h1>
+        {colors.map((color) => (
+          <li key={color.id}>
+            <p>色の名前: {color.colorName}</p>
+            <p>ムード: {color.mood}</p>
+            <p>作成日時: {color.createdAt}</p>
+          </li>
+        ))}
+      </ul>
     </div>
   );
 };
