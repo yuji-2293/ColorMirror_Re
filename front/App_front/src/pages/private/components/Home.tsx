@@ -26,6 +26,7 @@ export const Home = () => {
       </button>
 
       {/* 取得した色のデータを表示する例 */}
+
       <ul>
         <h1>ここに表示する</h1>
         {colors.map((color) => (
