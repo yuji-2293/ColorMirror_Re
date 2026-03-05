@@ -1,4 +1,4 @@
-import { type Color } from '../types/Color';
+import { type Color } from '@/app/features/colors/types/Color';
 import { ApiClient } from '@/app/lib/apiClient';
 
 export default function colorsPostData(): Promise<Color> {
