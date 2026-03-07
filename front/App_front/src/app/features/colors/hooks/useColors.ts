@@ -8,7 +8,10 @@ export function useColors() {
     queryFn: colorsGetData,
   });
 
+  const colors = query.data?.data || [];
+
   return {
     ...query,
+    data: colors,
   };
 }
