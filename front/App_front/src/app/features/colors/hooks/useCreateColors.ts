@@ -12,7 +12,6 @@ export function useCreateColors() {
       queryClient.invalidateQueries({ queryKey: ['colors'] });
     },
   });
-
   return {
     ...mutation,
     createColor: mutation.mutate,

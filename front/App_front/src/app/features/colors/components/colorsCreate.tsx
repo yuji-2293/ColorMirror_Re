@@ -4,6 +4,7 @@ import { type CreateColorParams } from '@/app/features/colors/types/Color';
 
 export const ColorsCreate = () => {
   const createColors = useCreateColors();
+
   const [colorName, setColorName] = useState('');
   const [mood, setMood] = useState('');
 

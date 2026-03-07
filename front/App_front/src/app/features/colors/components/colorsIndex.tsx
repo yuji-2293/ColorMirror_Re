@@ -1,15 +1,18 @@
 import { useColors } from '@/app/features/colors/hooks/useColors';
+import { useDeleteColor } from '@/app/features/colors/hooks/useDeleteColor';
 
 export const ColorsIndex = () => {
   const { isLoading, isError, data } = useColors();
+  const { deleteColor } = useDeleteColor();
+  const handleDelete = (id: number) => {
+    deleteColor(id);
+    console.log(`削除対象のid: ${id}`);
+  };
   if (isLoading) {
     return <div>Loading...</div>;
   }
   if (isError) {
     return <div>エラー、ファイル、データの確認をしてください</div>;
-  }
-  if (data) {
-    console.log(data);
   }
 
   const colorsIndex = data || [];
@@ -25,6 +28,9 @@ export const ColorsIndex = () => {
             <p>色の名前: {color.colorName}</p>
             <p>ムード: {color.mood}</p>
             <p>作成日時: {color.createdAt}</p>
+            <button onClick={() => handleDelete(color.id)} className="bg-red-500">
+              削除
+            </button>
           </li>
         ))}
       </ul>
