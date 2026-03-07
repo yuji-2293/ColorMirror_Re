@@ -8,3 +8,10 @@ export interface Color {
 export type ColorResponse = {
   data: Color[];
 };
+
+export interface CreateColorParams {
+  color: {
+    colorName: string;
+    mood: string;
+  };
+}
