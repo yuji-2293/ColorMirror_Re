@@ -2,12 +2,14 @@ import { useColors } from '@/app/features/colors/hooks/useColors';
 import { useDeleteColor } from '@/app/features/colors/hooks/useDeleteColor';
 
 export const ColorsIndex = () => {
-  const { isLoading, isError, data } = useColors();
+  // 削除ボタンがクリックされたときの処理
   const { deleteColor } = useDeleteColor();
   const handleDelete = (id: number) => {
     deleteColor(id);
     console.log(`削除対象のid: ${id}`);
   };
+  // データの読み込み中やエラーが発生した場合の表示
+  const { isLoading, isError, data } = useColors();
   if (isLoading) {
     return <div>Loading...</div>;
   }
