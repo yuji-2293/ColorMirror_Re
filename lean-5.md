@@ -79,5 +79,89 @@
 ## 日付け 2025/ 3/7
 
 ### 今日やったこと
+  - colorsIndexの作成でTanStackQueryが取得したデータを一覧表示できた
+  - colorsCreateの作成でTanStackQueryでデータの作成と一覧の更新(invalidateQueriesで自動再取得)ができた
+    - TanStackQuery(ReactQuery)
+      - 責務
+        - useQuery → 取得
+        - useMutation → 作成/削除
+        - queryClient → キャッシュ管理
+  - 実装のために学んだこと
+    - API関数、Hook,UIの責務と分離を学んだ
+    - AxiosResponseは整形してからUI（コンポーネント）側に渡す
+      - AxiosResponse → dataを取り出してreturnすることで、UI側は,data.colorNameの形で取り出すことができる
+      - 
 ### 今日学んだ一番大事なこと
 > useMutation<TData, TError, TVariables>
+> → useMutation<Color, Error, CreateColorParams>
+
+> 実際のコード
+  ```
+  // カスタムフック関数（mutation関数）
+  export function useCreateColors() {
+  const queryClient = useQueryClient();
+
+  const mutation = useMutation<Color, Error, CreateColorParams>({
+    mutationFn: (newColor) => colorsPostData(newColor),
+
+    // ここのdataが上で定義してるColor（型）になる
+    onSuccess: (data) => {
+      console.log('Color 作成成功結果:', data);
+      queryClient.invalidateQueries({ queryKey: ['colors'] });
+    },
+  });
+  return {
+    ...mutation,
+    createColor: mutation.mutate,
+  };
+}
+
+  // API関数
+  export default function colorsPostData(newColor: CreateColorParams): Promise<Color> {
+    return ApiClient.post('/colors', newColor);
+  }
+
+
+  // UI
+  export const ColorsCreate = () => {
+  const createColors = useCreateColors();
+
+  const [colorName, setColorName] = useState('');
+  const [mood, setMood] = useState('');
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    // ここでカラーの新規作成の処理を実装します。
+    console.log('カラーの名前:', colorName);
+    console.log('ムード:', mood);
+    const newColor: CreateColorParams = {
+      color: {
+        colorName: colorName,
+        mood: mood,
+      },
+    };
+    console.log('新しいカラーのデータ:', newColor);
+    createColors.mutate(newColor);
+  };
+  .
+  .
+  .
+
+
+  ```
+  - 上記は、TanStackQueryを型を理解したうえで使用した設計
+  ```
+  > useMutation<TData, TError, TVariables>
+  TData : 通信が成功した時に返ってくるデータの型
+  TError: 通信が失敗した時のエラー型
+  TVariables: mutateに渡す引数の型  <~ (今回一番重要な要素)
+  ```
+  
+  TVariables: mutateに渡す引数の型  
+  →     createColors.mutate(newColor);
+  引数 = newColor(=params)のようなオブジェクト構図を渡す
+  color: {
+    colorName
+    mood
+  };  
+  のような形でmutate(関数)に渡すことで、APIを通してサーバーにparamsを渡すことができる
