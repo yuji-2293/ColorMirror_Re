@@ -165,3 +165,44 @@
     mood
   };  
   のような形でmutate(関数)に渡すことで、APIを通してサーバーにparamsを渡すことができる
+
+## 日付け 2025/ 3/12
+
+### exportの仕方についてまとめ
+  - *export default function*
+    - そのファイルのメイン機能につける
+    - importするときの名前を自由につけられる
+      - ファイルの役割が明確
+        - Home.tsx
+        - UserPage.tsx
+    ```
+    import Home from './Home'
+      Home.tsxのHomeに付ける
+       export default function Home()  {}
+    import Page from './Home'
+    ```
+  - *export function*
+    - 名前付きexport
+    - 名前を固定する
+    - importするときに {}をつけて呼び出す
+    - API関数 hooks helperなど
+    - 1ファイルに複数存在する可能性がある関数についてつける
+    ```
+    import { getUser } from './api'
+      export function getUser() {}
+    ```
+  - *export const*
+    - arrow functionをつけて定義する
+    - 名前付きexport
+    - hooks storeなど
+    ```
+    import Page from './Home'
+      export const useStore = () => {}
+    ```
+  - × export default cont
+    - これは存在しないし、使えない（文法ミス）
+    - どうしてもconstをdefault exportしたいなら
+    ```
+    const Home = () => {}
+    export default Home
+    ```
