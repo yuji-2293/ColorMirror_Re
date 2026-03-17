@@ -16,7 +16,11 @@ Rails.application.routes.draw do
       resources :sessions, only: [ :index ]
     end
 
-      resources :colors, only: [ :index, :create, :update, :destroy ]
+      resources :colors, only: [ :index, :create, :update, :destroy ] do
+        collection do
+          post "generate", to: "colors#generate"
+        end
+      end
     end
   end
   # Defines the root path route ("/")

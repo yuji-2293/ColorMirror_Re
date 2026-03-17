@@ -7,6 +7,11 @@ class Api::V1::ColorsController < ApplicationController
     render_api(data: colors, meta: { total: colors.count })
   end
 
+  def generate
+    @generated_color = "#FFFF00"
+    render_api(data: { generated_color: @generated_color })
+  end
+
   def create
     # color = Color.new(color_params)
     color =  current_user.colors.new(color_params)

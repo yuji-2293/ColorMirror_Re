@@ -24,7 +24,6 @@ export const ColorsIndex = () => {
       {/* colorの機能を実装するためのコンポーネント */}
       {/* 取得した色のデータを表示する例 */}
       <ul>
-        <h1>ここに表示する</h1>
         {colorsIndex.map((color) => (
           <li key={color.id}>
             <p>色の名前: {color.colorName}</p>

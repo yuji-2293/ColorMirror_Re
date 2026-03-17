@@ -15,3 +15,11 @@ export interface CreateColorParams {
     mood: string;
   };
 }
+
+export interface GenerateMoodParams {
+  mood: string;
+}
+
+export type GenerateResponse = {
+  data: GenerateMoodParams[];
+};
