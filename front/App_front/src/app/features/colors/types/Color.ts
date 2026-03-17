@@ -21,5 +21,7 @@ export interface GenerateMoodParams {
 }
 
 export type GenerateResponse = {
-  data: GenerateMoodParams[];
+  data: {
+    generatedColor: string;
+  };
 };

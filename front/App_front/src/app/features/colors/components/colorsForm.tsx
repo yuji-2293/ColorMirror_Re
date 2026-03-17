@@ -2,7 +2,7 @@ import { type GenerateMoodParams } from '@/app/features/colors/types/Color';
 import { useGenerateColor } from '@/app/features/colors/hooks/useGenerateColors';
 
 export const ColorsForm = () => {
-  const generateColor = useGenerateColor();
+  const { generateColor, generatedColor } = useGenerateColor();
 
   const handleWordClick = (mood: string) => {
     // ここにクリックイベントの処理を実装します。
@@ -10,7 +10,7 @@ export const ColorsForm = () => {
       mood: mood,
     };
     console.log('Clickしたmood:', mood);
-    generateColor.mutate(generateMood);
+    generateColor(generateMood);
   };
   return (
     <div className="bg-rose-300">
@@ -40,6 +40,9 @@ export const ColorsForm = () => {
         >
           ホカホカ
         </button>
+      </div>
+      <div className="mt-4">
+        <div className="rounded-full w-20 h-20" style={{ backgroundColor: generatedColor }} />
       </div>
     </div>
   );

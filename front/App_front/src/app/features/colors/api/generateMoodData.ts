@@ -1,8 +1,15 @@
 import { ApiClient } from '@/app/lib/apiClient';
 import { type GenerateResponse } from '@/app/features/colors/types/Color';
+import { type GenerateMoodParams } from '@/app/features/colors/types/Color';
 
-export default function generateMoodData(
-  generateMood: GenerateResponse
+export default async function generateMoodData(
+  generateMood: GenerateMoodParams
 ): Promise<GenerateResponse> {
-  return ApiClient.post('/colors/generate', generateMood);
+  try {
+    const response = await ApiClient.post<GenerateResponse>('/colors/generate', generateMood);
+    return response.data;
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
 }
