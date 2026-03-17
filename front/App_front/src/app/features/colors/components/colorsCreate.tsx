@@ -24,7 +24,6 @@ export const ColorsCreate = () => {
   };
   return (
     <div className="bg-amber-300">
-      <h1>カラーの新規作成</h1>
       <p>ここにカラーの新規作成フォームを実装します。</p>
       <form onSubmit={handleSubmit}>
         <div>
