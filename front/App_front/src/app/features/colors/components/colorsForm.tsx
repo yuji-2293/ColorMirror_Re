@@ -12,6 +12,7 @@ export const ColorsForm = () => {
     console.log('Clickしたmood:', mood);
     generateColor(generateMood);
   };
+
   return (
     <div className="">
       <p>ここにカラーの新規作成フォームを実装します。</p>
@@ -41,8 +42,13 @@ export const ColorsForm = () => {
           ホカホカ
         </button>
       </div>
-      <div className="mt-4">
-        <div className="rounded-full w-20 h-20" style={{ backgroundColor: generatedColor }} />
+      <div className="bg-white opacity-90 mt-4 flex justify-around items-center">
+        {generatedColor.map((c) => (
+          <div key={c.hex} className="flex flex-col items-center">
+            <p className="text-sm">{c.name}</p>
+            <button className="rounded-full w-20 h-20" style={{ backgroundColor: c.hex }} />
+          </div>
+        ))}
       </div>
     </div>
   );

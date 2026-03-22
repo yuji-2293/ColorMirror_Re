@@ -20,8 +20,12 @@ export interface GenerateMoodParams {
   mood: string;
 }
 
+export type generateColors = {
+  hex: string;
+  name: string;
+};
 export type GenerateResponse = {
   data: {
-    generatedColor: string;
+    generatedColor: generateColors[];
   };
 };

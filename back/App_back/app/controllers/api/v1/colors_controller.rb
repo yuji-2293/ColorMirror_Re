@@ -8,8 +8,10 @@ class Api::V1::ColorsController < ApplicationController
   end
 
   def generate
-    @generated_color = "#FFFF00"
-    render_api(data: { generated_color: @generated_color })
+    mood = color_params[:mood]
+    generate_colors = AiColorService.generate_color(mood)
+    p generate_colors
+    render_api(data: { generated_color: generate_colors })
   end
 
   def create
