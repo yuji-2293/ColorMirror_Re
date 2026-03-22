@@ -7,7 +7,7 @@ export function useGenerateColor() {
   const mutation = useMutation<GenerateResponse, Error, GenerateMoodParams>({
     mutationFn: (generateMood) => generateMoodData(generateMood),
   });
-  const generatedColor = mutation.data?.data?.generatedColor || '';
+  const generatedColor = mutation.data?.data?.generatedColor || [];
   return {
     ...mutation,
     generateColor: mutation.mutate,
