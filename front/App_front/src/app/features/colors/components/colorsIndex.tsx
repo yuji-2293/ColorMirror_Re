@@ -35,20 +35,6 @@ export const ColorsIndex = () => {
           </li>
         ))}
       </ul>
-      <div className="bg-white opacity-90  flex justify-around">
-        <div className="flex items-center justify-center rounded-xl bg-amber-300 w-30 h-10 m-5 p-5 shadow-2xl">
-          ワクワク
-        </div>
-        <div className="flex items-center justify-center rounded-xl bg-rose-500 w-30 h-10 m-5 p-5 shadow-2xl">
-          ムカムカ
-        </div>
-        <div className="flex items-center justify-center rounded-xl bg-indigo-600 w-30 h-10 m-5 p-5 shadow-2xl">
-          モヤモヤ
-        </div>
-        <div className="flex items-center justify-center rounded-xl bg-pink-300 w-30 h-10 m-5 p-5 shadow-2xl">
-          ホカホカ
-        </div>
-      </div>
     </div>
   );
 };
