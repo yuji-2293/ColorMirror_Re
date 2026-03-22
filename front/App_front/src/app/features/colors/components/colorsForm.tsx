@@ -13,9 +13,9 @@ export const ColorsForm = () => {
     generateColor(generateMood);
   };
   return (
-    <div className="bg-rose-300">
+    <div className="">
       <p>ここにカラーの新規作成フォームを実装します。</p>
-      <div className="bg-gray-300 flex justify-around">
+      <div className="flex justify-around items-center">
         <button
           onClick={() => handleWordClick('ワクワク')}
           className="flex items-center justify-center rounded-xl bg-amber-300 w-30 h-10 m-5 p-5 shadow-2xl cursor-pointer"
