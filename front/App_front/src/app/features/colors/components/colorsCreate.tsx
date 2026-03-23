@@ -23,7 +23,7 @@ export const ColorsCreate = () => {
     createColors.mutate(newColor);
   };
   return (
-    <div className="bg-amber-300">
+    <div className="">
       <p>ここにカラーの新規作成フォームを実装します。</p>
       <form onSubmit={handleSubmit}>
         <div>
