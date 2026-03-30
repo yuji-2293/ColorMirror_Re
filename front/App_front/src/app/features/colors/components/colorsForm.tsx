@@ -2,10 +2,10 @@ import { type GenerateMoodParams } from '@/app/features/colors/types/Color';
 import { useGenerateColor } from '@/app/features/colors/hooks/useGenerateColors';
 
 export const ColorsForm = () => {
-  const { generateColor, generatedColor } = useGenerateColor();
+  const { generateColor, generatedColor, isPending, isSuccess } = useGenerateColor();
 
   const handleWordClick = (mood: string) => {
-    // ここにクリックイベントの処理を実装します。
+    if (isPending) return;
     const generateMood: GenerateMoodParams = {
       mood: mood,
     };
@@ -42,14 +42,27 @@ export const ColorsForm = () => {
           ホカホカ
         </button>
       </div>
-      <div className="bg-white opacity-90 mt-4 flex justify-around items-center">
-        {generatedColor.map((c) => (
-          <div key={c.hex} className="flex flex-col items-center">
-            <p className="text-sm">{c.name}</p>
-            <button className="rounded-full w-20 h-20" style={{ backgroundColor: c.hex }} />
+
+      {isPending && (
+        <div className="flex justify-center items-center w-24 h-24 bg-white rounded-2xl shadow-2xl">
+          <div
+            className="flex justify-center items-center animate-pulse w-20 h-20 border-4 rounded-full"
+            role="status"
+          >
+            <p className="text-center text-sm">生成中...</p>
           </div>
-        ))}
-      </div>
+        </div>
+      )}
+      {isSuccess && (
+        <div className="bg-white rounded-2xl shadow-2xl opacity-90 mt-4 p-2 flex gap-2 justify-around items-center">
+          {generatedColor.map((c) => (
+            <div key={c.hex} className="flex flex-col items-center">
+              <button className="rounded-full w-20 h-20" style={{ backgroundColor: c.hex }} />
+              <p className="text-sm">{c.name}</p>
+            </div>
+          ))}
+        </div>
+      )}
     </div>
   );
 };
