@@ -45,8 +45,8 @@ export const ColorsForm = () => {
       <div className="bg-white opacity-90 mt-4 flex justify-around items-center">
         {generatedColor.map((c) => (
           <div key={c.hex} className="flex flex-col items-center">
-            <p className="text-sm">{c.name}</p>
             <button className="rounded-full w-20 h-20" style={{ backgroundColor: c.hex }} />
+            <p className="text-sm">{c.name}</p>
           </div>
         ))}
       </div>
