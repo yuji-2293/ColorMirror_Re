@@ -1,6 +1,6 @@
 import { ApiClient } from '@/app/lib/apiClient';
-import { type GenerateResponseDataParams } from '@/app/features/Responses/types/Response';
-import { type AiResponse } from '@/app/features/Responses/types/Response';
+import { type GenerateResponseDataParams } from '@/app/features/responses/types/response';
+import { type AiResponse } from '@/app/features/responses/types/response';
 
 export default async function generateResponseData(
   params: GenerateResponseDataParams
