@@ -1,7 +1,7 @@
 import { useMutation } from '@tanstack/react-query';
 import generateResponseData from '@/app/features/responses/api/generateResponseData';
-import { type AiResponse } from '@/app/features/responses/types/response';
-import { type GenerateResponseDataParams } from '@/app/features/responses/types/response';
+import { type AiResponse } from '@/app/features/responses/types/Response';
+import { type GenerateResponseDataParams } from '@/app/features/responses/types/Response';
 
 export function useGenerateResponse() {
   const mutation = useMutation<AiResponse, Error, GenerateResponseDataParams>({

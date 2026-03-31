@@ -1,6 +1,6 @@
 import { type ColorsFormProps } from '@/app/features/colors/types/Color';
 import { useGenerateResponse } from '@/app/features/responses/hooks/useGenerateResponse';
-import { type GenerateResponseDataParams } from '@/app/features/responses/types/response';
+import { type GenerateResponseDataParams } from '@/app/features/responses/types/Response';
 export const ResponsesForm = ({ mood, selectedColor }: ColorsFormProps) => {
   const { aiResponseData, generateResponse, isPending } = useGenerateResponse();
   const handleGenerateResponse = () => {
