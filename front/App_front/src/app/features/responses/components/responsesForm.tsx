@@ -17,8 +17,12 @@ export const ResponsesForm = ({ mood, selectedColor }: ColorsFormProps) => {
       <h1>ResponsesForm</h1>
       <p>{mood}</p>
       <p>{selectedColor}</p>
-      <button onClick={handleGenerateResponse}>
-        AI生成開始 disabled={(!mood && !selectedColor) || isPending}
+      <button
+        onClick={handleGenerateResponse}
+        disabled={!mood || !selectedColor || isPending}
+        className="px-4 py-2 bg-blue-500 text-white rounded disabled:bg-gray-400"
+      >
+        AI生成開始
       </button>
 
       {isPending && (
