@@ -1,4 +1,3 @@
-import { ColorsCreate } from '@/app/features/colors/components/colorsCreate';
 import { ColorsIndex } from '@/app/features/colors/components/colorsIndex';
 import { ColorsForm } from '@/app/features/colors/components/colorsForm';
 export const Home = () => {
@@ -7,7 +6,6 @@ export const Home = () => {
       <h1>ホーム</h1>
       <ColorsForm />
       <ColorsIndex />
-      <ColorsCreate />
     </div>
   );
 };
