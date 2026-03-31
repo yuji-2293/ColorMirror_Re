@@ -15,12 +15,18 @@ Rails.application.routes.draw do
     namespace :auth do
       resources :sessions, only: [ :index ]
     end
-
-      resources :colors, only: [ :index, :create, :update, :destroy ] do
-        collection do
-          post "generate", to: "colors#generate"
-        end
+    # カラー関連のルーティング
+    resources :colors, only: [ :index, :create, :update, :destroy ] do
+      collection do
+        post "generate", to: "colors#generate"
       end
+    end
+    # AIレスポンス関連のルーティング
+    resources :responses, only: [ :index, :create, :destroy ] do
+      collection do
+        post "generate", to: "responses#generate"
+      end
+    end
     end
   end
   # Defines the root path route ("/")

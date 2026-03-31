@@ -1,7 +1,7 @@
 import { ColorsIndex } from '@/app/features/colors/components/colorsIndex';
 import { ColorsForm } from '@/app/features/colors/components/colorsForm';
 import { useState } from 'react';
-import { ResponsesForm } from '@/app/features/responses/components/responsesForm';
+import { ResponsesForm } from '@/app/features/Responses/components/responsesForm';
 
 export const Home = () => {
   const [mood, setMood] = useState<string>('');
