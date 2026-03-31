@@ -8,4 +8,5 @@ class User < ActiveRecord::Base
   include DeviseTokenAuth::Concerns::User
 
   has_many :colors, dependent: :destroy
+  has_many :responses, dependent: :destroy
 end
