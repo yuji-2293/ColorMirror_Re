@@ -2,7 +2,12 @@ import { type GenerateMoodParams } from '@/app/features/colors/types/Color';
 import { useGenerateColor } from '@/app/features/colors/hooks/useGenerateColors';
 import { type ColorsFormProps } from '@/app/features/colors/types/Color';
 
-export const ColorsForm = ({ mood, setMood, selectedColor, setSelectedColor }: ColorsFormProps) => {
+export const ColorsForm = ({
+  mood,
+  setMood,
+  selectedColorName,
+  setSelectedColorName,
+}: ColorsFormProps) => {
   const { generateColor, generatedColor, isPending, isSuccess } = useGenerateColor();
 
   const handleGenerateColor = () => {
@@ -21,10 +26,10 @@ export const ColorsForm = ({ mood, setMood, selectedColor, setSelectedColor }: C
     <div className="">
       <p>ここにカラーの新規作成フォームを実装します。</p>
       <p>選択中のmood:{mood}</p>
-      <p>選択中のcolor:{selectedColor}</p>
+      <p>選択中のcolor:{selectedColorName}</p>
       <button
         className="rounded-full w-20 h-20 "
-        style={{ backgroundColor: selectedColor }}
+        style={{ backgroundColor: selectedColorName }}
       ></button>
       <div className="">
         <button
@@ -78,7 +83,7 @@ export const ColorsForm = ({ mood, setMood, selectedColor, setSelectedColor }: C
           {generatedColor.map((c) => (
             <div key={c.hex} className="flex flex-col items-center">
               <button
-                onClick={() => setSelectedColor(c.hex)}
+                onClick={() => setSelectedColorName(c.hex)}
                 className="rounded-full w-20 h-20"
                 style={{ backgroundColor: c.hex }}
               />

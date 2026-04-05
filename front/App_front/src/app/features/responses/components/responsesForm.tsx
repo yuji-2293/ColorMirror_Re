@@ -1,13 +1,15 @@
 import { type ColorsFormProps } from '@/app/features/colors/types/Color';
 import { useGenerateResponse } from '@/app/features/responses/hooks/useGenerateResponse';
 import { type GenerateResponseDataParams } from '@/app/features/responses/types/Response';
-export const ResponsesForm = ({ mood, selectedColor }: ColorsFormProps) => {
+export const ResponsesForm = ({ mood, selectedColorName }: ColorsFormProps) => {
   const { aiResponseData, generateResponse, isPending } = useGenerateResponse();
   const handleGenerateResponse = () => {
     if (isPending) return;
     const params: GenerateResponseDataParams = {
-      mood,
-      selectedColor,
+      response: {
+        mood: mood,
+        color_name: selectedColorName,
+      },
     };
     console.log('paramsの中身:', params);
     generateResponse(params);
@@ -16,10 +18,10 @@ export const ResponsesForm = ({ mood, selectedColor }: ColorsFormProps) => {
     <div className="">
       <h1>ResponsesForm</h1>
       <p>{mood}</p>
-      <p>{selectedColor}</p>
+      <p>{selectedColorName}</p>
       <button
         onClick={handleGenerateResponse}
-        disabled={!mood || !selectedColor || isPending}
+        disabled={!mood || !selectedColorName || isPending}
         className="px-4 py-2 bg-blue-500 text-white rounded disabled:bg-gray-400"
       >
         AI生成開始
