@@ -33,7 +33,7 @@ export type GenerateResponse = {
 
 export type ColorsFormProps = {
   mood: string;
-  selectedColor: string;
+  selectedColorName: string;
   setMood: React.Dispatch<React.SetStateAction<string>>;
-  setSelectedColor: React.Dispatch<React.SetStateAction<string>>;
+  setSelectedColorName: React.Dispatch<React.SetStateAction<string>>;
 };
