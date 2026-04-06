@@ -1,7 +1,8 @@
-import { type ColorsFormProps } from '@/app/features/colors/types/Color';
+import { type CreateFormProps } from '@/app/features/responses/types/Response';
 import { useGenerateResponse } from '@/app/features/responses/hooks/useGenerateResponse';
 import { type GenerateResponseDataParams } from '@/app/features/responses/types/Response';
-export const ResponsesForm = ({ mood, selectedColorName }: ColorsFormProps) => {
+import { useEffect } from 'react';
+export const ResponsesForm = ({ mood, selectedColorName, setAiResponse }: CreateFormProps) => {
   const { aiResponseData, generateResponse, isPending } = useGenerateResponse();
   const handleGenerateResponse = () => {
     if (isPending) return;
@@ -14,6 +15,13 @@ export const ResponsesForm = ({ mood, selectedColorName }: ColorsFormProps) => {
     console.log('paramsの中身:', params);
     generateResponse(params);
   };
+  // AIからのレスポンスデータが更新されたときに、親コンポーネントの状態を更新する
+  useEffect(() => {
+    if (aiResponseData) {
+      setAiResponse(aiResponseData);
+    }
+  }, [aiResponseData, setAiResponse]);
+
   return (
     <div className="">
       <h1>ResponsesForm</h1>
@@ -39,6 +47,7 @@ export const ResponsesForm = ({ mood, selectedColorName }: ColorsFormProps) => {
       )}
 
       <p>{aiResponseData}</p>
+      <button className="bg-rose-500 text-white w-20 h-10 rounded-2xl shadow-2xl">保存する</button>
     </div>
   );
 };

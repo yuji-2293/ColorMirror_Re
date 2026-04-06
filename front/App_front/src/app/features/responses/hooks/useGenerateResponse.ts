@@ -8,7 +8,6 @@ export function useGenerateResponse() {
     mutationFn: (params) => generateResponseData(params),
   });
   const aiResponseData = mutation.data?.data || '';
-  console.log(aiResponseData);
   return {
     ...mutation,
     generateResponse: mutation.mutate,
