@@ -15,7 +15,6 @@ class Api::V1::ColorsController < ApplicationController
   end
 
   def create
-    # color = Color.new(color_params)
     color =  current_user.colors.new(color_params)
     if color.save
       render json: color, status: :created

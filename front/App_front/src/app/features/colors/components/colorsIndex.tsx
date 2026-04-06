@@ -18,6 +18,7 @@ export const ColorsIndex = () => {
   }
 
   const colorsIndex = data || [];
+  console.log(colorsIndex);
 
   return (
     <div>
