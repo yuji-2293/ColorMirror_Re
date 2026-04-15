@@ -15,13 +15,6 @@ class Api::V1::ResponsesController < ApplicationController
     end
   rescue ActiveRecord::RecordInvalid => e
     render_api(data: nil, error: e.record.errors.full_messages, status: :unprocessable_entity)
-
-    # response = current_user.responses.new(response_params)
-    # if response.save
-    #   render_api(data: response, status: :created)
-    # else
-    #   render_api(data: nil, error: response.errors.full_messages, status: :unprocessable_entity)
-    # end
   end
 
   private
