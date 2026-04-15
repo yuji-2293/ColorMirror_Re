@@ -9,7 +9,7 @@ export default async function createResponse(
     const response = await ApiClient.post<CreateResponse>('/responses', params);
     return response.data;
   } catch (error) {
-    console.error();
+    console.error(error);
     throw error;
   }
 }

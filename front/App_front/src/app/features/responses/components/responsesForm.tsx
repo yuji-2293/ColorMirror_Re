@@ -47,7 +47,6 @@ export const ResponsesForm = ({ mood, selectedColorName, setAiResponse }: Create
       )}
 
       <p>{aiResponseData}</p>
-      <button className="bg-rose-500 text-white w-20 h-10 rounded-2xl shadow-2xl">保存する</button>
     </div>
   );
 };

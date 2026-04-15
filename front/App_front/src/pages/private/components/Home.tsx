@@ -20,17 +20,13 @@ export const Home = () => {
       <ColorsIndex />
       <ResponsesForm
         mood={mood}
-        setMood={setMood}
         selectedColorName={selectedColorName}
-        setSelectedColorName={setSelectedColorName}
         aiResponse={aiResponse}
         setAiResponse={setAiResponse}
       />
       <CreateForm
         mood={mood}
-        setMood={setMood}
         selectedColorName={selectedColorName}
-        setSelectedColorName={setSelectedColorName}
         aiResponse={aiResponse}
         setAiResponse={setAiResponse}
       />
