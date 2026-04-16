@@ -3,7 +3,7 @@ import { useGenerateResponse } from '@/app/features/responses/hooks/useGenerateR
 import { type GenerateResponseDataParams } from '@/app/features/responses/types/Response';
 import { useEffect } from 'react';
 export const ResponsesForm = ({ mood, selectedColorName, setAiResponse }: CreateFormProps) => {
-  const { aiResponseData, generateResponse, isPending } = useGenerateResponse();
+  const { aiResponseData, generateResponse, isPending, isSuccess } = useGenerateResponse();
   const handleGenerateResponse = () => {
     if (isPending) return;
     const params: GenerateResponseDataParams = {
@@ -45,8 +45,11 @@ export const ResponsesForm = ({ mood, selectedColorName, setAiResponse }: Create
           </div>
         </div>
       )}
-
-      <p>{aiResponseData}</p>
+      {isSuccess && (
+        <div className="bg-white rounded-2xl shadow-2xl opacity-90 mt-4 p-2 flex gap-2 justify-around items-center">
+          <p>AIからのレスポンス: {aiResponseData}</p>
+        </div>
+      )}
     </div>
   );
 };
