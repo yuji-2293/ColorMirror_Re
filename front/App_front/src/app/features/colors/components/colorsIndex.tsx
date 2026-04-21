@@ -26,12 +26,24 @@ export const ColorsIndex = () => {
       {/* 取得した色のデータを表示する例 */}
       <ul>
         {colorsIndex.map((color) => (
-          <li key={color.id}>
-            <p>色の名前: {color.colorName}</p>
+          <li key={color.id} className="border rounded-xl p-4 shadow-sm space-y-2">
+            <p>
+              作成日時:
+              {new Date(color.createdAt).toLocaleString('ja-JP')}
+            </p>
+            <div className="flex items-center gap-4">
+              <div>色のプレビュー</div>
+              <div
+                className="w-10 h-10 rounded-full border shadow-sm"
+                style={{ backgroundColor: color.colorName }}
+              ></div>
+            </div>
+
             <p>ムード: {color.mood}</p>
-            <p>作成日時: {color.createdAt}</p>
+
+            <p className="text-sm leading-relaxed">AIのレスポンス: {color.response.aiResponse}</p>
             <button onClick={() => handleDelete(color.id)} className="bg-red-500">
-              削除
+              この履歴を削除
             </button>
           </li>
         ))}

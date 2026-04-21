@@ -1,9 +1,14 @@
+export interface Response {
+  aiResponse: string;
+}
 export interface Color {
   id: number;
   colorName: string;
   mood: string;
   createdAt: string;
+  response: Response;
 }
+
 // APIからのレスポンスの型定義
 export type ColorResponse = {
   data: Color[];

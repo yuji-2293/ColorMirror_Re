@@ -1,9 +1,8 @@
-import { ColorsIndex } from '@/app/features/colors/components/colorsIndex';
 import { ColorsForm } from '@/app/features/colors/components/colorsForm';
 import { useState } from 'react';
 import { ResponsesForm } from '@/app/features/responses/components/responsesForm';
 import { CreateForm } from '@/app/features/responses/components/createForm';
-
+import { Link } from 'react-router-dom';
 export const Home = () => {
   const [mood, setMood] = useState<string>('');
   const [selectedColorName, setSelectedColorName] = useState<string>('');
@@ -11,13 +10,14 @@ export const Home = () => {
   return (
     <div className="">
       <h1>ホーム</h1>
+      {/* 一覧ページへのリンクを表示 */}
+      <Link to="index">一覧ページへ</Link>
       <ColorsForm
         mood={mood}
         setMood={setMood}
         selectedColorName={selectedColorName}
         setSelectedColorName={setSelectedColorName}
       />
-      <ColorsIndex />
       <ResponsesForm
         mood={mood}
         selectedColorName={selectedColorName}

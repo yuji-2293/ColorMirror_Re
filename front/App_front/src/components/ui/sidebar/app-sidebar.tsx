@@ -24,7 +24,7 @@ const items = [
   },
   {
     title: '一覧',
-    url: 'signUp',
+    url: 'index',
     icon: Calendar,
   },
   {

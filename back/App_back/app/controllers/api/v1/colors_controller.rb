@@ -3,8 +3,21 @@ class Api::V1::ColorsController < ApplicationController
 
   # GET /colors フロントのリクエストユーザーを特定して、そのユーザーのカラーを全て取得する
   def index
-    colors = current_user.colors
-    render_api(data: colors, meta: { total: colors.count })
+    colors = current_user.colors.includes(:response).order(created_at: :desc)
+    data = colors.map do |color|
+      {
+        id: color.id,
+        color_name: color.color_name,
+        mood: color.mood,
+        user_id: color.user_id,
+        created_at: color.created_at,
+        response: {
+          id: color.response&.id,
+          ai_response: color.response&.ai_response
+        }
+      }
+    end
+    render_api(data: data, meta: { total: colors.count })
   end
 
   def generate
