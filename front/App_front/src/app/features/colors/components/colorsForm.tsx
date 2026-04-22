@@ -24,7 +24,6 @@ export const ColorsForm = ({
 
   return (
     <div className="">
-      <p>ここにカラーの新規作成フォームを実装します。</p>
       <p>選択中のmood:{mood}</p>
       <p>選択中のcolor:{selectedColorName}</p>
       <button
