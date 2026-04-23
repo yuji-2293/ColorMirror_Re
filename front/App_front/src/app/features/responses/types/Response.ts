@@ -26,7 +26,9 @@ export type CreateResponseDataParams = {
 // createFormのpropsの型定義
 export type CreateFormProps = {
   mood: string;
+  setMood: React.Dispatch<React.SetStateAction<string>>;
   selectedColorName: string;
+  setSelectedColorName: React.Dispatch<React.SetStateAction<string>>;
   aiResponse: string;
   setAiResponse: React.Dispatch<React.SetStateAction<string>>;
 };

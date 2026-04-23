@@ -3,8 +3,17 @@ import {
   type CreateResponseDataParams,
 } from '@/app/features/responses/types/Response';
 import { useCreateResponse } from '@/app/features/responses/hooks/useCreateResponse';
+import { useEffect } from 'react';
+import { toast } from 'sonner';
 
-export const CreateForm = ({ mood, selectedColorName, aiResponse }: CreateFormProps) => {
+export const CreateForm = ({
+  mood,
+  setMood,
+  selectedColorName,
+  setSelectedColorName,
+  aiResponse,
+  setAiResponse,
+}: CreateFormProps) => {
   const { createResponse, isPending, isSuccess } = useCreateResponse();
   const handleCreateResponse = () => {
     if (isPending) return;
@@ -20,6 +29,16 @@ export const CreateForm = ({ mood, selectedColorName, aiResponse }: CreateFormPr
     console.log(params);
     createResponse(params);
   };
+  useEffect(() => {
+    if (isSuccess) {
+      // 成功したら、フォームの状態をリセットする
+      setMood('');
+      setSelectedColorName('');
+      setAiResponse('');
+      // トースト通知を表示する
+      toast.success('保存が成功しました！');
+    }
+  }, [isSuccess, setMood, setSelectedColorName, setAiResponse]);
   return (
     <div>
       {isPending && (
@@ -30,11 +49,6 @@ export const CreateForm = ({ mood, selectedColorName, aiResponse }: CreateFormPr
           >
             <p className="text-center text-sm">保存中...</p>
           </div>
-        </div>
-      )}
-      {isSuccess && (
-        <div className="bg-green-500 text-white rounded-2xl shadow-2xl opacity-90 mt-4 p-2 flex gap-2 justify-around items-center">
-          <p>保存が完了しました！</p>
         </div>
       )}
       <button

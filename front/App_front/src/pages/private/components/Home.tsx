@@ -24,7 +24,9 @@ export const Home = () => {
       />
       <ResponsesForm
         mood={mood}
+        setMood={setMood}
         selectedColorName={selectedColorName}
+        setSelectedColorName={setSelectedColorName}
         aiResponse={aiResponse}
         setAiResponse={setAiResponse}
       />
@@ -32,6 +34,8 @@ export const Home = () => {
         mood={mood}
         selectedColorName={selectedColorName}
         aiResponse={aiResponse}
+        setMood={setMood}
+        setSelectedColorName={setSelectedColorName}
         setAiResponse={setAiResponse}
       />
     </div>
