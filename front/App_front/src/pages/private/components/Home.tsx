@@ -3,10 +3,10 @@ import { useState } from 'react';
 import { ResponsesForm } from '@/app/features/responses/components/responsesForm';
 import { CreateForm } from '@/app/features/responses/components/createForm';
 import { Link } from 'react-router-dom';
-import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardDescription, CardTitle, CardHeader } from '@/components/ui/card';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
+// import { Button } from '@/components/ui/button';
+// import { Card, CardContent, CardDescription, CardTitle, CardHeader } from '@/components/ui/card';
+// import { Input } from '@/components/ui/input';
+// import { Label } from '@/components/ui/label';
 export const Home = () => {
   const [mood, setMood] = useState<string>('');
   const [selectedColorName, setSelectedColorName] = useState<string>('');
