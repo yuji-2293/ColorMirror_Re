@@ -41,6 +41,11 @@ export type ColorsFormProps = {
   selectedColorName: string;
   setMood: React.Dispatch<React.SetStateAction<string>>;
   setSelectedColorName: React.Dispatch<React.SetStateAction<string>>;
+  generateColor: (params: GenerateMoodParams) => void;
+  generatedColor: generateColors[];
+  resetColors: () => void;
+  isPending: boolean;
+  isSuccess: boolean;
 };
 
 // ColorsFormコンポーネントのpropsの型定義

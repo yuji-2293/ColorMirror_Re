@@ -222,3 +222,27 @@
   - ポートフォリオ見せる用の静的ページの作成（必要なら）
 - 転活の再開
   - 求人選定
+
+## 日付 2026/ 4/28
+### React(TanStack) Query のmutation.resetについて
+ 
+ - mutationのオプション[reset]を使う
+  ```
+  import { useMutation } from '@tanstack/react-query';
+import { type GenerateMoodParams } from '@/app/features/colors/types/Color';
+import generateMoodData from '@/app/features/colors/api/generateMoodData';
+import { type GenerateResponse } from '@/app/features/colors/types/Color';
+
+export function useGenerateColor() {
+  // ※省略
+    resetColors: mutation.reset,
+  };
+}
+```
+- React的な画面の変え方
+  - UIを直接消すんじゃなくて、UIの根拠になっている state / data を消す。
+    - RailsはHTMLをサーバー側で組み立ててブラウザに返す
+      - これによって、一度描画したデータはサーバー側の更新→ページの遷移や画面の更新がされないと変更されない
+  - 対してReactはブラウザにて{ state/props/querydata}によって画面を描画している
+    - よって、ブラウザ自体が持つdataの有無によってUIが描画されるため、{mutation.reset} によってdataの値を消すことで、ブラウザでは画面からdataが消えたように見せることができる
+- 

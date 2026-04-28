@@ -12,5 +12,6 @@ export function useGenerateColor() {
     ...mutation,
     generateColor: mutation.mutate,
     generatedColor,
+    resetColors: mutation.reset,
   };
 }

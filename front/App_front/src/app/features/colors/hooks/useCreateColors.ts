@@ -7,8 +7,7 @@ export function useCreateColors() {
   const mutation = useMutation<Color, Error, CreateColorParams>({
     mutationFn: (newColor) => colorsPostData(newColor),
 
-    onSuccess: (data) => {
-      console.log('Color 作成成功結果:', data);
+    onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['colors'] });
     },
   });

@@ -12,5 +12,6 @@ export function useGenerateResponse() {
     ...mutation,
     generateResponse: mutation.mutate,
     aiResponseData,
+    resetAiResponseData: mutation.reset,
   };
 }

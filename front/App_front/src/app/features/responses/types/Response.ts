@@ -31,4 +31,11 @@ export type CreateFormProps = {
   setSelectedColorName: React.Dispatch<React.SetStateAction<string>>;
   aiResponse: string;
   setAiResponse: React.Dispatch<React.SetStateAction<string>>;
+  resetAll: () => void;
+  resetAiResponseData: () => void;
+  resetColors: () => void;
+  aiResponseData: string;
+  generateResponse: (params: GenerateResponseDataParams) => void;
+  isSuccess: boolean;
+  isPending: boolean;
 };
