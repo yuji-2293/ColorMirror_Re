@@ -21,12 +21,12 @@ export const ColorsIndex = () => {
   console.log(colorsIndex);
 
   return (
-    <div>
+    <div className="">
       {/* colorの機能を実装するためのコンポーネント */}
       {/* 取得した色のデータを表示する例 */}
-      <ul>
+      <ul className="">
         {colorsIndex.map((color) => (
-          <li key={color.id} className="border rounded-xl p-4 shadow-sm space-y-2">
+          <li key={color.id} className="border rounded-xl p-4 shadow-sm space-y-2 my-4">
             <p>
               作成日時:
               {new Date(color.createdAt).toLocaleString('ja-JP')}

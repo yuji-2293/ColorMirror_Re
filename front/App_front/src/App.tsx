@@ -2,7 +2,6 @@ import { useEffect, useRef } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 // ユーザー認証機能用ページコンポーネント
 import { Home } from '@/pages/private/components/Home';
-import { Index } from '@/pages/private/components/Index';
 import { SignIn } from '@/pages/public/components/SignIn';
 import { SignUp } from '@/pages/public/components/SignUp';
 import PublicLayout from '@/pages/public/PublicLayout';
@@ -52,7 +51,6 @@ export default function App() {
           {/* 認証後のレイアウト */}
           <Route element={<PrivateLayout />}>
             <Route index element={<Home />} />
-            <Route path="index" element={<Index />} />
           </Route>
           <Route path="*" element={<h1>StatusCode-404 Not Found Page</h1>} />
         </Routes>

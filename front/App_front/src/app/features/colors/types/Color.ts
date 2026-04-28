@@ -42,3 +42,8 @@ export type ColorsFormProps = {
   setMood: React.Dispatch<React.SetStateAction<string>>;
   setSelectedColorName: React.Dispatch<React.SetStateAction<string>>;
 };
+
+// ColorsFormコンポーネントのpropsの型定義
+export type ColorsFormCardProps = {
+  children?: React.ReactNode;
+};
