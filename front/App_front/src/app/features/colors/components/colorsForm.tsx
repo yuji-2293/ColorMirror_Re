@@ -80,7 +80,7 @@ export const ColorsForm = ({
         <div className="flex items-center justify-around">
           {/* 気分を元にcolorを生成する関数を実行するbutton */}
           <button
-            className="bg-white rounded-xl shadow-xl w-20 h-10 disabled:opacity-50 disabled:cursor-not-allowed"
+            className="w-full px-12 py-3 bg-cyan-300 text-white rounded-2xl shadow-2xl border-2 border-white font-bold text-xl disabled:bg-gray-300 hover:scale-110 hover:bg-pink-300 disabled:opacity-50 disabled:cursor-not-allowed"
             onClick={handleGenerateColor}
             disabled={!mood || isPending}
           >

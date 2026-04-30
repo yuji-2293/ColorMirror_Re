@@ -23,7 +23,7 @@ export const Home = () => {
   // reset関数を呼び出すと、dataの値が初期状態にリセットされる
   const { resetAiResponseData, aiResponseData, generateResponse, isPending, isSuccess } =
     useGenerateResponse();
-  //
+  // useGenerateResponseカスタムフックから、resetAiResponseData関数、aiResponseData、generateResponse関数、isPendingフラグ、およびisSuccessフラグを取得する。これらは、AIからのレスポンスの生成と管理に使用される。
   const {
     generateColor,
     generatedColor,

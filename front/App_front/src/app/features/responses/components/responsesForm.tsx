@@ -48,9 +48,9 @@ export const ResponsesForm = ({
         <button
           onClick={handleGenerateResponse}
           disabled={!mood || !selectedColorName || isPending}
-          className="w-full max-w-1/4 px-12 py-3 bg-cyan-300 text-white rounded-2xl shadow-2xl border-2 border-white font-bold text-xl disabled:bg-gray-300 hover:scale-110 hover:bg-pink-300"
+          className="w-full max-w-1/3 px-12 py-3 bg-cyan-300 text-white rounded-2xl shadow-2xl border-2 border-white font-bold text-xl disabled:bg-gray-300 hover:scale-110 hover:bg-pink-300"
         >
-          {aiResponseData.length > 0 ? '再生成' : 'AI生成開始'}
+          {aiResponseData.length > 0 ? 'AIコメント再生成' : 'AI生成開始'}
         </button>
 
         {isPending && (
@@ -66,7 +66,7 @@ export const ResponsesForm = ({
       </div>
 
       {isSuccess && (
-        <div className="bg-white rounded-2xl shadow-2xl opacity-90 mt-4 p-2 flex flex-col gap-2 justify-around items-center">
+        <div className="bg-white rounded-2xl shadow-2xl opacity-90 mt-4 p-2 flex flex-col gap-2 justify-around items-center text-sm leading-relaxed">
           <p>{aiResponseData}</p>
         </div>
       )}
