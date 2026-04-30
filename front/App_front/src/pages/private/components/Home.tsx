@@ -33,7 +33,7 @@ export const Home = () => {
   } = useGenerateColor();
 
   return (
-    <div className="">
+    <div className="w-full flex flex-col items-center justify-center">
       <ColorsFormCard>
         <ColorsForm
           mood={mood}

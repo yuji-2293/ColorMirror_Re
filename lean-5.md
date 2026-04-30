@@ -245,4 +245,14 @@ export function useGenerateColor() {
       - これによって、一度描画したデータはサーバー側の更新→ページの遷移や画面の更新がされないと変更されない
   - 対してReactはブラウザにて{ state/props/querydata}によって画面を描画している
     - よって、ブラウザ自体が持つdataの有無によってUIが描画されるため、{mutation.reset} によってdataの値を消すことで、ブラウザでは画面からdataが消えたように見せることができる
-- 
+
+```
+  const queryClient = useQueryClient();
+  const mutation = useMutation<CreateResponse, Error, CreateResponseDataParams>({
+    mutationFn: (params) => createResponse(params),
+    onSuccess: () => {
+      // 成功した場合の処理（例: キャッシュの更新や通知の表示など）
+      queryClient.invalidateQueries({ queryKey: ['colors'] });
+    },
+  });
+```

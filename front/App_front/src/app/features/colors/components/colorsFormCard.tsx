@@ -7,7 +7,7 @@ import { type ColorsFormCardProps } from '@/app/features/colors/types/Color';
 export const ColorsFormCard = ({ children }: ColorsFormCardProps) => {
   return (
     <div className="FormUI">
-      <Card className="w-6xl opacity-90">
+      <Card className="opacity-90">
         <CardHeader>
           <CardTitle className="text-2xl text-center">入力Card</CardTitle>
           <CardDescription>

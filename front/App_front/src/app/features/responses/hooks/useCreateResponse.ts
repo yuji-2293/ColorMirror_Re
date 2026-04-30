@@ -10,6 +10,7 @@ export function useCreateResponse() {
     mutationFn: (params) => createResponse(params),
     onSuccess: () => {
       // 成功した場合の処理（例: キャッシュの更新や通知の表示など）
+      // ここでは、useColorsのカスタムhookに設定したquerykeyを元に'colors'クエリのキャッシュを無効化して、最新のデータを取得しています。
       queryClient.invalidateQueries({ queryKey: ['colors'] });
     },
   });
