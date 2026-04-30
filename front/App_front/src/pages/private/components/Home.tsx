@@ -34,7 +34,6 @@ export const Home = () => {
 
   return (
     <div className="">
-      {/* 一覧ページへのリンクを表示 */}
       <ColorsFormCard>
         <ColorsForm
           mood={mood}
