@@ -27,7 +27,7 @@ export default function PrivateLayout() {
             <Header />
             <SidebarProvider>
               <AppSidebar />
-              <main className="flex-1 max-w-7xl w-full px-6 py-8">
+              <main className="flex-1 max-w-7xl w-full px-6 py-8 mx-auto">
                 <SidebarTrigger />
                 <Outlet />
               </main>
