@@ -9,7 +9,7 @@ export default function PrivateLayout() {
   const location = useLocation();
   if (authStatus === 'unknown') {
     // 認証状態が不明な場合、ログインページにリダイレクト
-    return <Navigate to="/signIn" replace />;
+    return <div className="bg-gradient"> Loading...</div>;
   }
   if (authStatus === 'unauthenticated') {
     // リダイレクト理由に応じたトースト表示のための変数

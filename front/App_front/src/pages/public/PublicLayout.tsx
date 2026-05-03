@@ -7,7 +7,7 @@ export default function PublicLayout() {
   const { authStatus } = useAuthStore();
   if (authStatus === 'unknown') {
     // 認証状態が不明な場合,ログインページにリダイレクト
-    return <Navigate to="/signIn" replace />;
+    return <div className="bg-gradient"> Loading...</div>;
   }
   if (authStatus === 'authenticated') {
     // 認証されている場合、ホームページにリダイレクト
