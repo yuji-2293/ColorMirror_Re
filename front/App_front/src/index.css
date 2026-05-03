@@ -137,6 +137,6 @@ body {
   }
 }
 
-@utility header-gradient {
+@utility bg-gradient {
   background-image: var(--header-image);
 }

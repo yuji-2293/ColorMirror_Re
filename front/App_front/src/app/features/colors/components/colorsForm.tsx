@@ -42,7 +42,7 @@ export const ColorsForm = ({
   }, [isSuccess, setSelectedColorName]);
 
   return (
-    <div className="STEP1 bg-pink-200 w-full m-2 p-2 rounded-2xl shadow-2xl">
+    <div className="STEP1 bg-pink-200/90 w-full m-2 p-2 rounded-2xl shadow-2xl border border-white/60">
       <div className="FormHeader">
         <div className="flex flex-col  text-center">
           <p>~STEP1~</p>
@@ -103,9 +103,10 @@ export const ColorsForm = ({
       </div>
 
       <div className="flex items-center justify-around text-sm leading-relaxed border-2 border-accent rounded-xl p-4 shadow-sm space-y-2 my-4">
-        <div className="w-full max-w-1/6 m-2 p-2 text-center text-sm border-2 border-accent rounded-2xl shadow-2xl">
+        <div className="w-full max-w-1/3 m-2 p-2 text-center text-sm border-2 border-accent rounded-2xl shadow-2xl">
           <p>
-            選択中の気分: <br /> {mood}
+            選択中の気分:
+            {mood}
           </p>
           <p>
             選択中のcolor:
@@ -118,7 +119,7 @@ export const ColorsForm = ({
               style={{ backgroundColor: selectedColorName }}
             ></div>
           ) : (
-            <p>色が選択されていません</p>
+            <p>`colorが未選択です`</p>
           )}
         </div>
 

@@ -44,7 +44,7 @@ export const CreateForm = ({
     }
   }, [isSuccess, resetAll, resetAiResponseData, resetColors]);
   return (
-    <div className="STEP3 flex flex-col items-center justify-center gap-4 bg-emerald-200 w-full m-2 p-2 rounded-2xl shadow-2xl">
+    <div className="STEP3 flex flex-col items-center justify-center gap-4 bg-emerald-200/90 w-full m-2 p-2 rounded-2xl shadow-2xl border border-white/60">
       <div className="FormHeader">
         <div className="flex flex-col  text-center">
           <p>~STEP3~</p>
@@ -66,7 +66,7 @@ export const CreateForm = ({
       <div className="my-4">
         <button
           onClick={handleCreateResponse}
-          className="w-full  px-12 py-3 bg-emerald-300 text-gray-500 rounded-2xl shadow-2xl border-2 border-white font-bold text-xl disabled:bg-gray-300 hover:scale-110 hover:bg-emerald-700 hover:text-white"
+          className="w-full  px-12 py-3 bg-emerald-300 text-white rounded-2xl shadow-2xl border-2 border-white font-bold text-xl disabled:bg-gray-300 hover:scale-110 hover:bg-emerald-700 hover:text-white"
           disabled={!mood || !selectedColorName || !aiResponse || isPending}
         >
           保存する

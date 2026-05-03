@@ -206,22 +206,8 @@
     const Home = () => {}
     export default Home
     ```
-## 日付け 2026/ 4/16
 
-### MVP機能完成した後のフロー
-  - ColorMirror_Re
-    - ~~履歴ページの作成~~
-    - 最低限、MVPアプリを見せられるUIまで昇華
-    - GitHubページ用の作成
-      - README
-      - インフラ構成図
-  - ColorMirrorの再起動
-    - renderの再構築
-      - 必要インスタンスの用意
-      - コストの削減を検討
-  - ポートフォリオ見せる用の静的ページの作成（必要なら）
-- 転活の再開
-  - 求人選定
+
 
 ## 日付 2026/ 4/28
 ### React(TanStack) Query のmutation.resetについて
@@ -256,3 +242,23 @@ export function useGenerateColor() {
     },
   });
 ```
+
+
+
+
+
+### MVP機能完成した後のフロー
+  - ColorMirror_Re
+    - ~~履歴ページの作成~~
+    - 最低限、MVPアプリを見せられるUIまで昇華
+    - GitHubページの作成
+      - README
+      - インフラ構成図
+      - *設計意図、技術スタックの採用意図の言語化*
+  - ColorMirrorの再起動
+    - renderの再構築
+      - 必要インスタンスの用意
+      - コストの削減を検討
+  - ポートフォリオ見せる用の静的ページの作成（必要なら）
+- 転活の再開
+  - 求人選定

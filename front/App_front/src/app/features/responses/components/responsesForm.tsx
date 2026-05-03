@@ -37,7 +37,7 @@ export const ResponsesForm = ({
   }, [isSuccess]);
 
   return (
-    <div className="STEP2 bg-sky-200 w-full m-2 p-2 rounded-2xl shadow-2xl">
+    <div className="STEP2 bg-sky-200/90 w-full m-2 p-2 rounded-2xl shadow-2xl border border-white/60">
       <div className="FormHeader">
         <div className="flex flex-col  text-center">
           <p>~STEP2~</p>
@@ -48,7 +48,7 @@ export const ResponsesForm = ({
         <button
           onClick={handleGenerateResponse}
           disabled={!mood || !selectedColorName || isPending}
-          className="w-full max-w-1/3 px-12 py-3 bg-cyan-300 text-white rounded-2xl shadow-2xl border-2 border-white font-bold text-xl disabled:bg-gray-300 hover:scale-110 hover:bg-pink-300"
+          className="w-full max-w-1/3 px-10 py-4 bg-cyan-300 text-white rounded-2xl shadow-2xl border-2 border-white font-bold text-xl disabled:bg-gray-300 hover:scale-110 hover:bg-pink-300"
         >
           {aiResponseData.length > 0 ? 'AIコメント再生成' : 'AI生成開始'}
         </button>
