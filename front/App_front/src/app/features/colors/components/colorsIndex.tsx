@@ -1,13 +1,13 @@
 import { useColors } from '@/app/features/colors/hooks/useColors';
 import { useDeleteColor } from '@/app/features/colors/hooks/useDeleteColor';
 import { Button } from '@/components/ui/button';
-
+import { toast } from 'sonner';
 export const ColorsIndex = () => {
   // 削除ボタンがクリックされたときの処理
   const { deleteColor } = useDeleteColor();
   const handleDelete = (id: number) => {
     deleteColor(id);
-    console.log(`削除対象のid: ${id}`);
+    toast.success('履歴を削除しました！');
   };
   // データの読み込み中やエラーが発生した場合の表示
   const { isLoading, isError, data } = useColors();
@@ -26,6 +26,14 @@ export const ColorsIndex = () => {
       {/* colorの機能を実装するためのコンポーネント */}
       {/* 取得した色のデータを表示する例 */}
       <ul className="bg-gradient rounded-2xl shadow-2xl border border-white/60 px-6 py-3">
+        {/*  データが空の状態で表示する */}
+        {colorsIndex.length === 0 && (
+          <p className="text-center text-gray-500">
+            まだ、あなたのデータが作られていません。気分とcolorを登録してみましょう!!
+          </p>
+        )}
+
+        {/* データが存在するときはmapして表示 */}
         {colorsIndex.map((color) => (
           <li
             key={color.id}
