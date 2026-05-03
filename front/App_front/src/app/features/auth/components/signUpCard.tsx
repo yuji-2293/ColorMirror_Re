@@ -4,6 +4,7 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { useSignUp } from '@/app/features/auth/hooks/useSignUp';
 import { useAuthToast } from '@/app/features/auth/hooks/useAuthToasts';
+import { Link } from 'react-router-dom';
 
 export default function SignUpCard() {
   useAuthToast();
@@ -94,10 +95,16 @@ export default function SignUpCard() {
               <p className="text-sm text-red-500">{errors.password_confirmation}</p>
             )}
           </div>
-          <div>
+          <div className="flex flex-col">
             <Button type="submit" className="w-full" disabled={!handleSubmit || isSubmitting}>
               {isSubmitting ? 'アカウント作成中...' : 'アカウント作成'}
             </Button>
+            <Link
+              to="/signIn"
+              className="text-xs text-gray-500 mt-2 ml-auto underline hover:text-sm"
+            >
+              すでに登録されている方はこちら
+            </Link>
           </div>
         </form>
       </CardContent>

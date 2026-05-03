@@ -5,6 +5,7 @@ import {
 import { useCreateResponse } from '@/app/features/responses/hooks/useCreateResponse';
 import { useEffect } from 'react';
 import { toast } from 'sonner';
+import { Spinner } from '@/components/ui/spinner';
 
 export const CreateForm = ({
   mood,
@@ -44,7 +45,7 @@ export const CreateForm = ({
     }
   }, [isSuccess, resetAll, resetAiResponseData, resetColors]);
   return (
-    <div className="STEP3 flex flex-col items-center justify-center gap-4 bg-emerald-200/90 w-full m-2 p-2 rounded-2xl shadow-2xl border border-white/60">
+    <div className="STEP3 flex flex-col items-center justify-center gap-4 bg-emerald-200/90 w-full m-2 p-2 rounded-2xl shadow-2xl border border-white/60 relative">
       <div className="FormHeader">
         <div className="flex flex-col  text-center">
           <p>~STEP3~</p>
@@ -52,13 +53,8 @@ export const CreateForm = ({
         </div>
 
         {isPending && (
-          <div className="flex justify-center items-center w-24 h-24 bg-white rounded-2xl shadow-2xl">
-            <div
-              className="flex justify-center items-center animate-pulse w-20 h-20 border-4 rounded-full"
-              role="status"
-            >
-              <p className="text-center text-sm">保存中...</p>
-            </div>
+          <div className="absolute inset-0 bg-white/60 backdrop-blur-sm flex items-center justify-center z-10">
+            <Spinner />
           </div>
         )}
       </div>

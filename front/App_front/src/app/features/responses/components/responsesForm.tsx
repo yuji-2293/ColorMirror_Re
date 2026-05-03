@@ -2,6 +2,7 @@ import { type CreateFormProps } from '@/app/features/responses/types/Response';
 import { type GenerateResponseDataParams } from '@/app/features/responses/types/Response';
 import { useEffect } from 'react';
 import { toast } from 'sonner';
+import { Spinner } from '@/components/ui/spinner';
 export const ResponsesForm = ({
   mood,
   selectedColorName,
@@ -37,7 +38,7 @@ export const ResponsesForm = ({
   }, [isSuccess]);
 
   return (
-    <div className="STEP2 bg-sky-200/90 w-full m-2 p-2 rounded-2xl shadow-2xl border border-white/60">
+    <div className="STEP2 flex flex-col items-center justify-center bg-sky-200/90 w-full m-2 p-2 rounded-2xl shadow-2xl border border-white/60 relative">
       <div className="FormHeader">
         <div className="flex flex-col  text-center">
           <p>~STEP2~</p>
@@ -48,26 +49,22 @@ export const ResponsesForm = ({
         <button
           onClick={handleGenerateResponse}
           disabled={!mood || !selectedColorName || isPending}
-          className="w-full max-w-1/3 px-10 py-4 bg-cyan-300 text-white rounded-2xl shadow-2xl border-2 border-white font-bold text-xl disabled:bg-gray-300 hover:scale-110 hover:bg-pink-300"
+          className="w-full px-10 py-4 bg-cyan-300 text-white rounded-2xl shadow-2xl border-2 border-white font-bold text-xl disabled:bg-gray-300 hover:scale-110 hover:bg-pink-300"
         >
           {aiResponseData.length > 0 ? 'AIコメント再生成' : 'AI生成開始'}
         </button>
 
         {isPending && (
-          <div className="flex justify-center items-center w-24 h-24 bg-white rounded-2xl shadow-2xl">
-            <div
-              className="flex justify-center items-center animate-pulse w-20 h-20 border-4 rounded-full"
-              role="status"
-            >
-              <p className="text-center text-sm">生成中...</p>
-            </div>
+          <div className="absolute inset-0 bg-white/60 backdrop-blur-sm flex items-center justify-center z-10">
+            <Spinner />
           </div>
         )}
       </div>
 
       {isSuccess && (
-        <div className="bg-white rounded-2xl shadow-2xl opacity-90 mt-4 p-2 flex flex-col gap-2 justify-around items-center text-sm leading-relaxed">
-          <p>{aiResponseData}</p>
+        <div className=" max-w-1/2 w-full bg-white/80 border border-gray-200 rounded-2xl shadow-2xl m-4 py-4 px-8 flex flex-col gap-2 justify-center items-center">
+          <p className="text-xs text-gray-500 mb-2">あなたへのAIからのコメント</p>
+          <p className="whitespace-pre-line text-sm leading-relaxed">{aiResponseData}</p>
         </div>
       )}
     </div>

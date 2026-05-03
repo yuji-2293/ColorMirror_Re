@@ -2,6 +2,7 @@ import { type GenerateMoodParams } from '@/app/features/colors/types/Color';
 import { type ColorsFormProps } from '@/app/features/colors/types/Color';
 import { useEffect } from 'react';
 import { toast } from 'sonner';
+import { Spinner } from '@/components/ui/spinner';
 export const ColorsForm = ({
   mood,
   setMood,
@@ -42,7 +43,14 @@ export const ColorsForm = ({
   }, [isSuccess, setSelectedColorName]);
 
   return (
-    <div className="STEP1 bg-pink-200/90 w-full m-2 p-2 rounded-2xl shadow-2xl border border-white/60">
+    <div className="STEP1 bg-pink-200/90 w-full m-2 p-2 rounded-2xl shadow-2xl border border-white/60 relative">
+      {/* 通信中に表示するloadingアニメーション*/}
+      {isPending && (
+        <div className="absolute inset-0 bg-white/60 backdrop-blur-sm flex items-center justify-center z-10">
+          <Spinner />
+        </div>
+      )}
+
       <div className="FormHeader">
         <div className="flex flex-col  text-center">
           <p>~STEP1~</p>
@@ -88,17 +96,6 @@ export const ColorsForm = ({
             {/* generatedColorがデータとして返ってきており、配列の要素数が１つ以上（存在するかどうか）であるかどうかを評価して表記を分岐する */}
             {generatedColor.length > 0 ? '再生成' : '生成開始'}
           </button>
-          {/* 通信中に表示するloadingアニメーション*/}
-          {isPending && (
-            <div className="flex justify-center items-center w-24 h-24 bg-white rounded-2xl shadow-2xl">
-              <div
-                className="flex justify-center items-center animate-pulse w-20 h-20 border-4 rounded-full"
-                role="status"
-              >
-                <p className="text-center text-sm">生成中...</p>
-              </div>
-            </div>
-          )}
         </div>
       </div>
 

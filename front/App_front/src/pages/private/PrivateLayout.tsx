@@ -1,7 +1,5 @@
 import { Header } from '@/components/layout/header';
 import { Footer } from '@/components/layout/footer';
-import { SidebarProvider, SidebarTrigger } from '@/components/ui/sidebar/sidebar';
-import { AppSidebar } from '@/components/ui/sidebar/app-sidebar';
 import { useAuthStore } from '@/app/store/useAuthStore';
 import { Outlet, Navigate, useLocation } from 'react-router-dom';
 
@@ -10,8 +8,8 @@ export default function PrivateLayout() {
   const redirectReason = useAuthStore((state) => state.redirectedReason);
   const location = useLocation();
   if (authStatus === 'unknown') {
-    // 認証状態が不明な場合、ローディング表示などを行う
-    return <div>Loading...</div>;
+    // 認証状態が不明な場合、ログインページにリダイレクト
+    return <Navigate to="/signIn" replace />;
   }
   if (authStatus === 'unauthenticated') {
     // リダイレクト理由に応じたトースト表示のための変数
@@ -25,13 +23,9 @@ export default function PrivateLayout() {
         <div className="min-h-screen bg-white/30">
           <div className="min-h-screen flex flex-col">
             <Header />
-            <SidebarProvider>
-              <AppSidebar />
-              <main className="flex-1 max-w-7xl w-full px-6 py-8 mx-auto">
-                <SidebarTrigger />
-                <Outlet />
-              </main>
-            </SidebarProvider>
+            <main className="flex-1 max-w-7xl w-full px-6 py-8 mx-auto">
+              <Outlet />
+            </main>
           </div>
         </div>
       </div>

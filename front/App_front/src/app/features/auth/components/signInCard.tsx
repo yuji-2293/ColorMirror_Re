@@ -4,6 +4,7 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { useSignIn } from '@/app/features/auth/hooks/useSignIn';
 import { useAuthToast } from '@/app/features/auth/hooks/useAuthToasts';
+import { Link } from 'react-router-dom';
 export default function SignInCard() {
   useAuthToast();
   // カスタムフックから状態と関数を取得
@@ -59,10 +60,16 @@ export default function SignInCard() {
                 placeholder="パスワードを入力"
               />
             </div>
-            <div>
+            <div className="flex flex-col">
               <Button type="submit" disabled={!handleSubmit || isSubmitting} className="w-full">
                 {isSubmitting ? 'ログイン中...' : 'ログイン'}
               </Button>
+              <Link
+                to="/signUp"
+                className="text-xs text-gray-500 mt-2 ml-auto underline hover:text-sm"
+              >
+                ユーザー登録されてない方はこちら
+              </Link>
             </div>
           </form>
         </CardContent>
