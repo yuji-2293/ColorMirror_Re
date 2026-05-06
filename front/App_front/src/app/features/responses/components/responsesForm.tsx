@@ -62,7 +62,7 @@ export const ResponsesForm = ({
       </div>
 
       {isSuccess && (
-        <div className=" max-w-1/2 w-full bg-white/80 border border-gray-200 rounded-2xl shadow-2xl m-4 py-4 px-8 flex flex-col gap-2 justify-center items-center">
+        <div className=" sm:max-w-1/2 w-full bg-white/80 border border-gray-200 rounded-2xl shadow-2xl m-4 py-4 px-8 flex flex-col gap-2 justify-center items-center">
           <p className="text-xs text-gray-500 mb-2">あなたへのAIからのコメント</p>
           <p className="whitespace-pre-line text-sm leading-relaxed">{aiResponseData}</p>
         </div>

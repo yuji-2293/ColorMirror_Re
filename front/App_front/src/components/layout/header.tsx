@@ -26,12 +26,12 @@ export const Header = () => {
           <p className="text-3xl font-bold  text-gray-500">Color Mirror_Re</p>
         </div>
 
-        <div className="header-content sm:flex sm:flex-col sm:items-center gap-2">
+        <div className="header-content sm:flex sm:flex-col sm:items-center sm:gap-2 gap-4 flex flex-row-reverse items-center justify-around my-2">
           {isAuthenticated && (
             <div className="">
               <button
                 onClick={handleLogout}
-                className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
+                className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-2xl"
               >
                 ログアウト
               </button>

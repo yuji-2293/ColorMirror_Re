@@ -52,14 +52,14 @@ export const ColorsForm = ({
       )}
 
       <div className="FormHeader">
-        <div className="flex flex-col  text-center">
+        <div className="flex flex-col text-center">
           <p>~STEP1~</p>
           <p>気分を入力してcolorを作成</p>
         </div>
       </div>
 
       <div className="FormContent flex flex-col items-center justify-center">
-        <div className="flex justify-around items-center">
+        <div className="sm:flex sm:justify-around sm:items-center grid grid-cols-2">
           <button
             onClick={() => handleMoodSelect('ワクワク')}
             className="flex items-center justify-center rounded-xl bg-amber-300 w-30 h-10 m-5 p-5 shadow-2xl cursor-pointer border-2 border-white focus:border-gray-300 focus:border-4 active:shadow-2xl focus:scale-120 focus-rounded-2xl transition-transform hover:bg-accent"
@@ -99,8 +99,8 @@ export const ColorsForm = ({
         </div>
       </div>
 
-      <div className="flex items-center justify-around text-sm leading-relaxed border-2 border-accent rounded-xl p-4 shadow-sm space-y-2 my-4">
-        <div className="w-full max-w-1/3 m-2 p-2 text-center text-sm border-2 border-accent rounded-2xl shadow-2xl">
+      <div className="flex items-center sm:justify-around justify-center flex-col text-sm leading-relaxed border-2 border-accent rounded-xl p-4 shadow-sm space-y-2 my-4">
+        <div className="w-full sm:max-w-1/3 max-w-3xl m-2 p-2 text-center text-sm border-2 border-accent rounded-2xl shadow-2xl">
           <p>
             選択中の気分:
             {mood}
@@ -112,7 +112,7 @@ export const ColorsForm = ({
 
           {selectedColorName ? (
             <div
-              className="rounded-full w-20 h-20 mx-auto border-2 border-white shadow-sm"
+              className="rounded-full sm:w-20 sm:h-20 w-10 h-10 mx-auto border-2 border-white shadow-sm"
               style={{ backgroundColor: selectedColorName }}
             ></div>
           ) : (
@@ -122,17 +122,23 @@ export const ColorsForm = ({
 
         {/* 通信後生成に成功したら表示される */}
         {isSuccess && (
-          <div className="bg-white w-full rounded-2xl shadow-2xl opacity-90 mt-4 p-2 flex gap-2 justify-around items-center">
-            {generatedColor.map((c) => (
-              <div key={c.hex} className="flex flex-col items-center gap-2">
-                <button
-                  onClick={() => setSelectedColorName(c.hex)}
-                  className="rounded-full border border-gray-300 w-30 h-30 hover:scale-110 hover:shadow-2xl transition-transform"
-                  style={{ backgroundColor: c.hex }}
-                />
-                <p className="text-sm">{c.name}</p>
-              </div>
-            ))}
+          <div className="bg-white w-full rounded-2xl shadow-2xl opacity-90 mt-4 p-2 flex flex-col sm:flex-row gap-2 justify-around items-center">
+            <div>
+              <p className="text-xs block sm:hidden">colorを選択してください</p>
+            </div>
+
+            <div className="flex items-center justify-around gap-2">
+              {generatedColor.map((c) => (
+                <div key={c.hex} className="flex flex-col items-center gap-2">
+                  <button
+                    onClick={() => setSelectedColorName(c.hex)}
+                    className="rounded-full border border-gray-300 sm:w-30 w-10  sm:h-30 h-10 hover:scale-110 hover:shadow-2xl transition-transform"
+                    style={{ backgroundColor: c.hex }}
+                  />
+                  <p className="text-sm hidden sm:block wrap-break-word">{c.name}</p>
+                </div>
+              ))}
+            </div>
           </div>
         )}
       </div>

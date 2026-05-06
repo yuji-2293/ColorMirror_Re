@@ -23,7 +23,7 @@ export default function PrivateLayout() {
         <div className="min-h-screen bg-white/30">
           <div className="min-h-screen flex flex-col">
             <Header />
-            <main className="flex-1 max-w-7xl w-full px-6 py-8 mx-auto">
+            <main className="flex-1 max-w-7xl w-full px-6 py-8 mx-auto overflow-auto">
               <Outlet />
             </main>
           </div>
