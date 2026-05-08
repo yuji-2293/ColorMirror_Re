@@ -4,13 +4,17 @@
 - deviseによるログイン認証
   - ログイン機能
   - ログアウト機能
-- 基本CRUD
-  - 色の選択form
-  - 選択した色の一覧
-- AIコメント生成
-  - 選択した単語による色の生成
-  - 選択した色を元にAI分析コメント生成
-
+- 基幹機能（CRUD + AIコメント生成）
+  - color
+    - 気分の選択
+    - 選択した単語による色の生成
+    - 生成したcolor選択と保存
+  - response
+    - 選択した色を元にAI分析コメント生成
+    - 生成したコメントの保存
+  - 各種保存したcolorとresponseの一覧表示
+- 通知機能
+  - 各アクションを[toast]を使用して通知表示
 ### 本リリース
 - 天気APIによる天気情報の表示
   - 登録したユーザー情報をもとに天気情報を自動表示
@@ -21,66 +25,15 @@
 
 | 分類             | 技術                     | 補足                         |
 |------------------|--------------------------|------------------------------|
-| フロントエンド   | React / Tailwind CSS / shadcn/ui | UI設計 |
-| バックエンド     | Ruby on Rails 8.x        | Rails 8.0 / Ruby 3.2        |
+| フロントエンド   | React　＋vite + TS + Tailwind CSS / shadcn/ui | UI設計 |
+| バックエンド     | Ruby on Rails 8.x   APIモード     | Rails 8.0 / Ruby 3.2        |
+| 状態管理 |  zustand |
+| サーバー状態管理 | TanStack Query(React Query) |
 | データベース     | PostgreSQL               | 本番 / 開発共通             |
-| 認証             | Devise               | ログイン認証            |
-| 非同期処理       | SolidQueue / ActiveJob   | AIコメント生成・通知処理     | |
-| API連携          | OpenWeatherMap / OpenAI /  天気取得・コメント生成・通知 |
-| デプロイ         | Render / Vercel                  | GitHubActions CI/CD              |
-| テスト           | RSpec vitest                    | モデル・システム        |
+| 認証             |  devise    devise_token_auth           |
+| AIコメント生成・通知処理     | OpenAI API |
+| API連携          | OpenAI /  コメント生成 |
+| インフラ         | Render / Vercel |
+| CI/CD           | GitHubActions 
 
 ---
-
-## コンポーネント構成図
-```
-│  ├──  └──
-src/  
-├── app/  
-│   ├── api/  
-│   │   ├── colors.ts   
-│   │   ├── selfLogs.ts   
-│   │   ├── responses.ts  
-│   │   └── users.ts  
-│   ├── types/              # DBに対応した型定義    
-│   │   ├───  Color.ts
-│   │   ├── SelfLog.ts
-│   │   ├── Response.ts
-│   │   └── User.ts
-│   ├── hooks/              # 共通の状態管理 or カスタムフック
-│   │   ├── useFetch.ts
-│   │   └── useToast.ts
-│   └── store/              # Zustand
-│
-├── components/             # UI部品（再利用可能）
-│   ├── ui/                 # ボタン・入力・モーダルなどの共通UI
-│   │   ├── Button.tsx
-│   │   ├── Input.tsx
-│   │   ├── Select.tsx
-│   │   ├── header.tsx 
-│   │   ├── footer.tsx 
-│   │   └── Toast.tsx
-│   ├── layout/             # 共通レイアウト
-│   │   ├── 
-│   │   ├── 
-│   │   └── Container.tsx
-│   ├── colors/             # 色関連のUI部品
-│   │   ├── ColorCard.tsx
-│   │   └── ColorList.tsx
-│   ├── logs/               # 記録関連のUI部品
-│   │   ├── LogForm.tsx
-│   │   └── LogList.tsx
-│
-│
-│
-│
-├── pages/                  # 実際の画面（URLごと）
-│   ├── ColorsPage.tsx      # /colors
-│   ├── LogsPage.tsx        # /logs
-│   ├── DashboardPage.tsx   # /dashboard（後で  ）
-│   └── UserPage.tsx        # /user（プロフィール表示など）
-│
-├── App.tsx                 # ルーティング・全体構成
-├── main.tsx                # エントリポイント
-└── index.css               # Tailwindエントリ
-```
