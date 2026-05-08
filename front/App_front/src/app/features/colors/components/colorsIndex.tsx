@@ -46,10 +46,10 @@ export const ColorsIndex = () => {
               </p>
             </div>
 
-            <div className="grid grid-cols-2 items-center px-6 py-4 gap-6 border-2 border-gray-200/80 rounded-2xl shadow-2xl">
+            <div className="sm:grid sm:grid-cols-2 grid-cols-1 items-center sm:px-6 sm:py-4 px-2 py-2 gap-6 border-2 border-gray-200/80 rounded-2xl shadow-2xl">
               <div className="flex flex-col items-center justify-end gap-4">
                 <div
-                  className="w-30 h-30 rounded-full border-2 border-white shadow-md hover:scale-110 transition-transform"
+                  className="sm:w-30 sm:h-30 w-20 h-20 rounded-full border-2 border-white shadow-md hover:scale-110 transition-transform"
                   style={{ backgroundColor: color.colorName }}
                 ></div>
                 <div>登録したcolor</div>
