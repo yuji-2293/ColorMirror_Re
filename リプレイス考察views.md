@@ -63,14 +63,10 @@
             - component
             - api
             - types
-            
+
     ```
-  
-  
-  - form送信
-  - UI
+
   - 認証
-  - CRUD
   - AIコメント（外部API通信）
   - JavaScript
     - 非同期処理
