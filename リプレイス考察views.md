@@ -67,10 +67,12 @@
     ```
 
   - 認証
-  - AIコメント（外部API通信）
+    - 認証は完全devise任せ
+    - controllerもdeviseが生成したため、カスタムはできても内部の動きまでは把握できてない
+    - 
   - JavaScript
     - 非同期処理
-    - turbo(turbo-stream)
+      - turbo(turbo-stream)
     - UIに関わる部分
     - DOM操作
     - fetch通信

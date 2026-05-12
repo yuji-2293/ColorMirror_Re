@@ -5,7 +5,7 @@
 - 登録した気分に対応した感情をもとにAIがパーソナライズコメントを生成します。
 - コメントは“自分だけの手紙”として記録され、自己対話を促します。
 
-## 既存ポートフォリオ[ColorMirror Rails(turbo) + JS] をReact + vite + TypeScript + Rails(APIモード)でリプレイスしてみた所感
+## 既存ポートフォリオ「ColorMirror」[Rails(turbo) + JS] をReact + vite + TypeScript + Rails(APIモード)でリプレイスしてみた所感
  - 既存のアプリで出来なかったフロントエンド、バックエンドを分割してモノレポ構成での開発を経験することができた
    - 責務分離
    - API設計
