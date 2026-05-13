@@ -69,7 +69,19 @@
   - 認証
     - 認証は完全devise任せ
     - controllerもdeviseが生成したため、カスタムはできても内部の動きまでは把握できてない
-    - 
+
+```
+React化による利点
+devise_token_authを使っての認証
+サーバー側はフロントから送られてきたheader情報を元にDBからユーザーを検索するのみ。
+フロントで
+- uid
+- client
+- access-token
+この３種をcookieに保存して、認証を行う  
+
+
+```
   - JavaScript
     - 非同期処理
       - turbo(turbo-stream)

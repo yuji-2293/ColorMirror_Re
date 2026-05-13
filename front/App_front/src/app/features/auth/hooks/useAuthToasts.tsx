@@ -4,7 +4,7 @@ import { useAuthStore } from '@/app/store/useAuthStore';
 import { toast } from 'sonner';
 import { useNavigate } from 'react-router-dom';
 import { type SignInNavState } from '@/app/features/auth/types/authType';
-
+//  ユーザーのサインイン後のリダイレクトで、トーストを表示するためのカスタムフック。
 export const useAuthToast = () => {
   // サインイン用のロジック
   const location = useLocation();
