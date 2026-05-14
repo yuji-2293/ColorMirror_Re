@@ -22,13 +22,9 @@
 
 ## 開発背景
   - 元の「ColorMirror」の課題
-  - Vanilla JS / Rails中心構成からReact化した理由
-    - views
-    - form
-  - 状態管理・API設計を学ぶ目的
-    - zustandを採用した状態管理
-    - tanstack queryを採用してサーバーの状態管理
-    - API設計によるサーバー通信
+  - JavaScript / Rails[turbo]中心構成をReact化した理由
+  - いざRailsでアプリを作ってみて、モダンフロントエンド構成へ発展できる設計だったこと
+
 
 ---
 ## おおまかなアプリの処理フロー
@@ -104,7 +100,7 @@ Color + Response保存
 
 ## 設計意図（工夫）
 
-### 状態管理（zustandの責務分離）（技術記事のリンク）
+### Zustandによる認証状態管理（技術記事のリンク）
 
 ### TanStack Queryの活用（技術記事のリンク）
 
