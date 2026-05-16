@@ -1,21 +1,8 @@
 # ColorMirror_Re(MVP版)
 ## アプリスクショ
 ## アーキテクチャ図
-## アーキテクチャ
 
-```mermaid
-flowchart LR
-  User[ユーザー] --> React[React / Vite / TypeScript]
 
-  React --> Router[React Router]
-  React --> Zustand[Zustand<br/>認証・UI状態]
-  React --> Query[TanStack Query<br/>API通信・キャッシュ]
-
-  Query --> Rails[Rails API]
-  Rails --> DB[(PostgreSQL)]
-
-  Rails --> AI[AI API<br/>コメント生成]
-  Rails --> Weather[Weather API<br/>天気取得]
 
 ---
 ##
