@@ -1,4 +1,24 @@
 # ColorMirror_Re(MVP版)
+## アプリスクショ
+## アーキテクチャ図
+## アーキテクチャ
+
+```mermaid
+flowchart LR
+  User[ユーザー] --> React[React / Vite / TypeScript]
+
+  React --> Router[React Router]
+  React --> Zustand[Zustand<br/>認証・UI状態]
+  React --> Query[TanStack Query<br/>API通信・キャッシュ]
+
+  Query --> Rails[Rails API]
+  Rails --> DB[(PostgreSQL)]
+
+  Rails --> AI[AI API<br/>コメント生成]
+  Rails --> Weather[Weather API<br/>天気取得]
+
+---
+##
 
 ## サービス概要（元アプリより引用）
 - その日の気分と相関する「色」を通じて、1日をポジティブに始められる記録アプリです。
@@ -51,8 +71,13 @@
       そうすることで、RailsをAPIサーバーとして立て、データの返却や、認証の処理に集中させることで、責務の分割が明確化された状態で機能の追加が行える構成になると考えた。  
 
   ### リプレイス開発で理解したかったこと
-      ReactにおけるSPA構成のアプリ開発体験を網羅したかった。
-      そのため、React + TypeScriptを扱うにあたって、親和性のある環境を提供してくれるviteの採用することで、規模の拡張を見据えた、型安全な開発環境を構築して開発に臨むことにした。  
+      ReactにおけるSPA構成を担う
+      - 状態管理  
+      - サーバーの状態管理  
+      - API通信  
+      - 型安全  
+      これらを実務ベースで理解したかった。  
+      そのため、React + TypeScriptを扱うにあたって、親和性のある環境を提供してくれるviteを採用することで、規模の拡張を見据えた、型安全な開発環境を構築して開発に臨むことにした。  
 
       安全にデプロイを行う癖づけのため、GitHub ActionsでのCI/CDのフローを動かしながら開発を進めることにした。
 
