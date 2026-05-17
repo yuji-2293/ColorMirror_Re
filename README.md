@@ -1,10 +1,34 @@
 # ColorMirror_Re(MVP版)
+## アプリ URL
+url : https://color-mirror-re.vercel.app/signUp
+---
+
+### テストアカウント
+※ Render無料枠での利用をしています。  
+初期動作の遅延が2~3分かかることをご容赦願います。
+<p>
+mail_address: test999@gmail.com<br>
+password: "testtest"
+</p>
+
+---
+
 ## アプリ画像
 <p>
   <img src="front/App_front/public/assets/topImage.png"　width="500" height="500" />
 </p>
 
 ## アプリスクショ
+
+# 目次
+[1. サービス概要](#サービス概要)
+[2. ](#)
+[3. ](#)
+[4. ](#)
+[5. ](#)
+[6. ](#)
+[7. ](#)
+
 ## アーキテクチャ図
 
 ```mermaid
@@ -47,7 +71,7 @@ flowchart TB
     
     Rails --> DB[("PostgreSQL")]
     Rails --> AI["OpenAI API<br>コメント生成"] 
-    Rails --> Auth["devise_token_auth<br>ユーザー認証"]
+    Rails --> Auth["Rails gem: devise_token_auth<br>token認証"]
     
 ```
 ## CI/CDフロー図
@@ -88,9 +112,9 @@ flowchart TB
 
     GitHub --> PR["Pull Request"]
 
-    PR --> FrontCI["CI <br> Lint / Prettier / TypeCheck"]
+    PR --> FrontCI["CI <br> front_ci.yml <br> Lint / Prettier / TypeCheck"]
 
-    PR --> BackCI["CI <br> lint / Rubocop / Rails Test"]
+    PR --> BackCI["CI <br> back_ci.yml <br> lint / Rubocop / Rails Test"]
 
     FrontCI --> Main["Merge / Push -> main"]
 
