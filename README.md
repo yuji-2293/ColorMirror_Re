@@ -16,7 +16,7 @@ config:
 
     primaryColor: "#2563eb"
 
-    primaryTextColor: "#2563ad"
+    primaryTextColor: "#1e293b"
 
     primaryBorderColor: "#1d4ed8"
 
@@ -30,9 +30,18 @@ config:
 ---
 flowchart TB
     User["User"] --> React["React / Vite / TypeScript"]
-    React --> Router["React Router"] & Zustand["Zustand<br>認証・UI状態"] & Query["TanStack Query<br>API通信・キャッシュ"]
+
+    React --> Router["React Router<br> PrivateLayout / PublicLayout"]
+    React --> Zustand["Zustand<br>auth認証・UI状態"]
+    React --> Query["TanStack Query<br>API通信・キャッシュ"]
+    
+    Zustand --> Rails["Rails API"]
+
     Query --> Rails["Rails API"]
-    Rails --> DB[("PostgreSQL")] & AI["AI API<br>コメント生成"] & Weather["Weather API<br>天気取得"]
+    
+    Rails --> DB[("PostgreSQL")]
+    Rails --> AI["Open AI API<br>コメント生成"] 
+    Rails --> Auth認証["devise_auth_token<br>ユーザー認証"]
     
 ```
 ## CI/CDフロー図
@@ -53,7 +62,7 @@ config:
 
     primaryColor: "#2563eb"
 
-    primaryTextColor: "#2563ad"
+    primaryTextColor: "1e293b"
 
     primaryBorderColor: "#1d4ed8"
 
@@ -172,6 +181,7 @@ flowchart TB
       さらに、モノレポ構成に合わせて、workflows/front or back /を分離させて、CI/CDそれぞれのワークフローを管理することにした。
 
 ---
+
 ## おおまかなアプリの処理フロー
 ```
 mood選択
