@@ -1,4 +1,10 @@
 # ColorMirror_Re(MVP版)
+## アプリ画像
+<p>
+
+  <img src="front/App_front/public/assets/topImage.png" />
+
+</p>
 ## アプリスクショ
 ## アーキテクチャ図
 
@@ -35,13 +41,14 @@ flowchart TB
     React --> Zustand["Zustand<br>auth認証・UI状態"]
     React --> Query["TanStack Query<br>API通信・キャッシュ"]
     
-    Zustand --> Rails["Rails API"]
+    Rails["Rails API"]
 
+    Zustand --> Rails["Rails API"]
     Query --> Rails["Rails API"]
     
     Rails --> DB[("PostgreSQL")]
-    Rails --> AI["Open AI API<br>コメント生成"] 
-    Rails --> Auth認証["devise_auth_token<br>ユーザー認証"]
+    Rails --> AI["OpenAI API<br>コメント生成"] 
+    Rails --> Auth["devise_token_auth<br>ユーザー認証"]
     
 ```
 ## CI/CDフロー図
