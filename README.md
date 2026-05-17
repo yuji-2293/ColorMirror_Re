@@ -43,27 +43,33 @@ flowchart TB
 
 config:
 
-  theme: neo
+  theme: base
 
-  look: neo
+  look: handDrawn
 
-  layout: fixed
+  layout: dagre
 
   themeVariables:
 
-    primaryColor: "#2563eb"
+    fontFamily: "Inter, sans-serif"
 
-    primaryTextColor: "#2563ad"
+    primaryColor: "#eff6ff"
 
-    primaryBorderColor: "#1d4ed8"
+    primaryTextColor: "#1e293b"
+
+    primaryBorderColor: "#2563eb"
 
     lineColor: "#64748b"
 
     secondaryColor: "#f8fafc"
 
-    tertiaryColor: "#e2e8f0"
+    tertiaryColor: "#e0f2fe"
 
-    fontFamily: "Inter"
+    edgeLabelBackground: "#ffffff"
+
+    clusterBkg: "#f8fafc"
+
+    clusterBorder: "#cbd5e1"
 
 ---
 
@@ -75,15 +81,15 @@ flowchart TB
 
     PR --> FrontCI["CI <br> Lint / Prettier / TypeCheck"]
 
-    PR --> BackCI["CI <br> lint / Rubocop / Test"]
+    PR --> BackCI["CI <br> lint / Rubocop / Rails Test"]
 
     FrontCI --> Main["Merge / Push -> main"]
 
     BackCI --> Main["Merge / Push -> main"]
 
-    Main --> FrontCD["front_deploy.yml"]
+    Main --> FrontCD["CD <br>front_CD.yml"]
 
-    Main --> BackCD["back_deploy.yml"]
+    Main --> BackCD["CD <br>back_CD.yml"]
 
     FrontCD --> Vercel["Vercel<br>React Frontend"]
 
@@ -101,7 +107,7 @@ flowchart TB
 
 - frontend / backend のworkflowを分離
 
-- Saas本来の自動デプロイはoffにし、デプロイはCIが通った時のみActions側のCDにより実行
+- SaaS本来の自動デプロイはoffにし、デプロイはCIが通った時のみActions側のCDにより実行
 
 - frontendはVercel、backendはRenderへ個別デプロイ
 
