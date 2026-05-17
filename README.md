@@ -16,29 +16,29 @@ url : https://color-mirror-re.vercel.app
 
 ## アプリイメージ画像
 <p>
-  <img src="front/App_front/public/assets/topImage.png"　width="500" height="500" />
+  <img src="front/App_front/public/assets/topImage.png"　width="700" />
 </p>
 
 ## アプリ使用スクリーンショット
 
 ### 1. mood選択   
 自分の今現在の気分を選択します。
-  <img src="front/App_front/public/assets/mood選択.jpg" >
+  <img src="front/App_front/public/assets/mood選択.jpg" width="700" >
 ---
 
 ### 2. colorの生成/選択  
 選択した気分をもとに「生成開始」を押すとOpenAI APIへリクエストを投げ、気分に沿った4択のcolorを生成、さらに自分にあったcolorを選択します。→生成後のボタンは「再生成」に変わります。
-<img src="front/App_front/public/assets/color生成.png">
+<img src="front/App_front/public/assets/color生成.png" width="700">
 ---
 
 ### 3. AIコメントの生成   
 colorの選択後、「AI生成開始」ボタンを押すとOpenAI APIへリクエストを投げ、moodとcolorを基にコメントを生成します。→生成後のボタンは「AIコメントの再生成」に変わります。
-  <img src="front/App_front/public/assets/AIコメント生成.png">
+  <img src="front/App_front/public/assets/AIコメント生成.png" width="700">
 ---
 
 ### 4. 記録データの保存、履歴の表示   
 OpenAI APIへリクエストをし、コメントを生成後、「保存する」ボタンを押すと、Rails APIにリクエストを投げ、DBにデータが保存されます。さらに、ページ下部に保存したデータを一覧(/index)に追加して表示します。
- <img src="front/App_front/public/assets/保存と一覧表示.jpg">
+ <img src="front/App_front/public/assets/保存と一覧表示.jpg" width="700">
 ---
 
 ## アプリの基本処理フロー
@@ -174,14 +174,12 @@ flowchart TB
 - モノレポ構成に合わせて、変更されたディレクトリ単位でworkflowを制御
 ---
 <details>
+<summary>アプリの提供する価値(元のアプリより引用)</summary>
 
 - その日の気分と相関する「色」を通じて、1日をポジティブに始められる記録アプリです。
 - 登録した気分に対応した感情をもとにAIがパーソナライズコメントを生成します。
 - コメントは“自分だけの手紙”として記録され、自己対話を促します。
 
-<summary>
-アプリの提供する価値(元のアプリより引用)
-</summary>
 </details>
 
 
@@ -325,7 +323,3 @@ flowchart TB
 ### Rails API側の設計（技術記事のリンク）
 
 ### リプレイスにあたって苦労した点・学び
-
-### ※ 注意事項
-**Render無料枠を利用している**
-  > *初回起動に遅延が生じていることのお断り*
