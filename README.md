@@ -17,7 +17,7 @@ config:
 
     primaryColor: "#2563eb"
 
-    primaryTextColor: "#ffffff"
+    primaryTextColor: "#0000"
 
     primaryBorderColor: "#1d4ed8"
 
