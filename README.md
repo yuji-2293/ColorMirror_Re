@@ -69,25 +69,28 @@ config:
 
 flowchart TB
 
-    Dev["Developer"] --> GitHub["GitHub Repository<br>Monorepo"]
+    Dev["User"] --> GitHub["commit & push <br>Monorepo Repository"]
 
     GitHub --> PR["Pull Request"]
 
-    GitHub --> Main["Merge / Push to main"]
+    PR --> FrontCI["CI <br> Lint / Prettier / TypeCheck"]
 
-    PR --> FrontCI["front_ci.yml<br>Lint / Test / Build"]
+    PR --> BackCI["CI <br> lint / Rubocop / Test"]
 
-    PR --> BackCI["back_ci.yml<br>Rubocop / Test"]
+    FrontCI --> Main["Merge / Push -> main"]
 
-    Main --> FrontCD["front-deploy.yml"]
+    BackCI --> Main["Merge / Push -> main"]
 
-    Main --> BackCD["back-deploy.yml"]
+    Main --> FrontCD["front_deploy.yml"]
+
+    Main --> BackCD["back_deploy.yml"]
 
     FrontCD --> Vercel["Vercel<br>React Frontend"]
 
     BackCD --> Render["Render<br>Rails API"]
 
     Render --> DB[("PostgreSQL")]
+
 ```
 
 ### CI/CD設計
@@ -97,6 +100,8 @@ flowchart TB
 - mainブランチへのmerge後にCDを実行
 
 - frontend / backend のworkflowを分離
+
+- Saas本来の自動デプロイはoffにし、デプロイはCIが通った時のみActions側のCDにより実行
 
 - frontendはVercel、backendはRenderへ個別デプロイ
 
@@ -224,6 +229,12 @@ Color + Response保存
 - 記録習慣を支援する通知機能
 
 ## 🔧 技術スタック
+
+<p>
+
+  <img src="https://skillicons.dev/icons?i=react,ts,vite,tailwind,rails,postgres,githubactions" />
+
+</p>
 
 | 分類 | 技術 | 補足 |
 |---|---|---|
