@@ -1,7 +1,7 @@
 # ColorMirror_Re(MVP版)
 ## アプリ画像
 <p>
-  <img src="front/App_front/public/assets/topImage.png" />
+  <img src="front/App_front/public/assets/topImage.png"　width="500" height="500" />
 </p>
 
 ## アプリスクショ
