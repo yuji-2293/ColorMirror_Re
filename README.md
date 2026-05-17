@@ -6,33 +6,27 @@
 ---
 config:
 
-  theme: base
+  theme: neo
 
   look: classic
 
-  layout: dagre
+  layout: fixed
 
   themeVariables:
 
-    fontFamily: "Inter, sans-serif"
+    primaryColor: "#2563eb"
 
-    primaryColor: "#eff6ff"
+    primaryTextColor: "#2563ad"
 
-    primaryTextColor: "#1e293b"
-
-    primaryBorderColor: "#2563eb"
+    primaryBorderColor: "#1d4ed8"
 
     lineColor: "#64748b"
 
     secondaryColor: "#f8fafc"
 
-    tertiaryColor: "#e0f2fe"
+    tertiaryColor: "#e2e8f0"
 
-    edgeLabelBackground: "#ffffff"
-
-    clusterBkg: "#f8fafc"
-
-    clusterBorder: "#cbd5e1"
+    fontFamily: "Inter"   
 ---
 flowchart TB
     User["User"] --> React["React / Vite / TypeScript"]
@@ -49,33 +43,27 @@ flowchart TB
 
 config:
 
-  theme: base
+  theme: neo
 
   look: classic
 
-  layout: dagre
+  layout: fixed
 
   themeVariables:
 
-    fontFamily: "Inter, sans-serif"
+    primaryColor: "#2563eb"
 
-    primaryColor: "#eff6ff"
+    primaryTextColor: "#2563ad"
 
-    primaryTextColor: "#1e293b"
-
-    primaryBorderColor: "#2563eb"
+    primaryBorderColor: "#1d4ed8"
 
     lineColor: "#64748b"
 
     secondaryColor: "#f8fafc"
 
-    tertiaryColor: "#e0f2fe"
+    tertiaryColor: "#e2e8f0"
 
-    edgeLabelBackground: "#ffffff"
-
-    clusterBkg: "#f8fafc"
-
-    clusterBorder: "#cbd5e1"
+    fontFamily: "Inter"   
 
 ---
 
