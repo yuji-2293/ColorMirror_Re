@@ -8,7 +8,7 @@ config:
 
   theme: neo
 
-  look: classic
+  look: neo
 
   layout: fixed
 
@@ -45,7 +45,7 @@ config:
 
   theme: neo
 
-  look: classic
+  look: neo
 
   layout: fixed
 
