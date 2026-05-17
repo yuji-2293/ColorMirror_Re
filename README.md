@@ -1,24 +1,60 @@
 # ColorMirror_Re(MVP版)
 ## アプリ URL
-url : https://color-mirror-re.vercel.app/signUp
+url : https://color-mirror-re.vercel.app
 ---
 
-### テストアカウント
-※ Render無料枠での利用をしています。  
-初期動作の遅延が2~3分かかることをご容赦願います。
+### テストアカウントを用意しています
+- 下記アドレス、パスワードを使ってログインすることができます。  
+※ 本アプリはRender無料枠での利用をしています。  
+初期動作までの遅延が1~2分かかることをご容赦願います。
 <p>
-mail_address: test999@gmail.com<br>
-password: "testtest"
+  mail_address: test999@gmail.com<br>
+  password: "testtest"
 </p>
 
 ---
 
-## アプリ画像
+## アプリイメージ画像
 <p>
   <img src="front/App_front/public/assets/topImage.png"　width="500" height="500" />
 </p>
 
-## アプリスクショ
+## アプリ使用スクリーンショット
+
+### 1. mood選択   
+自分の今現在の気分を選択します。
+  <img src="front/App_front/public/assets/mood選択.jpg" >
+---
+
+### 2. colorの生成/選択  
+選択した気分をもとに「生成開始」を押すとOpenAI APIが走り、気分に沿った4択のcolorを生成、さらに自分にあったcolorを選択します。→生成後のボタンは「再生成」に変わります。
+<img src="front/App_front/public/assets/color生成.png">
+---
+
+### 3. AIコメントの生成   
+colorの選択後、「AI生成開始」ボタンを押すとOpenAI APIが走り、moodとcolorを基にコメントを生成します。→生成後のボタンは「AIコメントの再生成」に変わります。
+  <img src="front/App_front/public/assets/AIコメント生成.png">
+---
+
+### 4. Color + Responseの保存、履歴の表示   
+OpenAI APIが走り、コメントを生成後、「保存する」ボタンを押すと、Rails APIにリクエストを投げ、DBにデータが保存されます。さらに、ページ下部に保存したデータを一覧(/index)に追加して表示します。
+ <img src="front/App_front/public/assets/保存と一覧表示.jpg">
+---
+
+## アプリの基本処理フロー
+```
+mood選択
+↓
+OpenAI APIによるcolor生成
+↓
+color選択
+↓
+OpenAI APIによるAIコメント生成
+↓
+Rails API経由で保存
+↓
+履歴一覧へ反映
+```
 
 ## アーキテクチャ図
 
@@ -62,7 +98,7 @@ flowchart TB
     
     Rails --> DB[("PostgreSQL")]
     Rails --> AI["OpenAI API<br>コメント生成"] 
-    Rails --> Auth["Rails gem: devise_token_auth<br>token認証"]
+    Rails --> Auth["Rails gem: devise_token_auth <br> token認証"]
     
 ```
 ## CI/CDフロー図
@@ -203,20 +239,6 @@ flowchart TB
 
 ---
 
-## おおまかなアプリの処理フロー
-```
-mood選択
-↓
-color生成 // 外部API
-↓
-color選択
-↓
-AIコメント生成  // 外部API
-↓
-Color + Response保存
-↓
-履歴表示
-```
 
 ## 👩‍💻 機能選定
 
