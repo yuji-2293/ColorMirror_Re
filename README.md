@@ -2,7 +2,6 @@
 ## アプリスクショ
 ## アーキテクチャ図
 
-
 ```mermaid
 ---
 config:
@@ -36,10 +35,73 @@ flowchart TB
     Rails --> DB[("PostgreSQL")] & AI["AI API<br>コメント生成"] & Weather["Weather API<br>天気取得"]
     
 ```
+## CI/CDフロー図
 
+```mermaid
 
 ---
-##
+
+config:
+
+  theme: neo
+
+  look: neo
+
+  layout: fixed
+
+  themeVariables:
+
+    primaryColor: "#2563eb"
+
+    primaryTextColor: "#2563ad"
+
+    primaryBorderColor: "#1d4ed8"
+
+    lineColor: "#64748b"
+
+    secondaryColor: "#f8fafc"
+
+    tertiaryColor: "#e2e8f0"
+
+    fontFamily: "Inter"
+
+---
+
+flowchart TB
+
+    Dev["Developer"] --> GitHub["GitHub Repository<br>Monorepo"]
+
+    GitHub --> PR["Pull Request"]
+
+    GitHub --> Main["Merge / Push to main"]
+
+    PR --> FrontCI["front_ci.yml<br>Lint / Test / Build"]
+
+    PR --> BackCI["back_ci.yml<br>Rubocop / Test"]
+
+    Main --> FrontCD["front-deploy.yml"]
+
+    Main --> BackCD["back-deploy.yml"]
+
+    FrontCD --> Vercel["Vercel<br>React Frontend"]
+
+    BackCD --> Render["Render<br>Rails API"]
+
+    Render --> DB[("PostgreSQL")]
+```
+
+### CI/CD設計
+
+- Pull Request時はCIのみ実行
+
+- mainブランチへのmerge後にCDを実行
+
+- frontend / backend のworkflowを分離
+
+- frontendはVercel、backendはRenderへ個別デプロイ
+
+- モノレポ構成に合わせて、変更されたディレクトリ単位でworkflowを制御
+---
 
 ## サービス概要（元アプリより引用）
 - その日の気分と相関する「色」を通じて、1日をポジティブに始められる記録アプリです。
