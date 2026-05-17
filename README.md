@@ -16,7 +16,7 @@ url : https://color-mirror-re.vercel.app
 
 ## アプリイメージ画像
 <p>
-  <img src="front/App_front/public/assets/topImage.png"　width="700" />
+  <img src="front/App_front/public/assets/topImage.png"　width="700" height="300" >
 </p>
 
 ## アプリ使用スクリーンショット
