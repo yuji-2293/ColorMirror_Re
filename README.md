@@ -96,6 +96,8 @@ flowchart TB
     React --> Query["TanStack Query<br>API通信・キャッシュ"]
     
     Rails["Rails API"]
+    Zustand --> Router
+
 
     Zustand --> Rails["Rails API"]
     Query --> Rails["Rails API"]

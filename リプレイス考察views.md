@@ -82,10 +82,3 @@ devise_token_authを使っての認証
 
 
 ```
-  - JavaScript
-    - 非同期処理
-      - turbo(turbo-stream)
-    - UIに関わる部分
-    - DOM操作
-    - fetch通信
-  - 
