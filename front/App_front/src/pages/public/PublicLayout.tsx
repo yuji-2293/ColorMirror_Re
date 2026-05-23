@@ -7,7 +7,6 @@ import { Loading } from '@/pages/public/components/Loading';
 export default function PublicLayout() {
   const { authStatus } = useAuthStore();
   if (authStatus === 'unknown') {
-    // 認証状態が不明な場合,ログインページにリダイレクト
     return <Loading />;
   }
   if (authStatus === 'authenticated') {

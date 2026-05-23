@@ -9,7 +9,6 @@ export default function PrivateLayout() {
   const redirectReason = useAuthStore((state) => state.redirectedReason);
   const location = useLocation();
   if (authStatus === 'unknown') {
-    // 認証状態が不明な場合、ログインページにリダイレクト
     return <Loading />;
   }
   if (authStatus === 'unauthenticated') {
