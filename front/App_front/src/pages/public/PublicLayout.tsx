@@ -3,11 +3,12 @@ import { Footer } from '@/components/layout/footer';
 
 import { Outlet, Navigate } from 'react-router-dom';
 import { useAuthStore } from '@/app/store/useAuthStore';
+import { Loading } from '@/pages/public/components/Loading';
 export default function PublicLayout() {
   const { authStatus } = useAuthStore();
   if (authStatus === 'unknown') {
     // 認証状態が不明な場合,ログインページにリダイレクト
-    return <div className="bg-gradient"> Loading...</div>;
+    return <Loading />;
   }
   if (authStatus === 'authenticated') {
     // 認証されている場合、ホームページにリダイレクト

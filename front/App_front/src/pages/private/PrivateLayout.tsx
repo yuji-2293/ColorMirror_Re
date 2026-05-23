@@ -2,6 +2,7 @@ import { Header } from '@/components/layout/header';
 import { Footer } from '@/components/layout/footer';
 import { useAuthStore } from '@/app/store/useAuthStore';
 import { Outlet, Navigate, useLocation } from 'react-router-dom';
+import { Loading } from '@/pages/public/components/Loading';
 
 export default function PrivateLayout() {
   const { authStatus } = useAuthStore();
@@ -9,7 +10,7 @@ export default function PrivateLayout() {
   const location = useLocation();
   if (authStatus === 'unknown') {
     // 認証状態が不明な場合、ログインページにリダイレクト
-    return <div className="bg-gradient"> Loading...</div>;
+    return <Loading />;
   }
   if (authStatus === 'unauthenticated') {
     // リダイレクト理由に応じたトースト表示のための変数
