@@ -60,113 +60,19 @@ Rails API経由で保存
 履歴一覧へ反映
 ```
 
-<div style="overflow-x: auto;">
 
 ## アーキテクチャ図
+<p>
+  <img src="md/アーキテクチャ図.png"　width="700" height="700" >
+</p>
 
-```mermaid
----
-config:
-
-  theme: neo
-
-  look: neo
-
-  layout: fixed
-
-  themeVariables:
-
-    primaryColor: "#2563eb"
-
-    primaryTextColor: "#1d4ed2"
-
-    primaryBorderColor: "#1d4ed8"
-
-    lineColor: "#64748b"
-
-    secondaryColor: "#f8fafc"
-
-    tertiaryColor: "#e2e8f0"
-
-    fontFamily: "Inter"   
----
-flowchart TB
-    User["User"] --> React["React / Vite / TypeScript"]
-
-    React --> Router["React Router<br> PrivateLayout / PublicLayout"]
-    React --> Zustand["Zustand<br>auth認証・UI状態"]
-    React --> Query["TanStack Query<br>API通信・キャッシュ"]
-    
-    Rails["Rails API"]
-    Zustand --> Router
-
-
-    Zustand --> Rails["Rails API"]
-    Query --> Rails["Rails API"]
-    
-    Rails --> DB[("PostgreSQL")]
-    Rails --> AI["OpenAI API<br>コメント生成"] 
-    Rails --> Auth["Rails gem: devise_token_auth <br> token認証"]
-    
-```
 ## CI/CDフロー図
 
-```mermaid
+<p>
+  <img src="md/CI:CDフロー図.png"　width="700" height="700" >
+</p>
 
----
 
-config:
-
-  theme: neo
-
-  look: neo
-
-  layout: fixed
-
-  themeVariables:
-
-    primaryColor: "#2563eb"
-
-    primaryTextColor: "#1d4ed2"
-
-    primaryBorderColor: "#1d4ed8"
-
-    lineColor: "#64748b"
-
-    secondaryColor: "#f8fafc"
-
-    tertiaryColor: "#e2e8f0"
-
-    fontFamily: "Inter"   
-
----
-
-flowchart TB
-
-    Dev["User"] --> GitHub["commit & push <br>Monorepo Repository"]
-
-    GitHub --> PR["Pull Request"]
-
-    PR --> FrontCI["CI <br> front_ci.yml <br> Lint / Prettier / TypeCheck"]
-
-    PR --> BackCI["CI <br> back_ci.yml <br> lint / Rubocop / Rails Test"]
-
-    FrontCI --> Main["Merge / Push -> main"]
-
-    BackCI --> Main["Merge / Push -> main"]
-
-    Main --> FrontCD["CD <br>front_CD.yml"]
-
-    Main --> BackCD["CD <br>back_CD.yml"]
-
-    FrontCD --> Vercel["Vercel<br>React Frontend"]
-
-    BackCD --> Render["Render<br>Rails API"]
-
-    Render --> DB[("PostgreSQL")]
-
-```
-</div>
 
 ### CI/CD設計
 
