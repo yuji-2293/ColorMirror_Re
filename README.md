@@ -60,6 +60,8 @@ Rails API経由で保存
 履歴一覧へ反映
 ```
 
+<div style="overflow-x: auto;">
+
 ## アーキテクチャ図
 
 ```mermaid
@@ -164,6 +166,7 @@ flowchart TB
     Render --> DB[("PostgreSQL")]
 
 ```
+</div>
 
 ### CI/CD設計
 
