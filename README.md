@@ -231,14 +231,14 @@ Rails API経由で保存
 
 ## 設計意図（工夫）
 
-### Zustandによる認証状態管理（技術記事のリンク）
+### Zustandによる認証状態管理
 
 https://qiita.com/yuji2534/items/bde82b7c5d87ffa72e9b
 
-### TanStack Queryを採用してServer Stateを管理（技術記事のリンク）
+### TanStack Queryを採用してServer Stateを管理
 
 https://qiita.com/yuji2534/items/125bdb711986a3b90efb
 
-### Rails API側の設計（技術記事のリンク）
+### Rails API側の設計
 
 ### リプレイスにあたって苦労した点・学び
