@@ -81,13 +81,15 @@ Rails API経由で保存
 - mainブランチへのmerge後にCDを実行
 
 - frontend / backend のworkflowを分離
+  - モノレポ構成に合わせて、変更されたディレクトリ単位でworkflowを制御
+    - frontディレクトリで変更があれば、front_ci.ymlが走る
+    - backディレクトリで変更があれば、back_ci.ymlが走る
 
 - SaaS本来の自動デプロイはoffにし、デプロイはCIが通った時のみActions側のCDにより実行
+  - frontはVercel、backはRenderへ個別デプロイ
 
-- frontendはVercel、backendはRenderへ個別デプロイ
-
-- モノレポ構成に合わせて、変更されたディレクトリ単位でworkflowを制御
 ---
+
 <details>
 <summary>アプリの提供する価値(元のアプリより引用)</summary>
 
@@ -219,14 +221,14 @@ Rails API経由で保存
 | 分類 | 技術 | 補足 |
 |---|---|---|
 | フロントエンド | React / Vite / TypeScript | SPA構成 |
-| UI | Tailwind CSS / shadcn/ui | コンポーネント・UI設計 |
-| 状態管理 | Zustand | 認証状態などのグローバル状態管理 |
+| UI | Tailwind CSS / shadcn/ui | コンポーネント・UIライブラリ |
+| 状態管理 | Zustand | 認証状態をグローバル状態管理 |
 | サーバー状態管理 | TanStack Query | APIデータ取得・キャッシュ・一覧情報の再取得/ユーザー情報の再取得 |
-| バックエンド | Ruby on Rails 8.x APIモード | APIサーバー |
-| 認証 | devise / devise_token_auth | トークンベース認証 |
+| バックエンド | Ruby on Rails 8.x APIモード | APIサーバーとして運用 |
+| 認証 | devise / devise_token_auth | トークンベース認証(Cookie保存) |
 | データベース | PostgreSQL | 本番 / 開発共通 |
-| 外部API | OpenAI API | color生成・AIコメント生成 |
-| インフラ | Vercel / Render | フロントエンド / バックエンドの分離デプロイ |
+| 外部API | OpenAI API | color生成・AIコメント生成に使用 |
+| インフラ | Vercel / Render | 自動デプロイをoff CDによってのみデプロイ |
 | CI/CD | GitHub Actions | フロント / バックのCI/CD制御 |
 
 ## 設計意図（工夫）
