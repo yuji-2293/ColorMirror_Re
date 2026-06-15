@@ -193,7 +193,7 @@ Rails API経由で保存
 | 状態管理 | Zustand | 認証状態をグローバル状態管理 |
 | サーバー状態管理 | TanStack Query | APIデータ取得・キャッシュ・一覧情報の再取得/ユーザー情報の再取得 |
 | バックエンド | Ruby on Rails 8.x APIモード | APIサーバーとして運用 |
-| 認証 | devise / devise_token_auth | トークンベース認証(Cookie保存) |
+| 認証 | devise / devise_token_auth | トークンベース認証（フロント側でCookie管理・インターセプターによるヘッダー付与）|
 | データベース | PostgreSQL | 本番 / 開発共通 |
 | 外部API | OpenAI API | color生成・AIコメント生成に使用 |
 | インフラ | Vercel / Render | 自動デプロイをoff CDによってのみデプロイ |
