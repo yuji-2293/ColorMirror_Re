@@ -1,6 +1,7 @@
 import axios from 'axios';
 import applyCaseMiddleware from 'axios-case-converter'; // axiosのレスポンスデータのキーをキャメルケースに変換するミドルウェア
 import Cookies from 'js-cookie';
+import { useAuthStore } from '@/app/store/useAuthStore';
 
 const baseURL = import.meta.env.VITE_API_BASE_URL || '';
 
@@ -62,6 +63,11 @@ ApiClient.interceptors.response.use(
     console.log(error);
     switch (error.response?.status) {
       case 401:
+        useAuthStore.getState().logout();
+
+        Cookies.remove(`_access-token`);
+        Cookies.remove(`_client`);
+        Cookies.remove(`_uid`);
         break;
       case 404:
         break;
