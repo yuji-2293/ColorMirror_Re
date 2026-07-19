@@ -45,12 +45,6 @@ ApiClient.interceptors.response.use(
     const accessToken = response.headers['access-token'];
     const clientId = response.headers['client'];
     const uid = response.headers['uid'];
-    // Cookie情報のログ
-    console.log('response cookie', {
-      accessToken,
-      clientId,
-      uid,
-    });
 
     if (accessToken && clientId && uid) {
       Cookies.set('_access-token', accessToken);
@@ -72,8 +66,6 @@ ApiClient.interceptors.response.use(
       case 404:
         break;
       default:
-        console.log('== internal server error ==');
-        console.log(error.response);
     }
     const errorMessage = (error.response?.data?.message || '').split(',');
     throw new Error(errorMessage);
