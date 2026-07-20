@@ -100,7 +100,7 @@ Rails API経由で保存
     - frontディレクトリで変更があれば、front_ci.ymlが走る
     - backディレクトリで変更があれば、back_ci.ymlが走る
 
-- SaaS本来の自動デプロイはoffにし、デプロイはCIが通った時のみActions側のCDにより実行
+- PaaS本来の自動デプロイはoffにし、デプロイはCIが通った時のみActions側のCDにより実行
   - frontはVercel、backはRenderへ個別デプロイ
 
 ---
