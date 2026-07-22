@@ -212,19 +212,3 @@ https://qiita.com/yuji2534/items/125bdb711986a3b90efb
 ### React + Rails APIでのリプレイス開発を通して、責務設計の変化について
 
 https://qiita.com/yuji2534/items/79d66ad99a1a015f8cf9
-
-
-天気APIによる自動取得でオリジナルの天気カードの作成
-[![Image from Gyazo](https://i.gyazo.com/2276ff47d7bf4adf83cce73338f92ac4.png)](https://gyazo.com/2276ff47d7bf4adf83cce73338f92ac4)
-
-ユーザーの気分→オノマトペのカードで変換
-[![Image from Gyazo](https://i.gyazo.com/d57e5bb312879f6bd25da1fee687ee2b.jpg)](https://gyazo.com/d57e5bb312879f6bd25da1fee687ee2b)
-
-天気（外部情報)✖️気分（オノマトペ）でAIに色を生成させる→自分にマッチした色を登録!!　
-[![Image from Gyazo](https://i.gyazo.com/26a18d8e388b7f9cbbd1566d70c94044.png)](https://gyazo.com/26a18d8e388b7f9cbbd1566d70c94044)
-
-登録したデータの一覧
-[![Image from Gyazo](https://i.gyazo.com/ee019bb925b7766a7f374f648be27fb2.png)](https://gyazo.com/ee019bb925b7766a7f374f648be27fb2)
-
-AIからのコメント（非同期で生成）
-[![Image from Gyazo](https://i.gyazo.com/8b6adb4548fab67699833e43ace479d3.png)](https://gyazo.com/8b6adb4548fab67699833e43ace479d3)
