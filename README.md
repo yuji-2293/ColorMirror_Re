@@ -27,10 +27,10 @@ url : https://color-mirror-re.vercel.app
 
 ### テストアカウントを用意しています
 - 下記アドレス、パスワードを使ってログインすることができます。  
-※ 本アプリはRender無料枠での利用をしています。  
-初期動作までの遅延が1~2分かかることをご容赦願います。
+
 <p>
   mail_address: test999@gmail.com<br>
+
   password: "testtest"
 </p>
 
