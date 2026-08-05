@@ -29,9 +29,9 @@ url : https://color-mirror-re.vercel.app
 - 下記アドレス、パスワードを使ってログインすることができます。  
 
 <p>
-  mail_address: test999@gmail.com<br>
+ メールアドレス : test999@gmail.com<br>
 
-  password: "testtest"
+ パスワード: "testtest"
 </p>
 
 ---
