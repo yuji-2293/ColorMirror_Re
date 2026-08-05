@@ -6,7 +6,7 @@ on:
     branches: ["main"]
     paths:
       - "back/**"
-      - ".github/workflows/back.yml"
+      - ".github/workflows/back_CD.yml"
 
 defaults:
   run:
