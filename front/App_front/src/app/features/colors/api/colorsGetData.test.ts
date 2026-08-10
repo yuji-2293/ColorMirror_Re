@@ -9,19 +9,17 @@ describe('colorsGetData', () => {
   });
   it('色一覧を取得できる', async () => {
     const mockResponse: ColorResponse = {
-      data:
-        [
-          {
-            id: 1,
-            colorName: '#FF0000',
-            mood: 'ホカホカ',
-            createdAt: '2026-06-01T12:00:00Z',
-            response: {
-              aiResponse: 'This is a happy color.',
-            },
+      data: [
+        {
+          id: 1,
+          colorName: '#FF0000',
+          mood: 'ホカホカ',
+          createdAt: '2026-06-01T12:00:00Z',
+          response: {
+            aiResponse: 'This is a happy color.',
           },
-        ],
-
+        },
+      ],
     };
     // spyOnを使ってApiClientを監視、mockResolvedValueOnceを使ってモックレスポンスを返すように設定する
     vi.spyOn(ApiClient, 'get').mockResolvedValueOnce(mockResponse);
