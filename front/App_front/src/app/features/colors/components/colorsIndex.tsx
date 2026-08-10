@@ -19,7 +19,6 @@ export const ColorsIndex = () => {
   }
 
   const colorsIndex = data || [];
-  console.log(colorsIndex);
 
   return (
     <div className="bg-white/50 backdrop-blur-md px-6 py-3 rounded-2xl shadow-2xl">
