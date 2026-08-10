@@ -14,8 +14,6 @@ export const ColorsForm = ({
   isPending,
   isSuccess,
 }: ColorsFormProps) => {
-  // const { generateColor, generatedColor, resetColors, isPending, isSuccess } = useGenerateColor();
-
   const handleGenerateColor = () => {
     // 生成中の場合はクリックを無効にする
     if (isPending) return;
