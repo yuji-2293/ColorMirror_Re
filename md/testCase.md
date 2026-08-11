@@ -10,23 +10,29 @@
 
 ・colorsForm.tsx
 
-- isPending = trueの時、<Spinner />が表示されるか
-- クリックしたボタンの種類によってsetMoodが呼ばれるか？（" "→ワクワク）
-- 気分を変更すると、状態をリセットする関数が走るか？（setSelectedColorName('') と resetColors）
-- moodを選択している状態で生成ボタンを押すと、generateColor({ color })が走る
-- moodが未選択、 isPending == trueの時、生成ボタンが押せない
-- generatedColorの要素数により、1件以上 = 再生成 の切り替わりが起きているか？
-- colorの生成に成功(isSuccess == true) したらトーストの表示がされているか？
-- 生成した色が表示、さらに色をクリックしたらsetSelectedColorNameが呼ばれる
-- 色を生成するためのgenerateMoodData関数のためのpramsを作って渡している
+- ~~クリックしたボタンの種類によってsetMoodが呼ばれるか？（" "→ワクワク）~~
+- ~~気分を変更すると、状態をリセットする関数が走るか？（setSelectedColorName('') と resetColors）~~
+- ~~moodが未選択、 isPending == trueの時、生成ボタンが押せない~~
+- ~~色を生成するためのgenerateMoodData関数のためのparamsを作って渡している~~
+
+- ~~colorの生成に成功(isSuccess == true) したらトーストの表示がされているか？~~
+- ~~generatedColorの要素数により、1件以上 = 再生成 の切り替わりが起きているか？~~
+
+- ~~生成した色が表示、さらに色をクリックしたらsetSelectedColorNameが空文字で呼ばれるか~~
+- ~~isPending = trueの時、<Spinner />が表示されるか~~
 
 ・colorsIndex.tsx
 
 - isLoading == true の時、<div>Loading...</div>が表示される
 - isError == trueの時、<div>エラー、ファイル、データの確認をしてください</div>が表示される
 - colorsIndexの要素数よって、表示するUIの切り替えが起きている
-- colorsIndexの中で、AIのコメントの生成の可否によってUIが切り替えられている
-- 履歴削除ボタンが押されたら、該当のdataが削除されている
+  - dataが空の時、「データが未作成」
+  - dataが存在していれば、各履歴それぞれを表示する
+  - color.response?.aiResponse が存在する場合、AIコメントを表示する
+  - color.response?.aiResponse が存在しない場合、
+  「AIコメントはまだ生成されていません。」を表示する
+
+- handleDelete = (id: number) が呼ばれ、成功したら、トーストの表示が起きている
 - 
 
 ---
@@ -53,4 +59,17 @@
 - colorsGetData の結果を data として返せている
 
 useGenerateColor...TanStack Query
+- 初期状態のgeneratedColor[]が空である
 - generatedColorの結果を返却できている
+
+
+#### 学び
+```
+vi.mock('sonner', () => ({
+  toast: {
+    success: vi.fn(),
+  },
+}));
+```
+コードの見た目そのままでなく、
+「sonner の中の toast.success だけを、呼び出し履歴を記録する偽物に差し替えている」と理解する

@@ -5,10 +5,12 @@ import { toast } from 'sonner';
 export const ColorsIndex = () => {
   // 削除ボタンがクリックされたときの処理
   const { deleteColor } = useDeleteColor();
+
   const handleDelete = (id: number) => {
     deleteColor(id);
     toast.success('履歴を削除しました！');
   };
+
   // データの読み込み中やエラーが発生した場合の表示
   const { isLoading, isError, data } = useColors();
   if (isLoading) {

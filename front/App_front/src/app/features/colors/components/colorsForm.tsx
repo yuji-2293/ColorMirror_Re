@@ -35,7 +35,7 @@ export const ColorsForm = ({
   // 生成に成功したら、トースト通知を表示して、選択された色の名前をリセットする
   useEffect(() => {
     if (isSuccess) {
-      toast.success('色の生成に成功しました！ 好きな色を選択して、次のSTEPに進みましょう！');
+      toast.success('色の生成に成功しました！ 好きな色を選択して、次のSTEPに進みましょう!');
       setSelectedColorName('');
     }
   }, [isSuccess, setSelectedColorName]);
