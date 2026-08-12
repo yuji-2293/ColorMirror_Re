@@ -35,11 +35,11 @@
 
 ・colorsGetData.ts...Get
 
-- colorsGetData関数が呼ばれると色一覧を取得できる
-- API通信が失敗した時、正常にerrorをthrowする
+- ~~colorsGetData関数が呼ばれると色一覧を取得できる~~
+- ~~API通信が失敗した時、正常にerrorをthrowする~~
 
 ・generateMoodData.ts...Post
-
+[責務]
 - 受け取った generateMood をそのまま ApiClient.post に渡している
 - responseを返す
 - 通信失敗時errorをthrowする

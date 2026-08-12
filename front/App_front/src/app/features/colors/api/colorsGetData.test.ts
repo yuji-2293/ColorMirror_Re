@@ -21,7 +21,7 @@ describe('colorsGetData', () => {
         },
       ],
     };
-    // spyOnを使ってApiClientを監視、mockResolvedValueOnceを使ってモックレスポンスを返すように設定する
+    // spyOnを使ってApiClientを監視、mockResolvedValueOnceを使ってモックオブジェクトを返すように設定する
     vi.spyOn(ApiClient, 'get').mockResolvedValueOnce(mockResponse);
     // result関数にcolorsGetDataの戻り値を代入
     const result = await colorsGetData();
