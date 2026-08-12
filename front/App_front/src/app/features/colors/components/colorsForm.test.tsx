@@ -18,6 +18,7 @@ const defaultProps: ColorsFormProps = {
   resetColors: vi.fn(),
   isPending: false,
   isSuccess: false,
+  isLoading: false,
 };
 
 vi.mock('sonner', () => ({

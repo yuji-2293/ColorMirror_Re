@@ -23,17 +23,11 @@
 
 ・colorsIndex.tsx
 
-- isLoading == true の時、<div>Loading...</div>が表示される
-- isError == trueの時、<div>エラー、ファイル、データの確認をしてください</div>が表示される
-- colorsIndexの要素数よって、表示するUIの切り替えが起きている
-  - dataが空の時、「データが未作成」
-  - dataが存在していれば、各履歴それぞれを表示する
-  - color.response?.aiResponse が存在する場合、AIコメントを表示する
-  - color.response?.aiResponse が存在しない場合、
-  「AIコメントはまだ生成されていません。」を表示する
+- ~~isLoading == true の時、<div>Loading...</div>が表示される~~
+- ~~isError == trueの時、<div>エラー、ファイル、データの確認をしてください</div>が表示される~~
+- ~~colorsIndexの要素数よって、表示するUIの切り替えが起きている~~
+- ~~handleDelete = (id: number) が呼ばれ、成功したら、トーストの表示が起きている~~
 
-- handleDelete = (id: number) が呼ばれ、成功したら、トーストの表示が起きている
-- 
 
 ---
 

@@ -46,6 +46,7 @@ export type ColorsFormProps = {
   resetColors: () => void;
   isPending: boolean;
   isSuccess: boolean;
+  isLoading: boolean;
 };
 
 // ColorsFormコンポーネントのpropsの型定義

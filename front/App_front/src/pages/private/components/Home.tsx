@@ -45,6 +45,7 @@ export const Home = () => {
           resetColors={resetColors}
           isPending={colorPending}
           isSuccess={colorSuccess}
+          isLoading={false}
         />
 
         <ResponsesForm

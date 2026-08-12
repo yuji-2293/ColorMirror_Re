@@ -84,3 +84,40 @@ setMoodを呼ぶと、'ワクワク'が出てきた
 = setMoodの状態が更新される関数を実行したから
 
 ```
+
+- vi.fn() はMock関数を作る
+- mockReturnValue() はその戻り値を決める
+- useColors() の代わりにMock関数が呼ばれる
+- vitestの性質上、vi.mockがファイル内で一番先に実行される
+
+```
+
+① const mockColors = vi.fn();
+
+② vi.mock(...)
+
+②が先に呼ばれてしまう
+
+
+```
+vi.mock() は「モジュール」をMockする    
+
+vi.mock('@/app/features/colors/hooks/useColors', ...)   
+
+ColorsIndex.tsx内で
+useColorsから {isLoading...}を呼んでる
+
+これをテストでは
+useColorsを呼ぶときにtrueにすることで、Loading...が表示されるかをテストしたい
+
+useColorsをmockにする
+useColorsを呼んだら、mockした関数 = mockColorsが呼ばれて、その戻り値がisLoading=trueであると、このテストは成立する
+
+この時、useColors→mockColorsがよぶ処理がvitestの都合上、mockColors自体を定義するよりも先に実行されてしまう。
+だから、hoisted()を使って先に定義する
+
+const { mockColors } = vi.hoisted(() => ({
+  mockColors: vi.fn(),
+}));
+
+```
