@@ -40,30 +40,16 @@
 
 ・generateMoodData.ts...Post
 [責務]
-- 受け取った generateMood をそのまま ApiClient.post に渡している
-- responseを返す
-- 通信失敗時errorをthrowする
+- ~~受け取った generateMood をそのまま ApiClient.post に渡している~~
+- ~~通信失敗時errorをthrowする~~
 
 ---
 
 #### hook
 ・useColors.ts...TanStack Query
 
-- 初期状態では data が [] である
-- colorsGetData の結果を data として返せている
+- ~~colorsGetData の結果を data として返せている~~
 
 useGenerateColor...TanStack Query
-- 初期状態のgeneratedColor[]が空である
-- generatedColorの結果を返却できている
 
-
-#### 学び
-```
-vi.mock('sonner', () => ({
-  toast: {
-    success: vi.fn(),
-  },
-}));
-```
-コードの見た目そのままでなく、
-「sonner の中の toast.success だけを、呼び出し履歴を記録する偽物に差し替えている」と理解する
+- ~~generatedColorの結果を返却できている~~
