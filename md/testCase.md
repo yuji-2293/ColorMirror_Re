@@ -59,8 +59,7 @@ useGenerateColor...TanStack Query
 #### UI
 
 responsesForm.tsx
-- AIコメント生成のためのparamsを作成できている
-- 作成したparamsをgenerateResponse関数に渡している
+- AIコメント生成のためのparamsをapiに渡せているか
 - isSuccess = true の時、toast.successが表示される
 - isSuccess = false の時、toastが呼ばれない
 - isSuccess = true の時、aiResponseが表示される
