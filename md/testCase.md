@@ -80,4 +80,13 @@ createForm.tsx
 - !mood || !selectedColorName || !aiResponse || isPendingの時「保存ボタン」が非活性になる
 - 
 #### api関数
+createResponse.ts
+- createResponse関数を呼ぶと、paramsを受け取ってresponseを返す
+- 失敗するとthrowを投げる
+generateResponse.ts
+- generateResponse関数を呼ぶと、paramsを受け取ってresponseを返す
+- 失敗するとthrowを投げる
 #### hook
+useCreateResponse.ts
+
+useGenerateResponse.ts
