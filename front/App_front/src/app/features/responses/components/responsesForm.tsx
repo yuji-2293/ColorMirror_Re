@@ -20,7 +20,7 @@ export const ResponsesForm = ({
         color_name: selectedColorName,
       },
     };
-    console.log('paramsの中身:', params);
+    //
     generateResponse(params);
   };
   // AIからのレスポンスデータが更新されたときに、親コンポーネントの状態を更新する
@@ -30,6 +30,7 @@ export const ResponsesForm = ({
       setAiResponse(aiResponseData);
     }
   }, [aiResponseData, setAiResponse]);
+
   useEffect(() => {
     if (isSuccess) {
       if (!isSuccess) return;

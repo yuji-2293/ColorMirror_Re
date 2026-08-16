@@ -28,7 +28,6 @@ export const CreateForm = ({
         ai_response: aiResponse,
       },
     };
-    console.log(params);
     createResponse(params);
   };
   // レスポンスの保存に成功したら、フォームの状態をリセットして、トースト通知を表示する
