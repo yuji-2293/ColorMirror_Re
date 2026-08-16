@@ -1,8 +1,8 @@
-import { type CreateFormProps } from '@/app/features/responses/types/Response';
 import { type GenerateResponseDataParams } from '@/app/features/responses/types/Response';
 import { useEffect } from 'react';
 import { toast } from 'sonner';
 import { Spinner } from '@/components/ui/spinner';
+import { type ResponseFormProps } from '@/app/features/responses/types/Response';
 export const ResponsesForm = ({
   mood,
   selectedColorName,
@@ -11,7 +11,7 @@ export const ResponsesForm = ({
   generateResponse,
   isPending,
   isSuccess,
-}: CreateFormProps) => {
+}: ResponseFormProps) => {
   const handleGenerateResponse = () => {
     if (isPending) return;
     const params: GenerateResponseDataParams = {
@@ -52,7 +52,7 @@ export const ResponsesForm = ({
           disabled={!mood || !selectedColorName || isPending}
           className="w-full px-10 py-4 bg-cyan-300 text-white rounded-2xl shadow-2xl border-2 border-white font-bold text-xl disabled:bg-gray-300 hover:scale-110 hover:bg-pink-300"
         >
-          {aiResponseData.length > 0 ? 'AIコメント再生成' : 'AI生成開始'}
+          {aiResponseData ? 'AIコメント再生成' : 'AI生成開始'}
         </button>
 
         {isPending && (

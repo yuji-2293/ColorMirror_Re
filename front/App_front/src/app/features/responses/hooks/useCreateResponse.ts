@@ -15,7 +15,6 @@ export function useCreateResponse() {
     },
   });
   const createResponseData = mutation.data?.data || null;
-  console.log(createResponseData);
   return {
     ...mutation,
     createResponse: mutation.mutate,

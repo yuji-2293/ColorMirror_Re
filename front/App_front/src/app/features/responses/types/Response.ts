@@ -23,6 +23,17 @@ export type CreateResponseDataParams = {
     ai_response: string;
   };
 };
+
+export type ResponseFormProps = {
+  mood: string;
+  selectedColorName: string;
+  setAiResponse: (aiResponse: string) => void;
+  aiResponseData: string | null;
+  generateResponse: (params: GenerateResponseDataParams) => void;
+  isPending: boolean;
+  isSuccess: boolean;
+};
+
 // createFormのpropsの型定義
 export type CreateFormProps = {
   mood: string;

@@ -81,12 +81,17 @@ createForm.tsx
 - 
 #### api関数
 createResponse.ts
-- createResponse関数を呼ぶと、paramsを受け取ってresponseを返す
+- createResponse関数を呼ぶと、paramsを受け取って通信する
 - 失敗するとthrowを投げる
 generateResponse.ts
-- generateResponse関数を呼ぶと、paramsを受け取ってresponseを返す
+- generateResponse関数を呼ぶと、paramsを受け取って通信する
 - 失敗するとthrowを投げる
+
 #### hook
 useCreateResponse.ts
-
+- hook関数を呼ぶと、api関数が実行される
+- apiから受け取ったデータをcreateResponseDataとして返す
+- mutationが成功した時、invalidateQueriesが走り、キャッシュが更新される
 useGenerateResponse.ts
+- hook関数を呼ぶと、api関数が実行される
+- apiから受け取ったデータをaiResponseDataとして返す
