@@ -53,35 +53,35 @@ describe('ResponsesForm', () => {
     expect(defaultProps.generateResponse).not.toHaveBeenCalled();
   });
 
-  it('isSuccessがtrueのときに、トーストが表示されるか', async () => {
+  it('isSuccessがtrueのときに、トーストが表示されるか', () => {
     render(<ResponsesForm {...defaultProps} isSuccess={true} />);
     expect(toast.success).toHaveBeenCalledWith('AIからのレスポンスの生成に成功しました！');
   });
-  it('isSuccessがtrueの時に、aiResponseDataが存在していれば表示されるか', async () => {
+  it('isSuccessがtrueの時に、aiResponseDataが存在していれば表示されるか', () => {
     render(<ResponsesForm {...defaultProps} isSuccess={true} aiResponseData={'www'} />);
     expect(defaultProps.setAiResponse).toHaveBeenCalledWith('www');
   });
-  it('isSuccessがfalseの時に、トーストが表示されないか', async () => {
+  it('isSuccessがfalseの時に、トーストが表示されないか', () => {
     render(<ResponsesForm {...defaultProps} isSuccess={false} />);
     expect(toast.success).not.toHaveBeenCalled();
   });
 
-  it('isPendingがtrueの時に、スピナーが表示されるか', async () => {
+  it('isPendingがtrueの時に、スピナーが表示されるか', () => {
     render(<ResponsesForm {...defaultProps} isPending={true} />);
     expect(screen.getByTestId('spinner')).toBeInTheDocument();
   });
-  it('isPendingがtrueの時に、ボタンが押せないか', async () => {
+  it('isPendingがtrueの時に、ボタンが非活性', () => {
     render(<ResponsesForm {...defaultProps} isPending={true} />);
     const button = screen.getByRole('button', { name: 'AI生成開始' });
     expect(button).toBeDisabled();
   });
 
-  it('aiResponseDataが存在する時、ボタンのテキストが「AIコメント再生成」に変わるか', async () => {
+  it('aiResponseDataが存在する時、ボタンのテキストが「AIコメント再生成」に変わるか', () => {
     render(<ResponsesForm {...defaultProps} aiResponseData={'AIコメント'} />);
     const button = screen.getByRole('button', { name: 'AIコメント再生成' });
     expect(button).toBeInTheDocument();
   });
-  it('aiResponseDataが存在しない時、ボタンのテキストが「AI生成開始」に変わるか', async () => {
+  it('aiResponseDataが存在しない時、ボタンのテキストが「AI生成開始」に変わるか', () => {
     render(<ResponsesForm {...defaultProps} />);
     const button = screen.getByRole('button', { name: 'AI生成開始' });
     expect(button).toBeInTheDocument();
