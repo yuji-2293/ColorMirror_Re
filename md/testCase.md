@@ -85,7 +85,6 @@ createResponse.ts
 generateResponse.ts
 - generateResponse関数を呼ぶと、paramsを受け取って通信する
 - 失敗するとthrowを投げる
-
 #### hooks
 useCreateResponse.ts
 - hook関数を呼ぶと、api関数が実行される
@@ -98,7 +97,22 @@ useGenerateResponse.ts
 
 ### auth機能
 #### UI(+ validation )
+signUpCard.tsx
+- errors.nameがtrueの時、エラー文が表示される
+- errors.emailがtrueの時、エラー文が表示される
+- errors.passwordがtrueの時、エラー文が表示される
+- errors.password_confirmがtrueの時、エラー文が表示される
+- errors.nameがtrueの時、form.valueに値が格納される
+- 
+- 
 #### api
+auth.ts
+
+- [signUp] paramsを受け取って、/authにpostする
+- [sighIn] paramsを受け取って、/auth/sign_inにpostする
+- [signOut] /auth/sign_outにdelete通信した後、Cookies[_access-token,_client,_uid]を削除する
+- [validateToken] /auth/validate_tokeにget通信後、responseを返す
+
 #### hooks
 #### store
 #### layout
