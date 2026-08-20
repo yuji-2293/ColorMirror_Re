@@ -98,11 +98,28 @@ useGenerateResponse.ts
 ### auth機能
 #### UI(+ validation )
 signUpCard.tsx
-- errors.nameがtrueの時、エラー文が表示される
-- errors.emailがtrueの時、エラー文が表示される
-- errors.passwordがtrueの時、エラー文が表示される
-- errors.password_confirmがtrueの時、エラー文が表示される
-- errors.nameがtrueの時、form.valueに値が格納される
+- errors.nameが存在する時、エラー文が表示される
+- errors.emailが存在する時、エラー文が表示される
+- errors.passwordが存在する時、エラー文が表示される
+- errors.password_confirmが存在する時、エラー文が表示される
+- Name欄に文字を入力すると、handleChangeNameが呼ばれる
+- Email欄に文字を入力すると、handleChangeEmailが呼ばれる
+- Passwordに文字を入力すると、handleChangePasswordが呼ばれる
+- 確認用Passwordに文字を入力すると、handleChangePasswordConfirmが呼ばれる
+- isSubmitting = trueの時、送信ボタンがdisabledになる、かつ、送信ボタンのtextが「アカウント作成中...」になる
+- isSubmitting = falseの時、送信ボタンのtextが「アカウント作成」になる
+- form submit時に handleSignUp が呼ばれる
+- errors.form が存在する時、フォーム全体のエラー文が表示される
+
+signInCard.tsx
+- errors.emailが存在する時、エラー文が表示される
+- errors.passwordが存在する時、エラー文が表示される
+- errors.formが存在する時、エラー文が表示される
+- Email欄に文字を入力すると、handleChangeEmailが呼ばれる
+- Passwordに文字を入力すると、handleChangePasswordが呼ばれる
+- form submitした時、handleLoginが呼ばれる
+- isSubmitting = trueの時、送信ボタンがdisabledされる,かつ、textが「ログイン中...」になる
+- isSubmitting = falseの時、送信ボタンのtextが「ログイン」になる
 - 
 - 
 #### api
@@ -111,7 +128,7 @@ auth.ts
 - [signUp] paramsを受け取って、/authにpostする
 - [sighIn] paramsを受け取って、/auth/sign_inにpostする
 - [signOut] /auth/sign_outにdelete通信した後、Cookies[_access-token,_client,_uid]を削除する
-- [validateToken] /auth/validate_tokeにget通信後、responseを返す
+- [validateToken] /auth/validate_tokenにget通信後、responseを返す
 
 #### hooks
 #### store

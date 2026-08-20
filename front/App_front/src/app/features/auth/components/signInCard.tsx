@@ -59,6 +59,7 @@ export default function SignInCard() {
                 className={passwordInvalid ? 'border-red-500 focus-visible:ring-red-500' : ''}
                 placeholder="パスワードを入力"
               />
+              {errors.password && <p className="text-sm text-red-500">{errors.password}</p>}
             </div>
             <div className="flex flex-col">
               <Button type="submit" disabled={!handleSubmit || isSubmitting} className="w-full">
