@@ -131,5 +131,14 @@ auth.ts
 - [validateToken] /auth/validate_tokenにget通信後、responseを返す
 
 #### hooks
+useAuthToast.tsx
+
+- stateの中身がemailの時、toastを表示する
+- stateにtoastがあれば、errorが表示、もしくわ、successが表示される
+- toastを表示した後は、リダイレクト理由をクリアする
+
+signUpCard.tsx
+
+- 
 #### store
 #### layout

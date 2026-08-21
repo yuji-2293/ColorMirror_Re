@@ -26,6 +26,7 @@ export const useAuthToast = () => {
     // stateにtoastがあれば、ログインが必要だった、もしくはログアウトした後のリダイレクトとして、toastを表示
     if (state?.toast === 'login_require') toast.error('ログインが必要です。');
     if (state.toast === 'logged_out') toast.success('ログアウトしました。');
+    // トースト表示後、リダイレクト理由をクリアし、location.stateをnullにして、再度サインイン後のリダイレクトでトーストが表示されないようにする。
     clearRedirectReason();
     navigate('.', { replace: true, state: null });
   }, [navigate, location.state, clearRedirectReason]);
