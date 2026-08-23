@@ -137,7 +137,7 @@ useAuthToast.tsx
 - stateにtoastがあれば、errorが表示、もしくわ、successが表示される
 - toastを表示した後は、リダイレクト理由をクリアする
 
-signUpCard.tsx
+useSignUp.ts
 
 - 
 #### store

@@ -63,7 +63,6 @@ export const useSignIn = () => {
       const resUser = res.data.data;
       const id = resUser.id;
       const name = resUser.name;
-      console.log('ログイン成功:', id, name);
       toast.success('ログインに成功しました。');
       // フロント側をログイン状態にする
       login({ id: id, name: name });
