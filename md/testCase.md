@@ -137,8 +137,51 @@ useAuthToast.tsx
 - stateにtoastがあれば、errorが表示、もしくわ、successが表示される
 - toastを表示した後は、リダイレクト理由をクリアする
 
-useSignUp.ts
+useSignUp.tsx
+[入力変更]
+- handleChangeEmailを呼ぶとemailに値が更新される
+- handleChangeEmailを呼ぶと、errors.emailが消える
+- handleChangeNameを呼ぶとnameに値が更新される
+- handleChangeNameを呼ぶと、errors.nameが消える
+- handleChangePasswordを呼ぶとpasswordに値が更新される
+- handleChangePasswordを呼ぶと、errors.passwordが消える
+- handleChangePassword_confirmationを呼ぶとpassword_confirmationに値が更新される
+- handleChangePassword_confirmationを呼ぶと、errors.password_confirmationが消える
+[submit制御]
+- 全てのフィールドに値があると、handleSubmit = true判定となる
+- フィールドに1つでも空文字があると、handleSubmit =  false判定となる
+[validation]
+- validationSignUpがerrorを返すとerrors状態になり、signUpを呼ばずに処理を中断する
+- passwordがpassword_confirmationと一致しなければalertを出して処理を中断する
+[API通信]
+- try~catchの中で、paramsが作られ、正常にsignUp成功したら、navigate('/signin', { state: { email } });が呼ばれる
+- 失敗したら、toast.errorを出す
+- submit中は、isSubmitting = true状態になる
+- submit完了したら、isSubmitting = false状態になる
+- isSubmitting = trueの時、handleSignUpを呼んでも、returnされ処理が走らない
 
-- 
+useSignIn.tsx
+[入力制御]
+- location.state.emailが存在すると、initialEmailに値を格納
+- setEmailに初期値として表示する
+- handleChangePasswordを呼ぶとpasswordに値が更新される
+- handleChangePasswordを呼ぶと、errors.passwordが消える
+- handleChangeEmailを呼ぶとemailに値が更新される
+- handleChangeEmailを呼ぶと、errors.emailが消える
+[submit制御]
+- email/passwordが1文字以上の時、handleSubmit = true
+- １つでも空文字のフィールドが存在すれば、handleSubmit = false
+- handleLoginが呼ばれた時、isSubmitting = trueの時は処理を中断する
+[validation]
+- validationSignInがerrorを返すとerrors状態になり、signInが呼ばれない
+[API通信]
+- 正常にparamsが作られ、signIn(params)が成功したら、toast.successを表示する
+- 正常にsignInが成功したら、レスポンスを整形した状態のデータを、store更新関数に渡す
+- 失敗したら、toast.errorを表示する
+
 #### store
-#### layout
+useAuthStore.ts
+
+- login関数が呼ばれると、idとnameの有無を確認しuserに情報をセット、認証の状態をauthenticatedにする、同時にリダイレクト理由をnullにする
+- logout関数が呼ばれると、認証状態をunauthenticatedにし、user情報をnullにする、リダイレクト理由をlogin_requireにする
+- clearRedirectReasonを呼ぶと、リダイレクト理由をnullにする

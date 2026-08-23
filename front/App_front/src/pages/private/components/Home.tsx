@@ -50,14 +50,8 @@ export const Home = () => {
 
         <ResponsesForm
           mood={mood}
-          setMood={setMood}
           selectedColorName={selectedColorName}
-          setSelectedColorName={setSelectedColorName}
-          aiResponse={aiResponse}
           setAiResponse={setAiResponse}
-          resetAll={resetAll}
-          resetAiResponseData={resetAiResponseData}
-          resetColors={resetColors}
           aiResponseData={aiResponseData}
           generateResponse={generateResponse}
           isPending={isPending}
