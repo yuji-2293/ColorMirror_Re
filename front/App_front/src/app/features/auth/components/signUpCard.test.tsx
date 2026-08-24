@@ -172,7 +172,6 @@ describe('SignUpCard', () => {
   });
 
   it('isSubmittingがtrueの場合、登録ボタンは無効化され、ボタンの表示が「アカウント作成中...」になること', () => {
-
     mockUseSignUp.mockReturnValue({
       ...defaultUseSignUp,
       isSubmitting: true,
@@ -214,7 +213,6 @@ describe('SignUpCard', () => {
     const user = userEvent.setup();
     const submitButton = screen.getByRole('button', { name: 'アカウント作成' });
     await user.click(submitButton);
-
     expect(mockHandleSignUp).toHaveBeenCalled();
   });
 });
