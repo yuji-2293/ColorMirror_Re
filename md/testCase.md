@@ -128,7 +128,7 @@ auth.ts
 - [signUp] paramsを受け取って、/authにpostする
 - [sighIn] paramsを受け取って、/auth/sign_inにpostする
 - [signOut] /auth/sign_outにdelete通信した後、Cookies[_access-token,_client,_uid]を削除する
-- [validateToken] /auth/validate_tokenにget通信後、responseを返す
+- [validateToken] /auth/validate_tokenに通信後、responseを返す
 
 #### hooks
 useAuthToast.tsx

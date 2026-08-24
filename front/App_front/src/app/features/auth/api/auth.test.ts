@@ -1,7 +1,8 @@
 import { ApiClient } from '@/app/lib/apiClient';
 import { type AuthParams } from '@/app/features/auth/types/authType';
-import { signUp, signIn, signOut } from '@/app/features/auth/api/auth';
+import { signUp, signIn, signOut, validateToken } from '@/app/features/auth/api/auth';
 import Cookies from 'js-cookie';
+import { type ValidateTokenResponse } from '@/app/features/auth/types/authType';
 
 const signUpParams: AuthParams = {
   name: 'yuji',
@@ -13,6 +14,18 @@ const signUpParams: AuthParams = {
 const signInParams: AuthParams = {
   email: 'e',
   password: 'p',
+};
+
+const mockValidateTokenParams: ValidateTokenResponse = {
+  success: true,
+  data: {
+    id: 1,
+    email: 'w',
+    uid: 'u',
+    provider: 'p',
+    allowPasswordChange: true,
+    name: 'n',
+  },
 };
 
 describe('Auth API', () => {
@@ -47,5 +60,19 @@ describe('Auth API', () => {
     expect(removeSpy).toHaveBeenCalledWith('_access-token');
     expect(removeSpy).toHaveBeenCalledWith('_client');
     expect(removeSpy).toHaveBeenCalledWith('_uid');
+  });
+
+  it('validateToken用APIが正しく呼ばれること', async () => {
+    const mockResponse: ValidateTokenResponse = mockValidateTokenParams;
+    // spyOnを使ってApiClientを監視、mockResolvedValueOnceを使ってモックオブジェクトを返すように設定する
+    const validateTokenSpy = vi
+      .spyOn(ApiClient, 'get')
+      .mockResolvedValueOnce({ data: mockResponse });
+    // validateToken関数を呼び出す
+    const result = await validateToken();
+    // expectでApiClient.getを指定、toHaveBeenCalledWithで('/auth/validate_token')が呼ばれたことを確認する
+    expect(validateTokenSpy).toHaveBeenCalledWith('/auth/validate_token');
+    // expectでresultを実行、toEqualでmockResponseと一致することを確認する
+    expect(result).toEqual(mockResponse);
   });
 });
