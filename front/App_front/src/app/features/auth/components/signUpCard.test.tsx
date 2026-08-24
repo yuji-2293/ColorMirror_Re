@@ -4,12 +4,26 @@ import { describe, it, expect } from 'vitest';
 import { MemoryRouter } from 'react-router-dom';
 import { type SignUpErrors } from '@/app/features/auth/types/authType';
 import userEvent from '@testing-library/user-event';
-const { mockUseSignUp } = vi.hoisted(() => ({
-  mockUseSignUp: vi.fn(),
-}));
+const defaultUseSignUp = {
+  name: '',
+  email: '',
+  password: '',
+  password_confirmation: '',
+  form: '',
+  handleSignUp: () => {},
+  handleChangeEmail: () => {},
+  handleChangePassword: () => {},
+  handleChangeName: () => {},
+  handleChangePasswordConfirmation: () => {},
+  isSubmitting: false,
+  handleSubmit: () => true,
+  errors: {} as SignUpErrors,
+};
+
+const mockUseSignUp = vi.fn(() => defaultUseSignUp);
 
 vi.mock('@/app/features/auth/hooks/useSignUp', () => ({
-  useSignUp: mockUseSignUp,
+  useSignUp: () => mockUseSignUp(),
 }));
 
 describe('SignUpCard', () => {
@@ -20,20 +34,9 @@ describe('SignUpCard', () => {
   it('errors.nameが存在する場合、エラーメッセージが表示されること', () => {
     // errors.nameにエラーメッセージをセット
     mockUseSignUp.mockReturnValue({
-      name: '',
-      email: '',
-      password: '',
-      password_confirmation: '',
-      handleSignUp: vi.fn(),
-      handleChangeEmail: vi.fn(),
-      handleChangePassword: vi.fn(),
-      handleChangeName: vi.fn(),
-      handleChangePasswordConfirmation: vi.fn(),
+      ...defaultUseSignUp,
       errors: { name: '名前は必須です' } as SignUpErrors,
-      isSubmitting: false,
-      handleSubmit: vi.fn(),
     });
-
     render(
       <MemoryRouter>
         <SignUpCard />
@@ -45,18 +48,8 @@ describe('SignUpCard', () => {
   it('errors.emailが存在する場合、エラーメッセージが表示されること', () => {
     // errors.emailにエラーメッセージをセット
     mockUseSignUp.mockReturnValue({
-      name: '',
-      email: '',
-      password: '',
-      password_confirmation: '',
-      handleSignUp: vi.fn(),
-      handleChangeEmail: vi.fn(),
-      handleChangePassword: vi.fn(),
-      handleChangeName: vi.fn(),
-      handleChangePasswordConfirmation: vi.fn(),
+      ...defaultUseSignUp,
       errors: { email: 'メールアドレスは必須です' } as SignUpErrors,
-      isSubmitting: false,
-      handleSubmit: vi.fn(),
     });
 
     render(
@@ -70,18 +63,8 @@ describe('SignUpCard', () => {
   it('errors.passwordが存在する場合、エラーメッセージが表示されること', () => {
     // errors.passwordにエラーメッセージをセット
     mockUseSignUp.mockReturnValue({
-      name: '',
-      email: '',
-      password: '',
-      password_confirmation: '',
-      handleSignUp: vi.fn(),
-      handleChangeEmail: vi.fn(),
-      handleChangePassword: vi.fn(),
-      handleChangeName: vi.fn(),
-      handleChangePasswordConfirmation: vi.fn(),
+      ...defaultUseSignUp,
       errors: { password: 'パスワードは必須です' } as SignUpErrors,
-      isSubmitting: false,
-      handleSubmit: vi.fn(),
     });
 
     render(
@@ -95,18 +78,8 @@ describe('SignUpCard', () => {
   it('errors.password_confirmationが存在する場合、エラーメッセージが表示されること', () => {
     // errors.password_confirmationにエラーメッセージをセット
     mockUseSignUp.mockReturnValue({
-      name: '',
-      email: '',
-      password: '',
-      password_confirmation: '',
-      handleSignUp: vi.fn(),
-      handleChangeEmail: vi.fn(),
-      handleChangePassword: vi.fn(),
-      handleChangeName: vi.fn(),
-      handleChangePasswordConfirmation: vi.fn(),
+      ...defaultUseSignUp,
       errors: { password_confirmation: 'パスワード確認は必須です' } as SignUpErrors,
-      isSubmitting: false,
-      handleSubmit: vi.fn(),
     });
 
     render(
@@ -120,18 +93,8 @@ describe('SignUpCard', () => {
   it('errors.formが存在する場合、エラーメッセージが表示されること', () => {
     // errors.formにエラーメッセージをセット
     mockUseSignUp.mockReturnValue({
-      name: '',
-      email: '',
-      password: '',
-      password_confirmation: '',
-      handleSignUp: vi.fn(),
-      handleChangeEmail: vi.fn(),
-      handleChangePassword: vi.fn(),
-      handleChangeName: vi.fn(),
-      handleChangePasswordConfirmation: vi.fn(),
+      ...defaultUseSignUp,
       errors: { form: 'フォーム全体のエラーです' } as SignUpErrors,
-      isSubmitting: false,
-      handleSubmit: vi.fn(),
     });
 
     render(
@@ -146,20 +109,9 @@ describe('SignUpCard', () => {
   it('Name欄に文字を入力すると、handleChangeNameが呼ばれること', async () => {
     const mockHandleChangeName = vi.fn();
     mockUseSignUp.mockReturnValue({
-      name: '',
-      email: '',
-      password: '',
-      password_confirmation: '',
-      handleSignUp: vi.fn(),
-      handleChangeEmail: vi.fn(),
-      handleChangePassword: vi.fn(),
+      ...defaultUseSignUp,
       handleChangeName: mockHandleChangeName,
-      handleChangePasswordConfirmation: vi.fn(),
-      errors: {} as SignUpErrors,
-      isSubmitting: false,
-      handleSubmit: vi.fn(),
     });
-
     render(
       <MemoryRouter>
         <SignUpCard />
@@ -173,20 +125,9 @@ describe('SignUpCard', () => {
   it('Email欄に文字を入力すると、handleChangeEmailが呼ばれること', async () => {
     const mockHandleChangeEmail = vi.fn();
     mockUseSignUp.mockReturnValue({
-      name: '',
-      email: '',
-      password: '',
-      password_confirmation: '',
-      handleSignUp: vi.fn(),
+      ...defaultUseSignUp,
       handleChangeEmail: mockHandleChangeEmail,
-      handleChangePassword: vi.fn(),
-      handleChangeName: vi.fn(),
-      handleChangePasswordConfirmation: vi.fn(),
-      errors: {} as SignUpErrors,
-      isSubmitting: false,
-      handleSubmit: vi.fn(),
     });
-
     render(
       <MemoryRouter>
         <SignUpCard />
@@ -200,20 +141,9 @@ describe('SignUpCard', () => {
   it('Password欄に文字を入力すると、handleChangePasswordが呼ばれること', async () => {
     const mockHandleChangePassword = vi.fn();
     mockUseSignUp.mockReturnValue({
-      name: '',
-      email: '',
-      password: '',
-      password_confirmation: '',
-      handleSignUp: vi.fn(),
-      handleChangeEmail: vi.fn(),
+      ...defaultUseSignUp,
       handleChangePassword: mockHandleChangePassword,
-      handleChangeName: vi.fn(),
-      handleChangePasswordConfirmation: vi.fn(),
-      errors: {} as SignUpErrors,
-      isSubmitting: false,
-      handleSubmit: vi.fn(),
     });
-
     render(
       <MemoryRouter>
         <SignUpCard />
@@ -227,20 +157,9 @@ describe('SignUpCard', () => {
   it('Password確認欄に文字を入力すると、handleChangePasswordConfirmationが呼ばれること', async () => {
     const mockHandleChangePasswordConfirmation = vi.fn();
     mockUseSignUp.mockReturnValue({
-      name: '',
-      email: '',
-      password: '',
-      password_confirmation: '',
-      handleSignUp: vi.fn(),
-      handleChangeEmail: vi.fn(),
-      handleChangePassword: vi.fn(),
-      handleChangeName: vi.fn(),
+      ...defaultUseSignUp,
       handleChangePasswordConfirmation: mockHandleChangePasswordConfirmation,
-      errors: {} as SignUpErrors,
-      isSubmitting: false,
-      handleSubmit: vi.fn(),
     });
-
     render(
       <MemoryRouter>
         <SignUpCard />
@@ -253,21 +172,11 @@ describe('SignUpCard', () => {
   });
 
   it('isSubmittingがtrueの場合、登録ボタンは無効化され、ボタンの表示が「アカウント作成中...」になること', () => {
-    mockUseSignUp.mockReturnValue({
-      name: '',
-      email: '',
-      password: '',
-      password_confirmation: '',
-      handleSignUp: vi.fn(),
-      handleChangeEmail: vi.fn(),
-      handleChangePassword: vi.fn(),
-      handleChangeName: vi.fn(),
-      handleChangePasswordConfirmation: vi.fn(),
-      errors: {} as SignUpErrors,
-      isSubmitting: true,
-      handleSubmit: vi.fn(),
-    });
 
+    mockUseSignUp.mockReturnValue({
+      ...defaultUseSignUp,
+      isSubmitting: true,
+    });
     render(
       <MemoryRouter>
         <SignUpCard />
@@ -276,22 +185,12 @@ describe('SignUpCard', () => {
     const submitButton = screen.getByRole('button', { name: 'アカウント作成中...' });
     expect(submitButton).toBeDisabled();
   });
+
   it('isSubmittingがfalseの場合、登録ボタンは有効化され、ボタンの表示が「アカウント作成」になること', () => {
     mockUseSignUp.mockReturnValue({
-      name: '',
-      email: '',
-      password: '',
-      password_confirmation: '',
-      handleSignUp: vi.fn(),
-      handleChangeEmail: vi.fn(),
-      handleChangePassword: vi.fn(),
-      handleChangeName: vi.fn(),
-      handleChangePasswordConfirmation: vi.fn(),
-      errors: {} as SignUpErrors,
+      ...defaultUseSignUp,
       isSubmitting: false,
-      handleSubmit: vi.fn(),
     });
-
     render(
       <MemoryRouter>
         <SignUpCard />
@@ -304,20 +203,9 @@ describe('SignUpCard', () => {
   it('登録ボタンをクリックすると、handleSignUpが呼ばれること', async () => {
     const mockHandleSignUp = vi.fn();
     mockUseSignUp.mockReturnValue({
-      name: '',
-      email: '',
-      password: '',
-      password_confirmation: '',
+      ...defaultUseSignUp,
       handleSignUp: mockHandleSignUp,
-      handleChangeEmail: vi.fn(),
-      handleChangePassword: vi.fn(),
-      handleChangeName: vi.fn(),
-      handleChangePasswordConfirmation: vi.fn(),
-      errors: {} as SignUpErrors,
-      isSubmitting: false,
-      handleSubmit: vi.fn(),
     });
-
     render(
       <MemoryRouter>
         <SignUpCard />
@@ -326,6 +214,7 @@ describe('SignUpCard', () => {
     const user = userEvent.setup();
     const submitButton = screen.getByRole('button', { name: 'アカウント作成' });
     await user.click(submitButton);
+
     expect(mockHandleSignUp).toHaveBeenCalled();
   });
 });
