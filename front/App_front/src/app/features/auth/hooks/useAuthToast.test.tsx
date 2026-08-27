@@ -3,7 +3,6 @@ import { useAuthToast } from '@/app/features/auth/hooks/useAuthToasts';
 import { describe, it, vi } from 'vitest';
 import { toast } from 'sonner';
 import { type SignInNavState } from '@/app/features/auth/types/authType';
-import { useAuthStore } from '@/app/store/useAuthStore';
 
 vi.mock('sonner', () => ({
   toast: {
@@ -19,6 +18,15 @@ vi.mock('react-router-dom', () => ({
     } as SignInNavState,
   })),
   useNavigate: vi.fn(() => vi.fn()),
+}));
+
+const mockClearRedirectedReason = vi.fn();
+// zustandのuseAuthStoreをモック化して、clearRedirectedReason関数を返すようにする
+vi.mock('@/app/store/useAuthStore', () => ({
+  useAuthStore: vi.fn((state) =>
+    state({
+    clearRedirectedReason: mockClearRedirectedReason,
+  })),
 }));
 
 describe('useAuthToast', () => {
