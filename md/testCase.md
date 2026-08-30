@@ -151,7 +151,7 @@ useSignUp.tsx
 - 全てのフィールドに値があると、handleSubmit = true判定となる
 - フィールドに1つでも空文字があると、handleSubmit =  false判定となる
 [validation]
-- validationSignUpがerrorを返すとerrors状態になり、signUpを呼ばずに処理を中断する
+- validationSignUpがErrorsに格納されると、signUpを呼ばずに処理を中断する
 - passwordがpassword_confirmationと一致しなければalertを出して処理を中断する
 [API通信]
 - try~catchの中で、paramsが作られ、正常にsignUp成功したら、navigate('/signin', { state: { email } });が呼ばれる
