@@ -2,6 +2,14 @@ import { waitFor } from '@testing-library/react';
 import { describe, it, vi } from 'vitest';
 import { useSignUp } from '@/app/features/auth/hooks/useSignUp';
 import { renderHook, act } from '@testing-library/react';
+import { toast } from 'sonner';
+
+vi.mock('sonner', () => ({
+  toast: {
+    success: vi.fn(),
+    error: vi.fn(),
+  },
+}));
 const { mockUseNavigate } = vi.hoisted(() => ({
   mockUseNavigate: vi.fn(),
 }));
@@ -111,17 +119,89 @@ describe('useSignUp', () => {
         expect(result.current.handleSubmit).toBe(false);
       });
     });
-    describe('handleSignUp関数のvalidationのテスト', () => {
-      it('validationSignUp関数がErrorsに格納されると、処理が中断される', async () => {
-        const { result } = renderHook(() => useSignUp());
-        const mockEvent = { preventDefault: vi.fn() } as unknown as React.FormEvent;
+  });
+  describe('validationのテスト', () => {
+    it('validationSignUp関数がErrorsに格納されると、処理が中断される', async () => {
+      const { result } = renderHook(() => useSignUp());
+      const mockEvent = { preventDefault: vi.fn() } as unknown as React.FormEvent;
 
-        await act(async () => {
-          await result.current.handleSignUp(mockEvent);
-        });
-        expect(result.current.errors.name).toBeDefined();
-        expect(mockSignUp).not.toHaveBeenCalled();
+      await act(async () => {
+        await result.current.handleSignUp(mockEvent);
       });
+      expect(result.current.errors.name).toBeDefined();
+      expect(mockSignUp).not.toHaveBeenCalled();
+    });
+    it('passwordとpassword_confirmationが一致しない場合、処理が中断される', async () => {
+      const { result } = renderHook(() => useSignUp());
+      const mockEvent = { preventDefault: vi.fn() } as unknown as React.FormEvent;
+      act(() => {
+        result.current.setName('name');
+        result.current.setEmail('email');
+        result.current.setPassword('password');
+        result.current.setPasswordConfirmation('different_password');
+      });
+      await act(async () => {
+        await result.current.handleSignUp(mockEvent);
+      });
+      expect(result.current.errors.password_confirmation).toBeDefined();
+      expect(mockSignUp).not.toHaveBeenCalled();
+    });
+  });
+  describe('API通信のテスト', () => {
+    it('signUPが成功した場合、navigateが呼ばれる', async () => {
+      const { result } = renderHook(() => useSignUp());
+      const mockEvent = { preventDefault: vi.fn() } as unknown as React.FormEvent;
+      act(() => {
+        result.current.setName('name');
+        result.current.setEmail('@email.com');
+        result.current.setPassword('password');
+        result.current.setPasswordConfirmation('password');
+      });
+      await act(async () => {
+        await result.current.handleSignUp(mockEvent);
+      });
+      expect(mockSignUp).toHaveBeenCalled();
+      expect(mockUseNavigate).toHaveBeenCalledWith('/signin', { state: { email: '@email.com' } });
+    });
+    it('signUPが失敗した場合、エラーとtoast.errorが表示される', async () => {
+      const { result } = renderHook(() => useSignUp());
+      const mockEvent = { preventDefault: vi.fn() } as unknown as React.FormEvent;
+      act(() => {
+        result.current.setName('name');
+        result.current.setEmail('@email.com');
+        result.current.setPassword('password');
+        result.current.setPasswordConfirmation('password');
+      });
+      mockSignUp.mockRejectedValueOnce(new Error('API error'));
+      await act(async () => {
+        await result.current.handleSignUp(mockEvent);
+      });
+      expect(result.current.errors.form).toBeDefined();
+      expect(toast.error).toHaveBeenCalledWith('ユーザー登録に失敗しました');
+    });
+    it('isSubmittingがtrueの場合、handleSignUpは処理を中断する', async () => {
+      const { result } = renderHook(() => useSignUp());
+      const mockEvent = { preventDefault: vi.fn() } as unknown as React.FormEvent;
+      mockSignUp.mockImplementation(() => new Promise(() => {})); // 解決しないPromiseを返す
+      // 正常に入力値をセットして、handleSignUpを呼び出す
+      act(() => {
+        result.current.setName('name');
+        result.current.setEmail('@email.com');
+        result.current.setPassword('password');
+        result.current.setPasswordConfirmation('password');
+      });
+      // 1回目の呼び出しでisSubmittingがtrueになることを確認する
+      act(() => {
+        result.current.handleSignUp(mockEvent);
+      });
+      await waitFor(async () => {
+        expect(result.current.isSubmitting).toBe(true);
+      });
+      // 2回目の呼び出しで、mockSignUpが呼ばれないことを確認する
+      act(() => {
+        result.current.handleSignUp(mockEvent);
+      });
+      expect(mockSignUp).toHaveBeenCalledTimes(1);
     });
   });
 });

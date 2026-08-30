@@ -156,14 +156,11 @@ useSignUp.tsx
 [API通信]
 - try~catchの中で、paramsが作られ、正常にsignUp成功したら、navigate('/signin', { state: { email } });が呼ばれる
 - 失敗したら、toast.errorを出す
-- submit中は、isSubmitting = true状態になる
-- submit完了したら、isSubmitting = false状態になる
 - isSubmitting = trueの時、handleSignUpを呼んでも、returnされ処理が走らない
 
 useSignIn.tsx
 [入力制御]
-- location.state.emailが存在すると、initialEmailに値を格納
-- setEmailに初期値として表示する
+- location.state.emailが存在すると、initialEmailに値を格納、setEmailに初期値として表示する
 - handleChangePasswordを呼ぶとpasswordに値が更新される
 - handleChangePasswordを呼ぶと、errors.passwordが消える
 - handleChangeEmailを呼ぶとemailに値が更新される
