@@ -21,11 +21,15 @@ vi.mock('@/app/store/useAuthStore', () => ({
   ),
 }));
 
+// useLocationとuseNavigateをモック化して、itのテスト内でlocation.stateを返すようにする
+// hoistedすることで、mock化される前に、mockUseLocationとmockUseNavigateを定義することができる
 const { mockUseLocation, mockUseNavigate } = vi.hoisted(() => ({
   mockUseLocation: vi.fn(),
   mockUseNavigate: vi.fn(),
 }));
 
+// hoistedした、mockUseLocationとmockUseNavigateが、それぞれuseLocationとuseNavigateのモックとして使われるようにする
+// あとでmockReturnValueを使って、location.stateに値を返すようにする
 vi.mock('react-router-dom', () => ({
   useLocation: mockUseLocation,
   useNavigate: () => mockUseNavigate,
