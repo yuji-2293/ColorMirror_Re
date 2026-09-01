@@ -1,7 +1,6 @@
 import { describe, it, expect, beforeEach, vi } from 'vitest';
 import { useAuthStore } from '@/app/store/useAuthStore';
 
-
 describe('useAuthStore', () => {
   beforeEach(() => {
     vi.clearAllMocks();
@@ -9,7 +8,7 @@ describe('useAuthStore', () => {
       authStatus: 'unknown',
       user: null,
       redirectedReason: null,
-    })
+    });
   });
   it('login関数が呼ばれると、認証済み状態に更新する', () => {
     const user = { id: 1, name: 'yuji' };
