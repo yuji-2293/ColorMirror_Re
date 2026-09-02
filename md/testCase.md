@@ -6,179 +6,190 @@
 
 ### color機能
 
-#### UI
+  #### UI
 
-・colorsForm.tsx
+  ・colorsForm.tsx
 
-- クリックしたボタンの種類によってsetMoodが呼ばれるか？（" "→ワクワク）
-- 気分を変更すると、状態をリセットする関数が走るか？（setSelectedColorName('') と resetColors）
-- moodが未選択、 isPending == trueの時、生成ボタンが押せない
-- 色を生成するためのgenerateMoodData関数のためのparamsを作って渡している
+  - クリックしたボタンの種類によってsetMoodが呼ばれるか？（" "→ワクワク）
+  - 気分を変更すると、状態をリセットする関数が走るか？（setSelectedColorName('') と resetColors）
+  - moodが未選択、 isPending == trueの時、生成ボタンが押せない
+  - 色を生成するためのgenerateMoodData関数のためのparamsを作って渡している
 
-- colorの生成に成功(isSuccess == true) したらトーストの表示がされているか？
-- generatedColorの要素数により、1件以上 = 再生成 の切り替わりが起きているか？
+  - colorの生成に成功(isSuccess == true) したらトーストの表示がされているか？
+  - generatedColorの要素数により、1件以上 = 再生成 の切り替わりが起きているか？
 
-- 生成した色が表示、さらに色をクリックしたらsetSelectedColorNameが空文字で呼ばれるか
-- isPending = trueの時、<Spinner />が表示されるか
+  - 生成した色が表示、さらに色をクリックしたらsetSelectedColorNameが空文字で呼ばれるか
+  - isPending = trueの時、<Spinner />が表示されるか
 
-・colorsIndex.tsx
+  ・colorsIndex.tsx
 
-- isLoading == true の時、<div>Loading...</div>が表示される
-- isError == trueの時、<div>エラー、ファイル、データの確認をしてください</div>が表示される
-- colorsIndexの要素数よって、表示するUIの切り替えが起きている
-- handleDelete = (id: number) が呼ばれ、成功したら、トーストの表示が起きている
+  - isLoading == true の時、<div>Loading...</div>が表示される
+  - isError == trueの時、<div>エラー、ファイル、データの確認をしてください</div>が表示される
+  - colorsIndexの要素数よって、表示するUIの切り替えが起きている
+  - handleDelete = (id: number) が呼ばれ、成功したら、トーストの表示が起きている
 
 
----
+  ---
 
-#### api関数
+  #### api関数
 
-・colorsGetData.ts...Get
+  ・colorsGetData.ts...Get
 
-- colorsGetData関数が呼ばれると色一覧を取得できる
-- API通信が失敗した時、正常にerrorをthrowする
+  - colorsGetData関数が呼ばれると色一覧を取得できる
+  - API通信が失敗した時、正常にerrorをthrowする
 
-・generateMoodData.ts...Post
-[責務]
-- 受け取った generateMood をそのまま ApiClient.post に渡している
-- 通信失敗時errorをthrowする
+  ・generateMoodData.ts...Post
+  [責務]
+  - 受け取った generateMood をそのまま ApiClient.post に渡している
+  - 通信失敗時errorをthrowする
 
----
+  ---
 
-#### hook
-・useColors.ts...TanStack Query
+  #### hook
+  ・useColors.ts...TanStack Query
 
-- colorsGetData の結果を data として返せている
+  - colorsGetData の結果を data として返せている
 
-useGenerateColor...TanStack Query
+  useGenerateColor...TanStack Query
 
-- generatedColorの結果を返却できている
+  - generatedColorの結果を返却できている
 
 ### response機能
+    #### UI
 
-#### UI
+    responsesForm.tsx
+    - AIコメント生成のためのparamsをapiに渡せているか
+    - isSuccess = true の時、toast.successが表示される
+    - isSuccess = false の時、toastが呼ばれない
+    - isSuccess = true の時、aiResponseが表示される
+    - isPending = true の時、clickしてもgenerateResponseが呼ばれない
+    - aiResponseDataの有の時、「AIコメント再生成」が表示できている
+    - aiResponseDataの無しの時、「AI生成開始」が表示できている
+    - isPending = true の時<spinner />が表示されている
+    - !mood || !selectedColorName || isPending の時、AIコメント生成ボタンが非活性になる
 
-responsesForm.tsx
-- AIコメント生成のためのparamsをapiに渡せているか
-- isSuccess = true の時、toast.successが表示される
-- isSuccess = false の時、toastが呼ばれない
-- isSuccess = true の時、aiResponseが表示される
-- isPending = true の時、clickしてもgenerateResponseが呼ばれない
-- aiResponseDataの有の時、「AIコメント再生成」が表示できている
-- aiResponseDataの無しの時、「AI生成開始」が表示できている
-- isPending = true の時<spinner />が表示されている
-- !mood || !selectedColorName || isPending の時、AIコメント生成ボタンが非活性になる
-
-createForm.tsx
-- 「保存ボタン」をクリックした時、isPending = true ならば、処理が中断される
-- サーバーに保存するためのparamsが作成される
-- 作成したparamsをcreateResponse関数に渡している
-- 保存に成功したら、resetAll,resetAiResponse,resetColors,各関数が走ってフォームがリセットされる
-- 保存が成功したら、toast.successが表示される
-- isPending = true の時<spinner />が表示されている
-- !mood || !selectedColorName || !aiResponse || isPendingの時「保存ボタン」が非活性になる
-- 
-#### api関数
-createResponse.ts
-- createResponse関数を呼ぶと、paramsを受け取って通信する
-- 失敗するとthrowを投げる
-generateResponse.ts
-- generateResponse関数を呼ぶと、paramsを受け取って通信する
-- 失敗するとthrowを投げる
-#### hooks
-useCreateResponse.ts
-- hook関数を呼ぶと、api関数が実行される
-- apiから受け取ったデータをcreateResponseDataとして返す
-- mutationが成功した時、invalidateQueriesが走り、キャッシュが更新される
-useGenerateResponse.ts
-- hook関数を呼ぶと、api関数が実行される
-- apiから受け取ったデータをaiResponseDataとして返す
+    createForm.tsx
+    - 「保存ボタン」をクリックした時、isPending = true ならば、処理が中断される
+    - サーバーに保存するためのparamsが作成される
+    - 作成したparamsをcreateResponse関数に渡している
+    - 保存に成功したら、resetAll,resetAiResponse,resetColors,各関数が走ってフォームがリセットされる
+    - 保存が成功したら、toast.successが表示される
+    - isPending = true の時<spinner />が表示されている
+    - !mood || !selectedColorName || !aiResponse || isPendingの時「保存ボタン」が非活性になる
+    - 
+    #### api関数
+    createResponse.ts
+    - createResponse関数を呼ぶと、paramsを受け取って通信する
+    - 失敗するとthrowを投げる
+    generateResponse.ts
+    - generateResponse関数を呼ぶと、paramsを受け取って通信する
+    - 失敗するとthrowを投げる
+    #### hooks
+    useCreateResponse.ts
+    - hook関数を呼ぶと、api関数が実行される
+    - apiから受け取ったデータをcreateResponseDataとして返す
+    - mutationが成功した時、invalidateQueriesが走り、キャッシュが更新される
+    useGenerateResponse.ts
+    - hook関数を呼ぶと、api関数が実行される
+    - apiから受け取ったデータをaiResponseDataとして返す
 
 
 ### auth機能
-#### UI(+ validation )
-signUpCard.tsx
-- errors.nameが存在する時、エラー文が表示される
-- errors.emailが存在する時、エラー文が表示される
-- errors.passwordが存在する時、エラー文が表示される
-- errors.password_confirmが存在する時、エラー文が表示される
-- Name欄に文字を入力すると、handleChangeNameが呼ばれる
-- Email欄に文字を入力すると、handleChangeEmailが呼ばれる
-- Passwordに文字を入力すると、handleChangePasswordが呼ばれる
-- 確認用Passwordに文字を入力すると、handleChangePasswordConfirmが呼ばれる
-- isSubmitting = trueの時、送信ボタンがdisabledになる、かつ、送信ボタンのtextが「アカウント作成中...」になる
-- isSubmitting = falseの時、送信ボタンのtextが「アカウント作成」になる
-- form submit時に handleSignUp が呼ばれる
-- errors.form が存在する時、フォーム全体のエラー文が表示される
+  #### UI(+ validation )
+  signUpCard.tsx
+  - errors.nameが存在する時、エラー文が表示される
+  - errors.emailが存在する時、エラー文が表示される
+  - errors.passwordが存在する時、エラー文が表示される
+  - errors.password_confirmが存在する時、エラー文が表示される
+  - Name欄に文字を入力すると、handleChangeNameが呼ばれる
+  - Email欄に文字を入力すると、handleChangeEmailが呼ばれる
+  - Passwordに文字を入力すると、handleChangePasswordが呼ばれる
+  - 確認用Passwordに文字を入力すると、handleChangePasswordConfirmが呼ばれる
+  - isSubmitting = trueの時、送信ボタンがdisabledになる、かつ、送信ボタンのtextが「アカウント作成中...」になる
+  - isSubmitting = falseの時、送信ボタンのtextが「アカウント作成」になる
+  - form submit時に handleSignUp が呼ばれる
+  - errors.form が存在する時、フォーム全体のエラー文が表示される
 
-signInCard.tsx
-- errors.emailが存在する時、エラー文が表示される
-- errors.passwordが存在する時、エラー文が表示される
-- errors.formが存在する時、エラー文が表示される
-- Email欄に文字を入力すると、handleChangeEmailが呼ばれる
-- Passwordに文字を入力すると、handleChangePasswordが呼ばれる
-- form submitした時、handleLoginが呼ばれる
-- isSubmitting = trueの時、送信ボタンがdisabledされる,かつ、textが「ログイン中...」になる
-- isSubmitting = falseの時、送信ボタンのtextが「ログイン」になる
-- 
-- 
-#### api
-auth.ts
+  signInCard.tsx
+  - errors.emailが存在する時、エラー文が表示される
+  - errors.passwordが存在する時、エラー文が表示される
+  - errors.formが存在する時、エラー文が表示される
+  - Email欄に文字を入力すると、handleChangeEmailが呼ばれる
+  - Passwordに文字を入力すると、handleChangePasswordが呼ばれる
+  - form submitした時、handleLoginが呼ばれる
+  - isSubmitting = trueの時、送信ボタンがdisabledされる,かつ、textが「ログイン中...」になる
+  - isSubmitting = falseの時、送信ボタンのtextが「ログイン」になる
+  - 
+  - 
+  #### api
+  auth.ts
 
-- [signUp] paramsを受け取って、/authにpostする
-- [sighIn] paramsを受け取って、/auth/sign_inにpostする
-- [signOut] /auth/sign_outにdelete通信した後、Cookies[_access-token,_client,_uid]を削除する
-- [validateToken] /auth/validate_tokenに通信後、responseを返す
+  - [signUp] paramsを受け取って、/authにpostする
+  - [sighIn] paramsを受け取って、/auth/sign_inにpostする
+  - [signOut] /auth/sign_outにdelete通信した後、Cookies[_access-token,_client,_uid]を削除する
+  - [validateToken] /auth/validate_tokenに通信後、responseを返す
+  #### hooks
+  useAuthToast.tsx
 
-#### hooks
-useAuthToast.tsx
+  - stateの中身がemailの時、toastを表示する
+  - stateにtoastがあれば、errorが表示、もしくわ、successが表示される
+  - toastを表示した後は、リダイレクト理由をクリアする
 
-- stateの中身がemailの時、toastを表示する
-- stateにtoastがあれば、errorが表示、もしくわ、successが表示される
-- toastを表示した後は、リダイレクト理由をクリアする
+  useSignUp.tsx
+  [入力変更]
+  - handleChangeEmailを呼ぶとemailに値が更新される
+  - handleChangeEmailを呼ぶと、errors.emailが消える
+  - handleChangeNameを呼ぶとnameに値が更新される
+  - handleChangeNameを呼ぶと、errors.nameが消える
+  - handleChangePasswordを呼ぶとpasswordに値が更新される
+  - handleChangePasswordを呼ぶと、errors.passwordが消える
+  - handleChangePassword_confirmationを呼ぶとpassword_confirmationに値が更新される
+  - handleChangePassword_confirmationを呼ぶと、errors.password_confirmationが消える
+  [submit制御]
+  - 全てのフィールドに値があると、handleSubmit = true判定となる
+  - フィールドに1つでも空文字があると、handleSubmit =  false判定となる
+  [validation]
+  - validationSignUpがErrorsに格納されると、signUpを呼ばずに処理を中断する
+  - passwordがpassword_confirmationと一致しなければalertを出して処理を中断する
+  [API通信]
+  - try~catchの中で、paramsが作られ、正常にsignUp成功したら、navigate('/signin', { state: { email } });が呼ばれる
+  - 失敗したら、toast.errorを出す
+  - isSubmitting = trueの時、handleSignUpを呼んでも、returnされ処理が走らない
 
-useSignUp.tsx
-[入力変更]
-- handleChangeEmailを呼ぶとemailに値が更新される
-- handleChangeEmailを呼ぶと、errors.emailが消える
-- handleChangeNameを呼ぶとnameに値が更新される
-- handleChangeNameを呼ぶと、errors.nameが消える
-- handleChangePasswordを呼ぶとpasswordに値が更新される
-- handleChangePasswordを呼ぶと、errors.passwordが消える
-- handleChangePassword_confirmationを呼ぶとpassword_confirmationに値が更新される
-- handleChangePassword_confirmationを呼ぶと、errors.password_confirmationが消える
-[submit制御]
-- 全てのフィールドに値があると、handleSubmit = true判定となる
-- フィールドに1つでも空文字があると、handleSubmit =  false判定となる
-[validation]
-- validationSignUpがErrorsに格納されると、signUpを呼ばずに処理を中断する
-- passwordがpassword_confirmationと一致しなければalertを出して処理を中断する
-[API通信]
-- try~catchの中で、paramsが作られ、正常にsignUp成功したら、navigate('/signin', { state: { email } });が呼ばれる
-- 失敗したら、toast.errorを出す
-- isSubmitting = trueの時、handleSignUpを呼んでも、returnされ処理が走らない
+  useSignIn.tsx
+  [入力制御]
+  - location.state.emailが存在すると、initialEmailに値を格納、setEmailに初期値として表示する
+  - handleChangePasswordを呼ぶとpasswordに値が更新される
+  - handleChangePasswordを呼ぶと、errors.passwordが消える
+  - handleChangeEmailを呼ぶとemailに値が更新される
+  - handleChangeEmailを呼ぶと、errors.emailが消える
+  [submit制御]
+  - email/passwordが1文字以上の時、handleSubmit = true
+  - １つでも空文字のフィールドが存在すれば、handleSubmit = false
+  - handleLoginが呼ばれた時、isSubmitting = trueの時は処理を中断する
+  [validation]
+  - validationSignInがerrorを返すとerrors状態になり、signInが呼ばれない
+  [API通信]
+  - 正常にparamsが作られ、signIn(params)が成功したら、toast.successを表示する
+  - 正常にsignInが成功したら、レスポンスを整形した状態のデータを、store更新関数に渡す
+  - 失敗したら、toast.errorを表示する
+  #### store
+  useAuthStore.ts
 
-useSignIn.tsx
-[入力制御]
-- location.state.emailが存在すると、initialEmailに値を格納、setEmailに初期値として表示する
-- handleChangePasswordを呼ぶとpasswordに値が更新される
-- handleChangePasswordを呼ぶと、errors.passwordが消える
-- handleChangeEmailを呼ぶとemailに値が更新される
-- handleChangeEmailを呼ぶと、errors.emailが消える
-[submit制御]
-- email/passwordが1文字以上の時、handleSubmit = true
-- １つでも空文字のフィールドが存在すれば、handleSubmit = false
-- handleLoginが呼ばれた時、isSubmitting = trueの時は処理を中断する
-[validation]
-- validationSignInがerrorを返すとerrors状態になり、signInが呼ばれない
-[API通信]
-- 正常にparamsが作られ、signIn(params)が成功したら、toast.successを表示する
-- 正常にsignInが成功したら、レスポンスを整形した状態のデータを、store更新関数に渡す
-- 失敗したら、toast.errorを表示する
+  - login関数が呼ばれると、idとnameの有無を確認しuserに情報をセット、認証の状態をauthenticatedにする、同時にリダイレクト理由をnullにする
+  - logout関数が呼ばれると、認証状態をunauthenticatedにし、user情報をnullにする、リダイレクト理由をlogin_requireにする
+  - clearRedirectReasonを呼ぶと、リダイレクト理由をnullにする
 
-#### store
-useAuthStore.ts
-
-- login関数が呼ばれると、idとnameの有無を確認しuserに情報をセット、認証の状態をauthenticatedにする、同時にリダイレクト理由をnullにする
-- logout関数が呼ばれると、認証状態をunauthenticatedにし、user情報をnullにする、リダイレクト理由をlogin_requireにする
-- clearRedirectReasonを呼ぶと、リダイレクト理由をnullにする
+### validations機能
+#### signInValidations.ts
+  - emailが空欄な時errorsにエラー文が格納される
+  - emailに@が存在しない時、errorsにエラー文が格納される
+  - passwordが空欄な時、errorsにエラー文が格納される
+  - passwordが6文字以下の時、errorsにエラー文が格納される
+#### sighUpValidations.ts
+  - nameが空欄な時errorsにエラー文が格納される
+  - emailが空欄な時errorsにエラー文が格納される
+  - emailに@が存在しない時、errorsにエラー文が格納される
+  - passwordが空欄な時、errorsにエラー文が格納される
+  - passwordが6文字以下の時、errorsにエラー文が格納される
+  - passwordがpassword_confirmationと一致しない時、errorsにエラー文が格納される

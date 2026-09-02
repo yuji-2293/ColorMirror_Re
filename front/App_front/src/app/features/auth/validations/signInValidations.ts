@@ -1,6 +1,7 @@
 import { type SignInErrors } from '@/app/features/auth/types/authType';
 
 export const validationSignIn = (email: string, password: string): SignInErrors => {
+  //errorsオブジェクトを初期化
   const errors: SignInErrors = {};
   // メールアドレスのバリデーション
   if (!email.trim()) {
