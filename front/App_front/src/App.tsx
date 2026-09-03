@@ -30,7 +30,6 @@ export default function App() {
       try {
         const res = await validateToken();
         const user = res.data;
-        console.log(user.id, user.name);
         login({ id: user.id, name: user.name });
       } catch {
         logout();
