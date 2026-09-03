@@ -193,3 +193,13 @@
   - passwordが空欄な時、errorsにエラー文が格納される
   - passwordが6文字以下の時、errorsにエラー文が格納される
   - passwordがpassword_confirmationと一致しない時、errorsにエラー文が格納される
+
+### Layout/認証ガード
+#### PrivateLayout.tsx
+- authStatusがunknownの時<Loading />が表示される
+- authStatusが未認証の時、<Navigate to="">でリダイレクトされる
+- authStatusが認証済みの時、<Outlet>を含むコンポーネントを返す
+#### PublicLayout.tsx
+- authStatusがunknownの時<Loading />が表示される
+- authStatusが認証済みの時、<Navigate to="">でリダイレクトされる
+- authStatusが未認証の時、<Outlet>を含むコンポーネントを返す
