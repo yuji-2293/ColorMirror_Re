@@ -48,7 +48,9 @@ describe('useSignIn', () => {
   describe('入力変更のテスト', () => {
     it('handleChangeEmailを呼ぶと、emailの値が更新される', async () => {
       const { result } = renderHook(() => useSignIn());
-      result.current.handleChangeEmail('@test.com');
+      act(() => {
+        result.current.handleChangeEmail('@test.com');
+      });
       await waitFor(() => {
         expect(result.current.email).toBe('@test.com');
       });
@@ -65,7 +67,9 @@ describe('useSignIn', () => {
 
     it('handleChangePasswordを呼ぶと、passwordの値が更新される', async () => {
       const { result } = renderHook(() => useSignIn());
-      result.current.handleChangePassword('password');
+      act(() => {
+        result.current.handleChangePassword('password');
+      });
       await waitFor(() => {
         expect(result.current.password).toBe('password');
       });
@@ -112,12 +116,20 @@ describe('useSignIn', () => {
         expect(result.current.handleSubmit).toBe(true);
       });
     });
-    it('signInが成功した場合、loginが呼ばれる', async () => {
+    it('入力値が正常の場合、signInが呼ばれる', async () => {
       const { result } = renderHook(() => useSignIn());
       const mockEvent = { preventDefault: vi.fn() } as unknown as React.FormEvent;
       act(() => {
         result.current.handleChangeEmail('@test.com');
         result.current.handleChangePassword('password');
+      });
+      mockSignIn.mockResolvedValueOnce({
+        data: {
+          data: {
+            id: 1,
+            name: 'test',
+          },
+        },
       });
       await act(async () => {
         await result.current.handleLogin(mockEvent);

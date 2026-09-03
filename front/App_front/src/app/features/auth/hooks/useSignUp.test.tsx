@@ -30,7 +30,9 @@ describe('useSignUp', () => {
   describe('入力変更のテスト', () => {
     it('handleChangeEmailを呼ぶと、emailの値が更新される', async () => {
       const { result } = renderHook(() => useSignUp());
-      result.current.handleChangeEmail('@test.com');
+      act(() => {
+        result.current.handleChangeEmail('@test.com');
+      });
       await waitFor(() => {
         expect(result.current.email).toBe('@test.com');
       });
@@ -47,7 +49,9 @@ describe('useSignUp', () => {
 
     it('handleChangePasswordを呼ぶと、passwordの値が更新される', async () => {
       const { result } = renderHook(() => useSignUp());
-      result.current.handleChangePassword('password');
+      act(() => {
+        result.current.handleChangePassword('password');
+      });
       await waitFor(() => {
         expect(result.current.password).toBe('password');
       });
@@ -63,7 +67,9 @@ describe('useSignUp', () => {
     });
     it('handleChangeNameを呼ぶと、nameの値が更新される', async () => {
       const { result } = renderHook(() => useSignUp());
-      result.current.handleChangeName('name');
+      act(() => {
+        result.current.handleChangeName('name');
+      });
       await waitFor(() => {
         expect(result.current.name).toBe('name');
       });
@@ -79,7 +85,9 @@ describe('useSignUp', () => {
     });
     it('handleChangePasswordConfirmationを呼ぶと、password_confirmationの値が更新される', async () => {
       const { result } = renderHook(() => useSignUp());
-      result.current.handleChangePasswordConfirmation('password_confirmation');
+      act(() => {
+        result.current.handleChangePasswordConfirmation('password_confirmation');
+      });
       await waitFor(() => {
         expect(result.current.password_confirmation).toBe('password_confirmation');
       });
