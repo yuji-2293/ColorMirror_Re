@@ -10,7 +10,9 @@
     "preview": "vite preview",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
-    "test": "vitest"
+    "test": "vitest",
+    "e2e": "playwright test",
+    "e2e:UI": "playwright test --ui"
   },
   "dependencies": {
     "@radix-ui/react-dialog": "^1.1.15",
