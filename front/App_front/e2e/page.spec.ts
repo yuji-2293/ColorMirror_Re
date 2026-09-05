@@ -15,7 +15,3 @@ test('サインアップページが表示される', async ({ page }) => {
   await page.goto('/signUp');
   await expect(page.getByRole('button', { name: 'アカウント作成' })).toBeVisible();
 });
-
-test('未ログイン時の認証ガードが機能する', async ({ page }) => {
-  await page.goto('/signIn');
-});

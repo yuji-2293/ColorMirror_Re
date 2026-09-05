@@ -129,6 +129,7 @@ export const ColorsForm = ({
               {generatedColor.map((c) => (
                 <div key={c.hex} className="flex flex-col items-center gap-2">
                   <button
+                    aria-label={` ${c.name}を選択`}
                     onClick={() => setSelectedColorName(c.hex)}
                     className="rounded-full border border-gray-300 sm:w-30 w-10  sm:h-30 h-10 hover:scale-110 hover:shadow-2xl transition-transform"
                     style={{ backgroundColor: c.hex }}
