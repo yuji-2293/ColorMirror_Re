@@ -1,4 +1,4 @@
-# ColorMirror_Re(MVP版)
+# ColorMirror_Re
 
 ## リプレイス元のリポジトリ
 
@@ -14,11 +14,13 @@ https://github.com/yuji-2293/ColorMirror
 - [アプリの基本処理フロー](#アプリの基本処理フロー)
 - [アーキテクチャ図](#アーキテクチャ図)
 - [CI/CDフロー図](#cicdフロー図)
+- [CI/CD設計](#cicd設計)
+- [テスト設計](#テスト設計)
 - [リプレイス開発してみた所感](#リプレイス開発してみた所感)
 - [開発背景](#開発背景)
 - [機能選定](#機能選定)
 - [技術スタック](#技術スタック)
-- [設計意図（工夫）](#設計意図工夫)
+- [設計意図(技術記事)](#設計意図技術記事)
 
 ## アプリ URL
 url : https://color-mirror-re.vercel.app
@@ -95,19 +97,62 @@ Rails API経由で保存
 
 
 
-### CI/CD設計
+## CI/CD設計
 
 - Pull Request時はCIのみ実行
 
 - mainブランチへのmerge後にCDを実行
 
-- frontend / backend のworkflowを分離
+- frontend / backend / E2E のworkflowを分離
   - モノレポ構成に合わせて、変更されたディレクトリ単位でworkflowを制御
     - frontディレクトリで変更があれば、front_ci.ymlが走る
     - backディレクトリで変更があれば、back_ci.ymlが走る
+    - 両方のディレクトリに変更があれば、e2e.ymlが走る
 
 - PaaS本来の自動デプロイはoffにし、デプロイはCIが通った時のみActions側のCDにより実行
   - frontはVercel、backはRenderへ個別デプロイ
+
+---
+
+## テスト設計
+
+### フロントエンドでは、責務ごとに分けてVitest / React Testing Library/ Playwrightを使用して、テスト実装を行いました
+Unit Test:
+- API
+- Hooks
+- Components
+- zustand(store)
+- TanStack Query
+- Validation
+- Routing Guard
+- 認証の復元処理
+
+```
+GitHub Actions実行結果
+  テストファイル: ✅ **合格25件** · 合計25件
+  テスト結果: ✅ **合格130件** · 合計130件
+```
+
+Playwright(E2Eテスト)
+メイン機能のE2Eフロー:
+
+```
+mood選択
+↓
+color生成
+↓
+color選択
+↓
+AIコメント生成
+↓
+データ保存
+↓
+一覧画面への反映
+```
+E2EのCI環境構築を行い、PostgreSQL/Rails APIサーバー/Vite/Chromium/をGitHub Actions上で実行するようにしました  
+実行環境: Chromium１本に絞り、実行パフォーマンスを上げてテストを実行しました  
+外部API(OpenAI API)のみ、バックエンドのServiceクラスのMock化を行い、既定値のみ返却する形を取りました。  
+これにより、本番環境に近い形でテストを実行できる環境を構築しました  
 
 ---
 
@@ -168,21 +213,6 @@ Rails API経由で保存
 
 ---
 
-### 今後の拡張予定
-
-### 天気API連携
-- 登録したユーザー情報を元に天気情報を自動取得
-- 天気情報を記録データに組み込み保存
-- 天気情報を AIコメント生成に反映
-
-### 振り返り機能
-- カレンダー形式での記録可視化
-- mood / color の傾向分析
-- 過去の記録を元にした AIコメント生成
-
-### 通知・継続支援
-- LINE またはメールによるリマインド
-- 記録習慣を支援する通知機能
 
 ## 技術スタック
 
@@ -205,7 +235,7 @@ Rails API経由で保存
 | インフラ | Vercel / Render | 自動デプロイをoff CDによってのみデプロイ |
 | CI/CD | GitHub Actions | フロント / バックのCI/CD制御 |
 
-## 設計意図（工夫）
+## 設計意図(技術記事)
 
 ### Zustandによる認証状態管理
 
