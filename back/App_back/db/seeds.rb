@@ -12,6 +12,6 @@ if ENV["E2E_TEST"] == "true"
   User.find_or_create_by!(email: "test999@gmail.com") do |user|
     user.password = "testtest"
     user.password_confirmation = "testtest"
-    user.name = "Test User"
+    user.name = "e2eUser"
   end
 end
