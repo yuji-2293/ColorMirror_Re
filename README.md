@@ -150,10 +150,10 @@ AIコメント生成
 
 ```
 
-E2EのCI環境構築を行い、PostgreSQL/Rails APIサーバー/Vite/Chromium/をGitHub Actions上で実行するようにしました  
-実行環境を「Chromium」１本に絞り、テスト実行時間を短縮しました。  
-外部API(OpenAI API)のみ、通信処理に絞ってMock化を行い、既定値のみ返却する形を取りました。   
-これにより、ブラウザからDB保存までの主要フローを通貫してCI上で検証できる環境を構築しました 。   
+- E2EのCI環境構築を行い、PostgreSQL/Rails APIサーバー/Vite/Chromium/をGitHub Actions上で実行するようにしました  
+- 実行環境を「Chromium」１本に絞り、テスト実行時間を短縮しました。  
+- 外部API(OpenAI API)のみ、通信処理に絞ってMock化を行い、既定値のみ返却する形を取りました。   
+- これにより、ブラウザからDB保存までの主要フローを通貫してCI上で検証できる環境を構築しました 。   
 
 ---
 
