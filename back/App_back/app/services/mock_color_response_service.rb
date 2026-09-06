@@ -1,5 +1,5 @@
 class MockColorResponseService
-  def fetch_mock_response(prompt)
+  def fetch_response(prompt)
     if prompt.include?("ワクワク")
       color_response
     else
