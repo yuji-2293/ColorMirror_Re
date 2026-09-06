@@ -16,7 +16,14 @@ class AiColorService
     「色名」については適切な色名が見つからない場合は近似の色名を使用しても構いません
     マークダウンは使用しないでください。
     PROMPT
-    response  = ::ColorResponseService.new.fetch_response(prompt)
+    service =
+      if ENV["E2E_FAKE_OPENAI"] == "true"
+        MockColorResponseService.new
+      else
+        ColorResponseService.new
+      end
+    response  = service.fetch_response(prompt)
+
     content = response["choices"][0]["message"]["content"]
     colors_with_names = content.scan(/#([0-9a-fA-F]{6})\s*:\s*(?:「([^」]+)」|(.+))/)
     colors_with_names.map do |hex, name1, name2|

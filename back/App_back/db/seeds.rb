@@ -7,3 +7,11 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
+
+if ENV["E2E_TEST"] == "true"
+  User.find_or_create_by!(email: "test@gmail.com") do |user|
+    user.password = "testtest"
+    user.password_confirmation = "testtest"
+    user.name = "Test User"
+  end
+end

@@ -1,7 +1,13 @@
 class AiResponseService
   def process(mood:, color_name:)
     prompt = build_prompt(mood, color_name)
-    response = ColorResponseService.new.fetch_response(prompt)
+    service =
+      if ENV["E2E_FAKE_OPENAI"] == "true"
+        MockColorResponseService.new
+      else
+        ColorResponseService.new
+      end
+    response = service.fetch_response(prompt)
     build_text(response)
   end
 
