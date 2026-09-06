@@ -61,6 +61,7 @@ jobs:
         run: |
           bin/rails db:prepare
           bin/rails db:seed
+          bin/rails runner 'puts "E2E USERS: #{User.pluck(:email).inspect}"'
 
       - name: Start Rails API
         working-directory: back/App_back
