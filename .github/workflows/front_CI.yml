@@ -168,5 +168,7 @@ jobs:
 
       - name: Install dependencies
         run: pnpm install
+      - name: Install Browsers for e2e tests
+        run: pnpm exec playwright install --with-deps chromium
       - name: Run e2e tests
         run: pnpm e2e
